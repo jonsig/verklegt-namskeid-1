@@ -62,7 +62,6 @@ int Person::getyearOfDeath(){
     return yearOfDeath;
 }
 
-void printToFile(Person a);
 
 
 int main()
