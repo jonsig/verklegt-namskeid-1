@@ -11,6 +11,7 @@ void addPerson();                       //Reads people to add to file
 void setPerson(Person& newGuy);         //calls all Person::set functions. Could be replaced by operator overloading
 void mainMenu();                      //First menu
 void search();
+void searchMenu();
 int main()
 {
     int choice;
@@ -61,31 +62,44 @@ void printToFile(const Person& a)
 void mainMenu()
 {
     cout << "What do you want to do?" << endl
-         << "(1) Add people." << endl
-         << "(2) Search for people." << endl
-         << "(3) Show known people." << endl;
+         << "(1): Add people." << endl
+         << "(2): Search for people." << endl
+         << "(3): Show known people." << endl;
 }
 void search(){
     string search;
     ifstream inf;
-    string name;
-    string gender;
-    int yearOfBirth;
-    int yearOfDeath;
+    string name, gender, yearOfBirth, yearOfDeath;
     size_t pos;
-
-
     inf.open("pList.txt");
+
+    searchMenu();
+    int choice;
+    cin >> choice;                        //Choice of what to search for
+
     cout << "Enter search term: ";
     cin >> search;
-    while(inf.good()){
+    while(inf.good()){                    //If file read didn't give errors
         getline(inf, name);
         getline(inf, gender);
-        inf >> yearOfBirth;
-        inf >> yearOfDeath;
-        pos = name.find(search);
-        inf.ignore();
-        if(pos !=string::npos){
+        getline(inf, yearOfBirth);
+        getline(inf, yearOfDeath);
+        switch(choice)
+        {
+        case 1:
+            pos = name.find(search);
+            break;
+        case 2:
+            pos = gender.find(search);
+            break;
+        case 3:
+            pos = yearOfBirth.find(search);
+            break;
+        case 4:
+            pos = yearOfDeath.find(search);
+            break;
+        }
+        if(pos !=string::npos){          //If a match was found.
             cout << name << endl
                  << gender << endl
                  << yearOfBirth << endl
@@ -95,4 +109,13 @@ void search(){
         }
     }
 
+}
+
+void searchMenu()
+{
+    cout << "What do you want to search for?" << endl
+         << "(1): Name" << endl
+         << "(2): Gender" << endl
+         << "(3): Year of birth" << endl
+         << "(4): Year of death (searching for 0 gives living people)" << endl;
 }
