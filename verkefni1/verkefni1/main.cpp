@@ -31,11 +31,11 @@ Person::Person()
 
 void Person::setName(){
     cout << "Input name: ";
-    getline(cin, name);
+    cin >> name;
 }
 void Person::setGender(){
     cout << "Input gender: ";
-    getline(cin, gender);
+    cin >> gender;
 }
 void Person::setyearOfBirth(){
     cout << "Input year of birth: ";
@@ -48,13 +48,13 @@ void Person::setyearOfBirth(){
 }
 void Person::setyearOfDeath(){
     char input;
-    cout << "Is this person dead?" << endl <<  "y/n";
+    cout << "Is this person dead?" << endl <<  "y/n: ";
     cin >> input;
     if(input == 'y'){
         cout << "Input year of death: ";
         cin >> yearOfDeath;
-    }else{ yearOfDeath = 0;}
-    if(yearOfDeath<yearOfBirth){
+    }
+    if(yearOfDeath<yearOfBirth && yearOfDeath != 0){
         cout << "This person cannot have died before he was born" << endl;
         setyearOfDeath();
     }
@@ -72,11 +72,42 @@ int Person::getyearOfDeath(){
     return yearOfDeath;
 }
 
+void printToFile(Person a);
 
+void addPerson(vector<Person>& people); //Adds a new person to file
+void setPerson(Person& newGuy);         //calls all Person::set functions
 
 int main()
 {
-
+    vector<Person> people;              //PLACEHOLDER FOR .TXT FILE.
+    char choice;
+    cout << "Add people?" << endl << "y/n: ";
+    cin >> choice;
+    if(tolower(choice) == 'y')
+        addPerson(people);
     return 0;
 }
 
+void addPerson(vector<Person>& people)
+{
+    char addMore;
+    do
+    {
+        Person newGuy;
+        setPerson(newGuy);
+
+        people.push_back(newGuy);       //PLACEHOLDER
+
+        cout << "Add a new person?" << endl << "y/n: ";
+        cin >> addMore;
+    }
+    while(tolower(addMore) == 'y');
+}
+
+void setPerson(Person& newGuy)
+{
+    newGuy.setName();
+    newGuy.setGender();
+    newGuy.setyearOfBirth();
+    newGuy.setyearOfDeath();
+}
