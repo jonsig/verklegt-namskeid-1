@@ -59,11 +59,10 @@ int Person::getyearOfDeath(){
 }
 ofstream& operator << (ofstream& outf, const Person& a)
 {
-    outf << "n: " << a.name << endl
-         << "g: " << a.gender << endl
-         << "yb: " << a.yearOfBirth << endl
-         << "yd: " << a.yearOfDeath << endl
-         << endl;
+    outf << a.name << endl
+         << a.gender << endl
+         << a.yearOfBirth << endl
+         << a.yearOfDeath << endl;
     return outf;
 }
 
