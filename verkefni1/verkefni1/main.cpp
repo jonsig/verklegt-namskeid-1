@@ -10,6 +10,7 @@ void printToFile(const Person& a);      //Adds Person to file
 void addPerson();                       //Reads people to add to file
 void setPerson(Person& newGuy);         //calls all Person::set functions. Could be replaced by operator overloading
 void mainMenu();                      //First menu
+void search();
 int main()
 {
     int choice;
@@ -17,8 +18,11 @@ int main()
     cin >> choice;
     if(choice == 1)
         addPerson();
-    if(choice == 2 || choice == 3)
-        cout << "I'm not ready!" << endl;
+    else if(choice == 2) //|| choice == 3)
+        search();
+    else if(choice == 3)
+        cout << "Im not ready!" << endl;
+
 
     return 0;
 }
@@ -61,4 +65,37 @@ void mainMenu()
          << "(1) Add people." << endl
          << "(2) Search for people." << endl
          << "(3) Show known people." << endl;
+}
+void search(){
+    string search;
+    ifstream inf;
+    string name;
+    string gender;
+    int yearOfBirth;
+    int yearOfDeath;
+    size_t pos;
+
+
+    inf.open("pList.txt");
+    cout << "Enter search term: ";
+    cin >> search;
+    while(inf.good()){
+        getline(inf, name);
+        getline(inf, gender);
+        //getline(inf, yearOfBirth);
+        //getline(inf, yearOfDeath);
+        inf >> yearOfBirth;
+        inf >> yearOfDeath;
+        pos = name.find(search);
+        inf.ignore();
+        cout << name;
+        if(pos !=string::npos){
+            cout << name << endl
+                 << gender << endl
+                 << yearOfBirth << endl
+                 << yearOfDeath << endl;
+            break;
+        }
+    }
+
 }
