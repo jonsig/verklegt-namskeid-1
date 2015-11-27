@@ -19,6 +19,7 @@ class Person {
         string getGender();
         int getyearOfBirth();
         int getyearOfDeath();
+        friend ofstream& operator << (ofstream& outf, const Person& a);
 };
 
 Person::Person()
@@ -72,36 +73,45 @@ int Person::getyearOfDeath(){
     return yearOfDeath;
 }
 
-void printToFile(Person a);
+ofstream& operator << (ofstream& outf, const Person& a)
+{
+    outf << "n: " << a.name << endl
+         << "g: " << a.gender << endl
+         << "yb: " << a.yearOfBirth << endl
+         << "yd: " << a.yearOfDeath << endl
+         << endl;
+    return outf;
+}
 
-void addPerson(vector<Person>& people); //Adds a new person to file
-void setPerson(Person& newGuy);         //calls all Person::set functions
+//void printToFile(Person a);             //Adds Person to file
+void addPerson();                       //Reads people to add to file
+void setPerson(Person& newGuy);         //calls all Person::set functions. Could be replaced by operator overloading
 
 int main()
 {
-    vector<Person> people;              //PLACEHOLDER FOR .TXT FILE.
     char choice;
     cout << "Add people?" << endl << "y/n: ";
     cin >> choice;
-    if(tolower(choice) == 'y')
-        addPerson(people);
+    if(tolower(choice) == 'y')          //"tolower(choice)" converts upper case to lower
+        addPerson();
     return 0;
 }
 
-void addPerson(vector<Person>& people)
+void addPerson()
 {
+    ofstream outf;
+    outf.open("pList.txt");
     char addMore;
     do
     {
         Person newGuy;
         setPerson(newGuy);
-
-        people.push_back(newGuy);       //PLACEHOLDER
-
+        outf << newGuy;     //"<<" is overloaded in Person class.
         cout << "Add a new person?" << endl << "y/n: ";
         cin >> addMore;
     }
     while(tolower(addMore) == 'y');
+    outf.close();
 }
 
 void setPerson(Person& newGuy)
