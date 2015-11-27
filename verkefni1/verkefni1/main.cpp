@@ -5,91 +5,9 @@
 #include "person.h"
 
 using namespace std;
-/*
-class Person {
-        string gender;
-        string name;
-        int yearOfBirth, yearOfDeath;
-    public:
-        Person();
-        void setName();
-        void setGender();
-        void setyearOfBirth();
-        void setyearOfDeath();
-        string getName();
-        string getGender();
-        int getyearOfBirth();
-        int getyearOfDeath();
-        friend ofstream& operator << (ofstream& outf, const Person& a);
-};
 
-Person::Person()
-{
-    name = "N/A";
-    gender = "N/A";
-    yearOfBirth = 0;
-    yearOfDeath = 0;
-}
 
-void Person::setName(){
-    cout << "Input name: ";
-    getline(cin, name);
-}
-void Person::setGender(){
-    cout << "Input gender: ";
-    getline(cin, gender);
-}
-void Person::setyearOfBirth(){
-    cout << "Input year of birth: ";
-    cin >> yearOfBirth;
-    if(yearOfBirth>2015){
-        cout << "Timetravel is not allowed!" << endl;
-        setyearOfBirth();
-    }
-
-}
-void Person::setyearOfDeath(){
-    char input;
-    cout << "Is this person dead?" << endl <<  "y/n: ";
-    cin >> input;
-    if(input == 'y'){
-        cout << "Input year of death: ";
-        cin >> yearOfDeath;
-    }
-    else if(input == 'n'){
-        yearOfDeath = 0;
-    }
-
-    if(yearOfDeath<yearOfBirth && yearOfDeath != 0){
-        cout << "This person cannot have died before he was born" << endl;
-        setyearOfDeath();
-    }
-}
-string Person::getName(){
-    return name;
-}
-string Person::getGender(){
-    return gender;
-}
-int Person::getyearOfBirth(){
-    return yearOfBirth;
-}
-int Person::getyearOfDeath(){
-    return yearOfDeath;
-}
-
-ofstream& operator << (ofstream& outf, const Person& a)
-{
-    outf << "n: " << a.name << endl
-         << "g: " << a.gender << endl
-         << "yb: " << a.yearOfBirth << endl
-         << "yd: " << a.yearOfDeath << endl
-         << endl;
-    return outf;
-}
-*/
-
-//void printToFile(Person a);             //Adds Person to file
+void printToFile(Person a);             //Adds Person to file
 void addPerson();                       //Reads people to add to file
 void setPerson(Person& newGuy);         //calls all Person::set functions. Could be replaced by operator overloading
 
