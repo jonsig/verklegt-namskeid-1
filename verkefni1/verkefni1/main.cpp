@@ -2,9 +2,10 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include "person.h"
 
 using namespace std;
-
+/*
 class Person {
         string gender;
         string name;
@@ -32,11 +33,11 @@ Person::Person()
 
 void Person::setName(){
     cout << "Input name: ";
-    cin >> name;
+    getline(cin, name);
 }
 void Person::setGender(){
     cout << "Input gender: ";
-    cin >> gender;
+    getline(cin, gender);
 }
 void Person::setyearOfBirth(){
     cout << "Input year of birth: ";
@@ -86,6 +87,7 @@ ofstream& operator << (ofstream& outf, const Person& a)
          << endl;
     return outf;
 }
+*/
 
 //void printToFile(Person a);             //Adds Person to file
 void addPerson();                       //Reads people to add to file
