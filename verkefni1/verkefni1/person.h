@@ -1,11 +1,13 @@
 #ifndef PERSON_H
 #define PERSON_H
 #include <string>
+#include <vector>
 
 using namespace std;
 
 
 class Person {
+    private:
         string gender;
         string name;
         int yearOfBirth, yearOfDeath;
@@ -20,6 +22,7 @@ class Person {
         int getyearOfBirth();
         int getyearOfDeath();
         friend ofstream& operator << (ofstream& outf, const Person& a);
+    
 };
 
 #endif // PERSON_H
