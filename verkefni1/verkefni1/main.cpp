@@ -10,6 +10,7 @@ class Person {
         string name;
         int yearOfBirth, yearOfDeath;
     public:
+        Person();
         void setName();
         void setGender();
         void setyearOfBirth();
@@ -19,6 +20,15 @@ class Person {
         int getyearOfBirth();
         int getyearOfDeath();
 };
+
+Person::Person()
+{
+    name = "N/A";
+    gender = "N/A";
+    yearOfBirth = 0;
+    yearOfDeath = 0;
+}
+
 void Person::setName(){
     cout << "Input name: ";
     getline(cin, name);
