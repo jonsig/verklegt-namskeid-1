@@ -55,7 +55,6 @@ void printToFile(const Person& a)
     ofstream outf;
     outf.open("pList.txt", ios::app);
     outf << a;     //"<<" is overloaded in Person class.
-    outf << endl;
     outf.close();
 }
 
@@ -82,18 +81,16 @@ void search(){
     while(inf.good()){
         getline(inf, name);
         getline(inf, gender);
-        //getline(inf, yearOfBirth);
-        //getline(inf, yearOfDeath);
         inf >> yearOfBirth;
         inf >> yearOfDeath;
         pos = name.find(search);
         inf.ignore();
-        cout << name;
         if(pos !=string::npos){
             cout << name << endl
                  << gender << endl
                  << yearOfBirth << endl
                  << yearOfDeath << endl;
+
             break;
         }
     }
