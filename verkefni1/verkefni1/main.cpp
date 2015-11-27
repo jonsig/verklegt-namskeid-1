@@ -55,6 +55,10 @@ void Person::setyearOfDeath(){
         cout << "Input year of death: ";
         cin >> yearOfDeath;
     }
+    else if(input == 'n'){
+        yearOfDeath = 0;
+    }
+
     if(yearOfDeath<yearOfBirth && yearOfDeath != 0){
         cout << "This person cannot have died before he was born" << endl;
         setyearOfDeath();
@@ -100,7 +104,7 @@ int main()
 void addPerson()
 {
     ofstream outf;
-    outf.open("pList.txt");
+    outf.open("pList.txt", ios::app);
     char addMore;
     do
     {
