@@ -12,7 +12,7 @@ void setPerson(Person& newGuy);         //calls all Person::set functions. Could
 void mainMenu();                        //First menu
 void search();                          //Find entries in file
 void searchMenu(int& choice);           //Gives options of what to search for
-void printPerson(const string& name, const string& gender, const string& yearOfBirth, const string& yearOfDeath);
+void printPerson(const string& name, const string& gender, const  int& yearOfBirth, const int& yearOfDeath);
 
 int main()
 {
@@ -25,8 +25,6 @@ int main()
         search();
     else if(choice == 3)
         cout << "I'm not ready!" << endl;
-
-
     return 0;
 }
 
@@ -46,7 +44,7 @@ void addPerson()
 
 void setPerson(Person& newGuy)
 {
-    cin.ignore();           //losnar við síðasta cin input
+    cin.ignore();           //Clears last cin
     newGuy.setName();
     newGuy.setGender();
     newGuy.setyearOfBirth();
@@ -70,21 +68,32 @@ void mainMenu()
 }
 void search(){
     string search;
+    int numSearch;                 //If you're searching for a year.
     ifstream inf;
-    string name, gender, yearOfBirth, yearOfDeath;
-    size_t pos;
+    string name, gender;
+    int yearOfBirth, yearOfDeath;
+    size_t pos = string::npos;
     inf.open("pList.txt");
 
     int choice;
     searchMenu(choice);            //Choose what to search for
 
     cout << "Enter search term: ";
-    cin >> search;
+    if(choice == 1 || choice == 2)
+    {
+        cin.ignore();
+        getline(cin, search);
+    }
+    else
+    {
+        cin >> numSearch;
+    }
     while(inf.good()){             //If file read didn't give errors
         getline(inf, name);
         getline(inf, gender);
-        getline(inf, yearOfBirth);
-        getline(inf, yearOfDeath);
+        inf >> yearOfBirth;
+        inf >> yearOfDeath;
+        inf.ignore();
         switch(choice)
         {
         case 1:
@@ -94,10 +103,12 @@ void search(){
             pos = gender.find(search);
             break;
         case 3:
-            pos = yearOfBirth.find(search);
+            if(numSearch == yearOfBirth)
+                pos = 1;
             break;
         case 4:
-            pos = yearOfDeath.find(search);
+            if(numSearch == yearOfDeath)
+                pos = 1;
             break;
         }
         if(pos !=string::npos){    //If a match was found.
@@ -105,7 +116,8 @@ void search(){
             break;
         }
     }
-
+    if(pos == string::npos)        //If function is ending without having found a match
+        cout << "No matches found" << endl;
 }
 
 void searchMenu(int& choice)
@@ -119,11 +131,10 @@ void searchMenu(int& choice)
 
 }
 
-void printPerson(const string& name, const string& gender, const string& yearOfBirth, const string& yearOfDeath)
+void printPerson(const string& name, const string& gender, const int& yearOfBirth, const int& yearOfDeath)
 {
     cout << "Name: " << name << endl
          << "Gender: " << gender << endl
          << "Year of birth: " << yearOfBirth << endl
-         << "Year of death:" << yearOfDeath << endl;
-
+         << "Year of death: " << yearOfDeath << endl;
 }
