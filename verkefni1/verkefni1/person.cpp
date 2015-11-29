@@ -35,6 +35,7 @@ void Person::setyearOfDeath(){
     if(input == 'y'){
         cout << "Input year of death: ";
         cin >> yearOfDeath;
+        trueAge();
     }
     else if(input == 'n'){
         yearOfDeath = 0;
@@ -45,6 +46,46 @@ void Person::setyearOfDeath(){
         setyearOfDeath();
     }
 }
+void Person::trueAge() {
+    int ageOfDeath;
+    char confused;
+    bool makesSense;
+    do{
+        makesSense =true;
+        ageOfDeath = yearOfDeath-yearOfBirth;
+       if(ageOfDeath >100){
+           cout << "The person seems to have been " << ageOfDeath << " years old when they died" << endl;
+           cout << "Is this correct? (y/n) ";
+           cin >> confused;
+           if(confused == 'n'){
+               makesSense=false;
+               int toFix = fixIt();
+               if(toFix==1) {
+                   setyearOfBirth();
+                   trueAge();
+               }
+               else if(toFix==2) {
+                   setyearOfDeath();
+               }
+               else if(toFix==3) {
+                   setyearOfBirth();
+                   setyearOfDeath();
+               }
+           }
+       }
+    }while(makesSense==false);
+}
+
+int Person::fixIt() {
+    int choice;
+    cout << "What would you like to change?" << endl;
+    cout << "(1): Year of birth." << endl;
+    cout << "(2): Year of death." << endl;
+    cout << "(3): Both." << endl;
+    cin >> choice;
+    return choice;
+}
+
 string Person::getName(){
     return name;
 }

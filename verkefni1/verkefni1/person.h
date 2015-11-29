@@ -17,6 +17,8 @@ class Person {
         void setGender();
         void setyearOfBirth();
         void setyearOfDeath();
+        void trueAge();
+        int fixIt();
         string getName();
         string getGender();
         int getyearOfBirth();
