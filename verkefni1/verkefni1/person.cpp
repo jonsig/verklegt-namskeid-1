@@ -11,6 +11,14 @@ Person::Person()
     yearOfDeath = 0;
 }
 
+void Person::newPerson()
+{
+    setName();
+    setGender();
+    setyearOfBirth();
+    setyearOfDeath();
+}
+
 void Person::setName(){
     cout << "Input name: ";
     getline(cin, name);
@@ -141,14 +149,4 @@ ostream& operator << (ostream& out, const Person& a)
         out << temp.getName() << " is alive." << endl;
     out << endl;
     return out;
-}
-
-istream& operator >> (istream& in, Person& a)
-{
-    in.ignore();
-    a.setName();
-    a.setGender();
-    a.setyearOfBirth();
-    a.setyearOfDeath();
-    return in;
 }
