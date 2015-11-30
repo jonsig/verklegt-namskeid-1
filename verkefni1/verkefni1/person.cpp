@@ -1,6 +1,7 @@
 #include "person.h"
 #include <iostream>
 #include <string>
+#include <fstream>
 
 Person::Person()
 {
@@ -103,21 +104,50 @@ int Person::getyearOfBirth(){
 int Person::getyearOfDeath(){
     return yearOfDeath;
 }
+
+ofstream& operator << (ofstream& outf, const Person& a)
+{
+    outf << a.name << endl
+         << a.gender << endl
+         << a.yearOfBirth << endl
+         << a.yearOfDeath << endl;
+    return outf;
+}
+
+ifstream& operator >> (ifstream& inf, Person& a)
+{
+    getline(inf, a.name);
+    getline(inf, a.gender);
+    inf >> a.yearOfBirth;
+    inf >> a.yearOfDeath;
+    return inf;
+}
+
 ostream& operator << (ostream& out, const Person& a)
 {
-    out << a.name << endl
-        << a.gender << endl
-        << a.yearOfBirth << endl
-        << a.yearOfDeath << endl;
+    Person temp = a;
+    out << "Name: " << temp.getName() << endl
+        << "Gender: ";
+    if(temp.getGender() == "m")
+        out << "Male";
+    else if(temp.getGender() == "f")
+        out << "Female";
+    out << endl
+        << "Year of birth: " << temp.getyearOfBirth() << endl;
+    if(temp.getyearOfDeath() != 0)
+        out << "Year of death: " << temp.getyearOfDeath() << endl;
+    else
+        out << temp.getName() << " is alive." << endl;
+    out << endl;
     return out;
 }
 
 istream& operator >> (istream& in, Person& a)
 {
-    getline(in, a.name);
-    getline(in, a.gender);
-    in >> a.yearOfBirth;
-    in >> a.yearOfDeath;
+    in.ignore();
+    a.setName();
+    a.setGender();
+    a.setyearOfBirth();
+    a.setyearOfDeath();
     return in;
 }
-

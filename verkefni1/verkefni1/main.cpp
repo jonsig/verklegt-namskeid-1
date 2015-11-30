@@ -8,11 +8,9 @@ using namespace std;
 
 void printToFile(const Person& a);      //Adds Person to file
 void addPerson();                       //Reads people to add to file
-void setPerson(Person& newGuy);         //calls all Person::set functions. Could be replaced by operator overloading
 void mainMenu();                        //First menu
 void search();                          //Find entries in file
 void searchMenu(int& choice);           //Gives options of what to search for
-void printPerson(Person& a);
 
 int main()
 {
@@ -36,21 +34,12 @@ void addPerson()
     do
     {
         Person newGuy;
-        setPerson(newGuy);
+        cin >> newGuy;
         printToFile(newGuy);
         cout << "Add a new person?" << endl << "y/n: ";
         cin >> addMore;
     }
     while(tolower(addMore) == 'y');  //"tolower(choice)" converts upper case to lower
-}
-
-void setPerson(Person& newGuy)
-{
-    cin.ignore();           //Clears last cin
-    newGuy.setName();
-    newGuy.setGender();
-    newGuy.setyearOfBirth();
-    newGuy.setyearOfDeath();
 }
 
 void printToFile(const Person& a)
@@ -70,7 +59,7 @@ void mainMenu()
          << "(4): Quit." << endl;
 }
 void search(){
-    Person tempP;                  //will be added to vector
+    Person tempP;
     string search;
     int numSearch;                 //If you're searching for a year.
     ifstream inf;
@@ -103,8 +92,9 @@ void search(){
         else if(choice == 4 && numSearch == tempP.getyearOfDeath())
             pos = 1;
         if(inf.good() && pos != string::npos) {     //If a match was found.
-                printPerson(tempP);
-                checker++;
+            cout << endl;
+            cout << tempP;
+            checker++;
         }
     }
     if(checker == 0)        //If function is ending without having found a match
@@ -119,14 +109,4 @@ void searchMenu(int& choice)
          << "(3): Year of birth" << endl
          << "(4): Year of death (searching for 0 gives living people)" << endl;
     cin >> choice;
-
-}
-
-void printPerson(Person& a)
-{
-    cout << "\nName: " << a.getName() << endl
-         << "Gender: " << a.getGender() << endl
-         << "Year of birth: " << a.getyearOfBirth() << endl
-         << "Year of death: " << a.getyearOfDeath() << endl
-         << endl;
 }
