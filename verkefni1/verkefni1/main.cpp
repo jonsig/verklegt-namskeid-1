@@ -6,29 +6,42 @@
 
 using namespace std;
 
-void printToFile(const Person& a);      //Adds Person to file
-void addPerson();                       //Reads people to add to file
-void mainMenu();                        //First menu
-void search();                          //Find entries in file
-void searchMenu(int& choice);           //Gives options of what to search for
+void mainMenu(int& choice);
+void addPeople();
+void printToFile(const Person& a);
+void search();
+void searchMenu(string& sSearch, int& iSearch, int& choice);
+void getPeople(vector<Person>& people);
+void printPerson(const Person& a);
 
 int main()
 {
     int choice;
-    do {
-        mainMenu();
-        cin >> choice;
+    do
+    {
+        mainMenu(choice);
         if(choice == 1)
-            addPerson();
+            addPeople();
         else if(choice == 2)
+        {
             search();
-        else if(choice == 3)
-            cout << "I'm not ready!" << endl;
-    }while(choice==1||choice==2||choice==3);
+        }
+    }
+    while(choice == 1 || choice == 2 || choice == 3);
     return 0;
 }
 
-void addPerson()
+void mainMenu(int& choice)
+{
+    cout << "What would you like to do?" << endl
+         << "(1): Add people" << endl
+         << "(2): Search for people" << endl
+         << "(3): Show known people" << endl
+         << "Anything else to quit" << endl;
+    cin >> choice;
+}
+
+void addPeople()
 {
     char addMore;
     do
@@ -50,63 +63,65 @@ void printToFile(const Person& a)
     outf.close();
 }
 
-void mainMenu()
+void search()
 {
-    cout << "What do you want to do?" << endl
-         << "(1): Add people." << endl
-         << "(2): Search for people." << endl
-         << "(3): Show known people." << endl
-         << "(4): Quit." << endl;
+    string sSearch;     //String search
+    int iSearch;        //Integer search
+    int choice;         //Choice of what to search for
+    searchMenu(sSearch, iSearch, choice);
+
+    vector<Person> people;      //Vector is made so file read can be in a different layer
+    getPeople(people);          //Vector filled.
+    for(unsigned i = 0; i < people.size()-1; i++)
+    {
+        if(choice == 1 && people[i].getName().find(sSearch) != string::npos) //choice = 1 and match found
+            cout << people[i];
+        else if(choice == 2 && people[i].getGender().find(sSearch) != string::npos) //choice = 1 and match found
+            cout << people[i];
+        else if(choice == 3 && people[i].getyearOfBirth() == iSearch)
+            cout << people[i];
+        else if(choice == 4 && people[i].getyearOfDeath() == iSearch)
+            cout << people[i];
+    }
 }
-void search(){
-    Person tempP;
-    string search;
-    int numSearch;                 //If you're searching for a year.
-    ifstream inf;
-    int checker =0;
-    inf.open("pList.txt");
 
-    int choice;
-    searchMenu(choice);            //Choose what to search for
-
+void searchMenu(string& sSearch, int& iSearch, int& choice)
+{
+    cout << "What would you like to search for?" << endl
+         << "(1): Name" << endl
+         << "(2): Gender" << endl
+         << "(3): Year of birth" << endl
+         << "(4): Year of death" << endl;
+    cin >> choice;
+    cin.ignore();
     cout << "Enter search term: ";
     if(choice == 1 || choice == 2)
     {
+        getline(cin, sSearch);
+    }
+    else if(choice == 3 || choice == 4)
+    {
+        cin >> iSearch;
         cin.ignore();
-        getline(cin, search);
     }
     else
-    {
-        cin >> numSearch;
-    }
-    while(inf.good()){             //If file read didn't give errors
-        size_t pos = string::npos;
-        inf >> tempP;              //">>" is overloaded in person class
-        inf.ignore();
-        if(choice == 1)
-            pos = tempP.getName().find(search);
-        else if(choice == 2)
-            pos = tempP.getGender().find(search);
-        else if(choice == 3 && numSearch == tempP.getyearOfBirth())
-            pos = 1;
-        else if(choice == 4 && numSearch == tempP.getyearOfDeath())
-            pos = 1;
-        if(inf.good() && pos != string::npos) {     //If a match was found.
-            cout << endl;
-            cout << tempP;
-            checker++;
-        }
-    }
-    if(checker == 0)        //If function is ending without having found a match
-        cout << "No matches found" << endl;
+        cout << "Invalid choice" << endl;
 }
 
-void searchMenu(int& choice)
+void getPeople(vector<Person>& people)
 {
-    cout << "What do you want to search for?" << endl
-         << "(1): Name" << endl
-         << "(2): Gender (m/f)" << endl
-         << "(3): Year of birth" << endl
-         << "(4): Year of death (searching for 0 gives living people)" << endl;
-    cin >> choice;
+    ifstream inf;
+    inf.open("pList.txt");
+    while(inf.good())
+    {
+        Person temp;
+        inf >> temp;
+        people.push_back(temp);
+    }
+    inf.close();
+}
+
+void printPerson(const Person& a)
+{
+    cout << a;
 }

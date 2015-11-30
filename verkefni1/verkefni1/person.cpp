@@ -120,6 +120,7 @@ ifstream& operator >> (ifstream& inf, Person& a)
     getline(inf, a.gender);
     inf >> a.yearOfBirth;
     inf >> a.yearOfDeath;
+    inf.ignore();
     return inf;
 }
 
