@@ -71,7 +71,6 @@ void mainMenu()
 }
 void search(){
     Person tempP;                  //will be added to vector
-    vector<Person> people;
     string search;
     int numSearch;                 //If you're searching for a year.
     ifstream inf;
@@ -116,7 +115,7 @@ void searchMenu(int& choice)
 {
     cout << "What do you want to search for?" << endl
          << "(1): Name" << endl
-         << "(2): Gender" << endl
+         << "(2): Gender (m/f)" << endl
          << "(3): Year of birth" << endl
          << "(4): Year of death (searching for 0 gives living people)" << endl;
     cin >> choice;

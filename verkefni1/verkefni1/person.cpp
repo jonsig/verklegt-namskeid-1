@@ -15,7 +15,7 @@ void Person::setName(){
     getline(cin, name);
 }
 void Person::setGender(){
-    cout << "Input gender: ";
+    cout << "Input gender (m/f): ";
     getline(cin, gender);
 }
 void Person::setyearOfBirth(){
