@@ -38,7 +38,6 @@ void mainMenu(int& choice)
          << "(3): Show known people" << endl
          << "Anything else to quit" << endl;
     cin >> choice;
-    cin.ignore();
 }
 
 void addPeople()
@@ -47,7 +46,7 @@ void addPeople()
     do
     {
         Person newGuy;
-        newGuy.newPerson();
+        cin >> newGuy;
         printToFile(newGuy);
         cout << "Add a new person?" << endl << "y/n: ";
         cin >> addMore;

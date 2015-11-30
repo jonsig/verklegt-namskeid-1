@@ -12,7 +12,6 @@ class Person {
         int yearOfBirth, yearOfDeath;
     public:
         Person();
-        void newPerson();
         void setName();
         void setGender();
         void setyearOfBirth();
@@ -23,9 +22,10 @@ class Person {
         string getGender();
         int getyearOfBirth();
         int getyearOfDeath();
-        friend ofstream& operator << (ofstream& outf, const Person& a); //used by outf
+        friend ofstream& operator << (ofstream& outf, const Person& a);     //there are two overloads for each i/o operator, one file stream, one standard. Compiler chooses them based on what called them.
         friend ifstream& operator >> (ifstream& inf, Person& a);
-        friend ostream& operator << (ostream& out, const Person& a);    //used by cout
+        friend ostream& operator << (ostream& out, const Person& a);
+        friend istream& operator >> (istream& in, Person& a);
 };
 
 #endif // PERSON_H
