@@ -6,13 +6,12 @@
 
 using namespace std;
 
-void mainMenu(int& choice);
-void addPeople();
-void printToFile(const Person& a);
-void search();
-void searchMenu(string& sSearch, int& iSearch, int& choice);
-void getPeople(vector<Person>& people);
-void printPerson(const Person& a);
+void mainMenu(int& choice);                                     //interface
+void addPeople();                                               //interface
+void printToFile(const Person& a);                              //file i/o
+void search();                                                  //core function
+void searchMenu(string& sSearch, int& iSearch, int& choice);    //interface
+void getPeople(vector<Person>& people);                         //file i/o
 
 int main()
 {
@@ -119,9 +118,4 @@ void getPeople(vector<Person>& people)
         people.push_back(temp);
     }
     inf.close();
-}
-
-void printPerson(const Person& a)
-{
-    cout << a;
 }
