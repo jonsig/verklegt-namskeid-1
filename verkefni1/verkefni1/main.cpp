@@ -17,14 +17,16 @@ void printPerson(const string& name, const string& gender, const  int& yearOfBir
 int main()
 {
     int choice;
-    mainMenu();
-    cin >> choice;
-    if(choice == 1)
-        addPerson();
-    else if(choice == 2)
-        search();
-    else if(choice == 3)
-        cout << "I'm not ready!" << endl;
+    do {
+        mainMenu();
+        cin >> choice;
+        if(choice == 1)
+            addPerson();
+        else if(choice == 2)
+            search();
+        else if(choice == 3)
+            cout << "I'm not ready!" << endl;
+    }while(choice==1||choice==2||choice==3);
     return 0;
 }
 
@@ -64,7 +66,8 @@ void mainMenu()
     cout << "What do you want to do?" << endl
          << "(1): Add people." << endl
          << "(2): Search for people." << endl
-         << "(3): Show known people." << endl;
+         << "(3): Show known people." << endl
+         << "(4): Quit." << endl;
 }
 void search(){
     string search;
