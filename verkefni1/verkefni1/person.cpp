@@ -1,7 +1,6 @@
 #include "person.h"
 #include <iostream>
 #include <string>
-#include <fstream>
 
 Person::Person()
 {
@@ -104,12 +103,21 @@ int Person::getyearOfBirth(){
 int Person::getyearOfDeath(){
     return yearOfDeath;
 }
-ofstream& operator << (ofstream& outf, const Person& a)
+ostream& operator << (ostream& out, const Person& a)
 {
-    outf << a.name << endl
-         << a.gender << endl
-         << a.yearOfBirth << endl
-         << a.yearOfDeath << endl;
-    return outf;
+    out << a.name << endl
+        << a.gender << endl
+        << a.yearOfBirth << endl
+        << a.yearOfDeath << endl;
+    return out;
+}
+
+istream& operator >> (istream& in, Person& a)
+{
+    getline(in, a.name);
+    getline(in, a.gender);
+    in >> a.yearOfBirth;
+    in >> a.yearOfDeath;
+    return in;
 }
 
