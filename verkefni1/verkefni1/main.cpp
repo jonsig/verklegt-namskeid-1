@@ -75,7 +75,7 @@ void search(){
     ifstream inf;
     string name, gender;
     int yearOfBirth, yearOfDeath;
-    size_t pos = string::npos;
+    int checker =0;
     inf.open("pList.txt");
 
     int choice;
@@ -92,6 +92,7 @@ void search(){
         cin >> numSearch;
     }
     while(inf.good()){             //If file read didn't give errors
+        size_t pos = string::npos;
         getline(inf, name);
         getline(inf, gender);
         inf >> yearOfBirth;
@@ -114,12 +115,15 @@ void search(){
                 pos = 1;
             break;
         }
-        if(pos !=string::npos){    //If a match was found.
-            printPerson(name, gender, yearOfBirth, yearOfDeath);
-            break;
+        if(inf.good()) {
+            if(pos !=string::npos){    //If a match was found.
+                printPerson(name, gender, yearOfBirth, yearOfDeath);
+                cout << endl;
+                checker++;
+            }
         }
     }
-    if(pos == string::npos)        //If function is ending without having found a match
+    if(checker == 0)        //If function is ending without having found a match
         cout << "No matches found" << endl;
 }
 
