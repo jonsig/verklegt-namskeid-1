@@ -29,18 +29,24 @@ void Person::setyearOfBirth(){
 
 }
 void Person::setyearOfDeath(){
-    char input;
-    cout << "Is this person dead?" << endl <<  "y/n: ";
-    cin >> input;
-    if(input == 'y'){
+    if(2015-yearOfBirth<=100) {
+        char input;
+        cout << "Is this person dead?" << endl <<  "y/n: ";
+        cin >> input;
+        if(input == 'y'){
+            cout << "Input year of death: ";
+            cin >> yearOfDeath;
+            trueAge();
+        }
+        else if(input == 'n'){
+            yearOfDeath = 0;
+        }
+    }
+    else {
         cout << "Input year of death: ";
         cin >> yearOfDeath;
         trueAge();
     }
-    else if(input == 'n'){
-        yearOfDeath = 0;
-    }
-
     if(yearOfDeath<yearOfBirth && yearOfDeath != 0){
         cout << "This person cannot have died before he was born" << endl;
         setyearOfDeath();
