@@ -53,6 +53,7 @@ void mainMenu(int& choice)
          << "(3): Show known people" << endl
          << "Anything else to quit" << endl;
     cin >> choice;
+    cin.ignore();
 }
 
 void addPeople()
@@ -61,10 +62,11 @@ void addPeople()
     do
     {
         Person newGuy;
-        cin >> newGuy;
+        newGuy.makePerson(); //Replaces the old istream overload since it wasn't actually using istream.
         printToFile(newGuy);
         cout << "Add a new person?" << endl << "y/n: ";
         cin >> addMore;
+        cin.ignore();
     }
     while(tolower(addMore) == 'y');  //"tolower(choice)" converts upper case to lower
 }
