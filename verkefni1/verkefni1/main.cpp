@@ -17,9 +17,9 @@ void searchMenu(string& sSearch, int& iSearch, int& choice);    //interface
 void getPeople(vector<Person>& people);                         //file i/o
 void printPerson(const Person& a);                              //interface
 void showAll(vector<Person>& people);                           //interface
-void sort(vector<Person>& people);                              //core function
 void sortingMenu();                                             //interface
 void orderOf(vector<Person>& people);
+void sortName(Person& a, Person& b);
 
 int main()
 {
@@ -144,10 +144,39 @@ void printPerson(const Person& a) //used so cout is seperated from core function
 
 void orderOf(vector<Person>& people) {
     int order;
+    int upordown;
     sortingMenu();
     cin >> order;
-    if(order==1) {
-        showAll(people);
+    cout << "(1): Ascending order" << endl
+         << "(2): Descending order" << endl << endl;
+    cin >> upordown;
+    cin.ignore();
+    if(order != 1)
+    {
+        for(unsigned a = 0; a < people.size()-1; a++)
+        {
+            for(unsigned b = 0; b < people.size()-1; b++)
+            {
+                if(order == 2 && upordown == 1)
+                    sortName(people[a], people[b]);     //The same function is called twice but with switched inputs to reverse the order.
+                else if(order == 2 && upordown ==2)
+                    sortName(people[b], people[a]);
+
+                //Restin af sorting möguleikum kemur hér
+            }
+        }
+    }
+    showAll(people);
+}
+
+void sortName(Person& a, Person& b)
+{
+    if(a.getName() < b.getName())
+    {
+        Person temp;
+        temp = a;       //person is moved to a temporary variable so they don't overwrite each other when changing places.
+        a = b;
+        b = temp;
     }
 }
 
@@ -155,7 +184,7 @@ void showAll(vector<Person>& people)
 {
     for(unsigned i = 0; i < people.size()-1; i++)
     {
-        cout << people[i];      //Temporary
+        cout << people[i];
     }
 }
 
@@ -163,12 +192,10 @@ void sortingMenu()
 {
     cout << "How would you like to see the list?" << endl
          << "(1): In the order it was submitted" << endl
-         << "(2): First name A-Z" << endl
-         << "(3): Last name A-Z" << endl
-         << "(4): First name Z-A" << endl
-         << "(5): Last name Z-A" << endl
-         << "(6): Gender" << endl
-         << "(7): Year of birth" << endl
-         << "(8): Year of death" << endl;
+         << "(2): First name" << endl
+         << "(3): Last name" << endl
+         << "(4): Gender" << endl
+         << "(5): Year of birth" << endl
+         << "(6): Year of death" << endl << endl;
 
 }
