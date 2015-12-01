@@ -98,7 +98,7 @@ void search(vector<Person>& people)
     bool found = false;
     searchMenu(sSearch, iSearch, choice);
 
-    for(unsigned i = 0; i < people.size()-1; i++)
+    for(unsigned i = 0; i < people.size(); i++)
     {
         if(choice == 1 && people[i].getName().find(sSearch) != string::npos) { //choice = 1 and match found
             printPerson(people[i]);
@@ -191,9 +191,9 @@ void orderOf(vector<Person>& people) {
     cin.ignore();
     if(order != 1)
     {
-        for(unsigned a = 0; a < people.size()-1; a++)
+        for(unsigned a = 0; a < people.size(); a++)
         {
-            for(unsigned b = 0; b < people.size()-1; b++)
+            for(unsigned b = 0; b < people.size(); b++)
             {
                 if(order == 2 && upordown == 1)
                     sortName(people[a], people[b]);     //The same function is called twice but with switched inputs to reverse the order.
@@ -266,14 +266,14 @@ void switching(Person& a, Person& b){
 
 void showAll(vector<Person>& people)
 {
-    for(unsigned i = 0; i < people.size()-1; i++)
+    for(unsigned i = 0; i < people.size(); i++)
     {
         cout << people[i];
     }
 }
 
 void theFlipSide(vector<Person>& people) {
-    for(int i = people.size()-2; i >= 0; i--)
+    for(int i = people.size()-1; i >= 0; i--)
     {
         cout << people[i];
     }
