@@ -10,6 +10,7 @@ class Person {
         string gender;
         string name;
         int yearOfBirth, yearOfDeath;
+        string description;
     public:
         Person();
         void makePerson();  //Replaces the old istream overload since it wasn't actually using istream.
@@ -17,6 +18,7 @@ class Person {
         void setGender();
         void setyearOfBirth();
         void setyearOfDeath();
+        void setDescription();
         void trueAge();
         int fixIt();
         string getName();

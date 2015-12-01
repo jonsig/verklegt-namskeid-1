@@ -9,6 +9,7 @@ Person::Person()
     gender = "N/A";
     yearOfBirth = 0;
     yearOfDeath = 0;
+    description = "N/A";
 }
 
 void Person::makePerson()
@@ -17,6 +18,7 @@ void Person::makePerson()
     setGender();
     setyearOfBirth();
     setyearOfDeath();
+    setDescription();
 }
 
 void Person::setName(){
@@ -34,8 +36,20 @@ void Person::setyearOfBirth(){
         cout << "Timetravel is not allowed!" << endl;
         setyearOfBirth();
     }
-
 }
+void Person::setDescription()
+{
+    char choice;
+    cout << "Add description? (y/n)" << endl;
+    cin >> choice;
+    cin.ignore();
+    if(tolower(choice) == 'y')
+    {
+        cout << "Description: ";
+        getline(cin, description);
+    }
+}
+
 void Person::setyearOfDeath(){
     if(2015-yearOfBirth<=100) {
         char input;
@@ -118,7 +132,8 @@ ofstream& operator << (ofstream& outf, const Person& a)
     outf << a.name << endl
          << a.gender << endl
          << a.yearOfBirth << endl
-         << a.yearOfDeath << endl;
+         << a.yearOfDeath << endl
+         << a.description << endl;
     return outf;
 }
 
@@ -129,6 +144,7 @@ ifstream& operator >> (ifstream& inf, Person& a)
     inf >> a.yearOfBirth;
     inf >> a.yearOfDeath;
     inf.ignore();
+    getline(inf, a.description);
     return inf;
 }
 
@@ -147,6 +163,8 @@ ostream& operator << (ostream& out, const Person& a)
         out << "Year of death: " << temp.getyearOfDeath() << endl;
     else
         out << temp.getName() << " is alive." << endl;
-    out << endl;
+    if(temp.description != "N/A")
+        cout << "Description: " << temp.description << endl;
+    cout << endl;
     return out;
 }
