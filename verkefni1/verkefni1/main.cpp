@@ -18,6 +18,7 @@ void getPeople(vector<Person>& people);                         //file i/o
 void printPerson(const Person& a);                              //interface
 void showAll(vector<Person>& people);                           //interface
 void sort(vector<Person>& people);                              //core function
+void sortingMenu();                                             //interface
 
 int main()
 {
@@ -124,6 +125,7 @@ void searchMenu(string& sSearch, int& iSearch, int& choice)
 
 void getPeople(vector<Person>& people)
 {
+    sortingMenu();
     ifstream inf;
     inf.open("pList.txt");
     while(inf.good())
@@ -146,4 +148,14 @@ void showAll(vector<Person>& people)
     {
         cout << people[i];      //Temporary
     }
+}
+
+void sortingMenu()
+{
+    cout << "How would you like to see the list?" << endl
+         << "(1): First name A-Z" << endl
+         << "(2): Last name A-Z" << endl
+         << "(3): Gender" << endl
+         << "(4): Year of birth" << endl
+         << "(5): Year of death" << endl;
 }
