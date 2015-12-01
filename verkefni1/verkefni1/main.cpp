@@ -5,13 +5,19 @@
 #include "person.h"
 
 using namespace std;
-
+/*
+ * Interface functions handle all window information. Core functions do calculations like sorting and searching,
+ * file i/o reads and writes files. This is done so they can easily be replaced in the following weeks.
+ */
 void mainMenu(int& choice);                                     //interface
 void addPeople();                                               //interface
 void printToFile(const Person& a);                              //file i/o
-void search();                                                  //core function
+void search(vector<Person>& people);                            //core function
 void searchMenu(string& sSearch, int& iSearch, int& choice);    //interface
 void getPeople(vector<Person>& people);                         //file i/o
+void printPerson(const Person& a);                              //interface
+void showAll(vector<Person>& people);                           //interface
+void sort(vector<Person>& people);                              //core function
 
 int main()
 {
@@ -21,9 +27,18 @@ int main()
         mainMenu(choice);
         if(choice == 1)
             addPeople();
-        else if(choice == 2)
+        else
         {
-            search();
+            vector<Person> people;
+            getPeople(people);      //People are loaded every time search or show all are selected
+            if(choice == 2)
+            {
+                search(people);
+            }
+            else if(choice == 3)
+            {
+                showAll(people);
+            }
         }
     }
     while(choice == 1 || choice == 2 || choice == 3);
@@ -62,25 +77,23 @@ void printToFile(const Person& a)
     outf.close();
 }
 
-void search()
+void search(vector<Person>& people)
 {
     string sSearch;     //String search
     int iSearch;        //Integer search
     int choice;         //Choice of what to search for
     searchMenu(sSearch, iSearch, choice);
 
-    vector<Person> people;      //Vector is made so file read can be in a different layer
-    getPeople(people);          //Vector filled.
     for(unsigned i = 0; i < people.size()-1; i++)
     {
         if(choice == 1 && people[i].getName().find(sSearch) != string::npos) //choice = 1 and match found
-            cout << people[i];
+            printPerson(people[i]);
         else if(choice == 2 && people[i].getGender().find(sSearch) != string::npos) //choice = 1 and match found
-            cout << people[i];
+            printPerson(people[i]);
         else if(choice == 3 && people[i].getyearOfBirth() == iSearch)
-            cout << people[i];
+            printPerson(people[i]);
         else if(choice == 4 && people[i].getyearOfDeath() == iSearch)
-            cout << people[i];
+            printPerson(people[i]);
     }
 }
 
@@ -118,4 +131,17 @@ void getPeople(vector<Person>& people)
         people.push_back(temp);
     }
     inf.close();
+}
+
+void printPerson(const Person& a) //used so cout is seperated from core functions and can be replaced by future gui
+{
+    cout << a;
+}
+
+void showAll(vector<Person>& people)
+{
+    for(unsigned i = 0; i < people.size()-1; i++)
+    {
+        cout << people[i];      //Temporary
+    }
 }
