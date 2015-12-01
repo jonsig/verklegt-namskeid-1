@@ -19,6 +19,7 @@ void printPerson(const Person& a);                              //interface
 void showAll(vector<Person>& people);                           //interface
 void sort(vector<Person>& people);                              //core function
 void sortingMenu();                                             //interface
+void orderOf(vector<Person>& people);
 
 int main()
 {
@@ -38,7 +39,7 @@ int main()
             }
             else if(choice == 3)
             {
-                showAll(people);
+                orderOf(people);
             }
         }
     }
@@ -139,6 +140,15 @@ void getPeople(vector<Person>& people)
 void printPerson(const Person& a) //used so cout is seperated from core functions and can be replaced by future gui
 {
     cout << a;
+}
+
+void orderOf(vector<Person>& people) {
+    int order;
+    sortingMenu();
+    cin >> order;
+    if(order==1) {
+        showAll(people);
+    }
 }
 
 void showAll(vector<Person>& people)
