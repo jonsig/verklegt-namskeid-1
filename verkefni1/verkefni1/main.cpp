@@ -5,6 +5,9 @@
 #include "person.h"
 
 using namespace std;
+
+const int LIVING_VALUE = 3000;    //Year of death value used to represent living people
+
 /*
  * Interface functions handle all window information. Core functions do calculations like sorting and searching,
  * file i/o reads and writes files. This is done so they can easily be replaced in the following weeks.
@@ -90,29 +93,39 @@ void search(vector<Person>& people)
     string sSearch;     //String search
     int iSearch;        //Integer search
     int choice;         //Choice of what to search for
-    int found=0;
+    bool found = false;
     searchMenu(sSearch, iSearch, choice);
 
     for(unsigned i = 0; i < people.size()-1; i++)
     {
         if(choice == 1 && people[i].getName().find(sSearch) != string::npos) { //choice = 1 and match found
             printPerson(people[i]);
-            found++;
+            found = true;
         }
         else if(choice == 2 && people[i].getGender().find(sSearch) != string::npos) { //choice = 1 and match found
             printPerson(people[i]);
-            found++;
+            found = true;
         }
         else if(choice == 3 && people[i].getyearOfBirth() == iSearch) {
             printPerson(people[i]);
-            found++;
+            found = true;
         }
         else if(choice == 4 && people[i].getyearOfDeath() == iSearch) {
             printPerson(people[i]);
-            found++;
+            found = true;
+        }
+        else if(choice == 5 && people[i].getyearOfDeath() == LIVING_VALUE)
+        {
+            printPerson(people[i]);
+            found = true;
+        }
+        else if(choice == 6 && people[i].getyearOfDeath() != LIVING_VALUE)
+        {
+            printPerson(people[i]);
+            found = true;
         }
     }
-    if(found==0)
+    if(found == false)
         cout << "No match found." << endl;
 }
 
@@ -122,20 +135,23 @@ void searchMenu(string& sSearch, int& iSearch, int& choice)
          << "(1): Name" << endl
          << "(2): Gender" << endl
          << "(3): Year of birth" << endl
-         << "(4): Year of death" << endl;
+         << "(4): Year of death" << endl
+         << "(5): Living people" << endl
+         << "(6): Deceased people" << endl;
     cin >> choice;
     cin.ignore();
-    cout << "Enter search term: ";
     if(choice == 1 || choice == 2)
     {
+        cout << "Enter search term: ";
         getline(cin, sSearch);
     }
     else if(choice == 3 || choice == 4)
     {
+        cout << "Enter search term: ";
         cin >> iSearch;
         cin.ignore();
     }
-    else
+    else if(choice != 5 && choice != 6)
         cout << "Invalid choice" << endl;
 }
 
