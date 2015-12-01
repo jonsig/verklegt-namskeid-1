@@ -23,6 +23,7 @@ void showAll(vector<Person>& people);                           //interface
 void sortingMenu();                                             //interface
 void orderOf(vector<Person>& people);
 void sortName(Person& a, Person& b);
+void sortLastName(Person& a, Person& b);
 void sortGender(Person& a, Person& b);
 void sortBirthyear(Person& a, Person& b);
 void sortDeathyear(Person& a, Person& b);
@@ -159,11 +160,10 @@ void searchMenu(string& sSearch, int& iSearch, int& choice)
 void getPeople(vector<Person>& people)
 {
     ifstream inf;
+    Person temp;
     inf.open("pList.txt");
-    while(inf.good())
+    while(inf >> temp)
     {
-        Person temp;
-        inf >> temp;
         people.push_back(temp);
     }
     inf.close();
@@ -199,16 +199,19 @@ void orderOf(vector<Person>& people) {
                     sortName(people[a], people[b]);     //The same function is called twice but with switched inputs to reverse the order.
                 else if(order == 2 && upordown ==2)
                     sortName(people[b], people[a]);
-
-                if(order == 4 && upordown == 1)
+                else if(order == 3 && upordown == 1)
+                    sortLastName(people[a], people[b]);
+                else if(order == 3 && upordown == 2)
+                   sortLastName(people[a], people[b]);
+                else if(order == 4 && upordown == 1)
                     sortGender(people[a], people[b]);
                 else if(order == 4 && upordown ==2)
                     sortGender(people[b], people[a]);
-                if(order == 5 && upordown == 1)
+                else if(order == 5 && upordown == 1)
                     sortBirthyear(people[a], people[b]);
                 else if(order == 5 && upordown ==2)
                     sortBirthyear(people[b], people[a]);
-                if(order == 6 && upordown == 1)
+                else if(order == 6 && upordown == 1)
                     sortDeathyear(people[a], people[b]);
                 else if(order == 6 && upordown ==2)
                     sortDeathyear(people[b], people[a]);
@@ -225,6 +228,15 @@ void sortName(Person& a, Person& b)
 {
     if(a.getName() < b.getName())
         switching(a, b);
+}
+
+void sortLastName(Person& a, Person& b)
+{
+    size_t lastSpace_a = a.getName().find_last_of(' ');            //Positions of last spaces
+    size_t lastSpace_b = b.getName().find_last_of(' ');
+    if(lastSpace_a != string::npos && lastSpace_b != string::npos) //Both names had more than 1 word
+        if(a.getName()[lastSpace_a +1] < b.getName()[lastSpace_b + 1]) //Compares first letters of last names
+            switching(a, b);
 }
 
 void sortGender(Person& a, Person& b)
