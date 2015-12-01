@@ -135,7 +135,7 @@ void searchMenu(string& sSearch, int& iSearch, int& choice)
 {
     cout << "What would you like to search for?" << endl
          << "(1): Name" << endl
-         << "(2): Gender" << endl
+         << "(2): Gender (m/f)" << endl
          << "(3): Year of birth" << endl
          << "(4): Year of death" << endl
          << "(5): Living people" << endl
@@ -181,11 +181,11 @@ void orderOf(vector<Person>& people) {
     cin >> order;
     if(order == 4) {
         cout << "(1): Females first" << endl
-             << "(2): Males first" << endl << endl;
+             << "(2): Males first" << endl;
     }
     else {
         cout << "(1): Ascending order" << endl
-             << "(2): Descending order" << endl << endl;
+             << "(2): Descending order" << endl;
     }
     cin >> upordown;
     cin.ignore();
@@ -202,7 +202,7 @@ void orderOf(vector<Person>& people) {
                 else if(order == 3 && upordown == 1)
                     sortLastName(people[a], people[b]);
                 else if(order == 3 && upordown == 2)
-                   sortLastName(people[a], people[b]);
+                   sortLastName(people[b], people[a]);
                 else if(order == 4 && upordown == 1)
                     sortGender(people[a], people[b]);
                 else if(order == 4 && upordown ==2)
@@ -218,10 +218,10 @@ void orderOf(vector<Person>& people) {
             }
         }
     }
-   if(upordown==1)
        showAll(people);
-   else
+   if(order==1&&upordown==2){
        theFlipSide(people);
+   }
 }
 
 void sortName(Person& a, Person& b)
@@ -287,6 +287,6 @@ void sortingMenu()
          << "(3): Last name" << endl
          << "(4): Gender" << endl
          << "(5): Year of birth" << endl
-         << "(6): Year of death" << endl << endl;
+         << "(6): Year of death" << endl;
 
 }
