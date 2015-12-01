@@ -125,7 +125,6 @@ void searchMenu(string& sSearch, int& iSearch, int& choice)
 
 void getPeople(vector<Person>& people)
 {
-    sortingMenu();
     ifstream inf;
     inf.open("pList.txt");
     while(inf.good())
@@ -153,9 +152,13 @@ void showAll(vector<Person>& people)
 void sortingMenu()
 {
     cout << "How would you like to see the list?" << endl
-         << "(1): First name A-Z" << endl
-         << "(2): Last name A-Z" << endl
-         << "(3): Gender" << endl
-         << "(4): Year of birth" << endl
-         << "(5): Year of death" << endl;
+         << "(1): In the order it was submitted" << endl
+         << "(2): First name A-Z" << endl
+         << "(3): Last name A-Z" << endl
+         << "(4): First name Z-A" << endl
+         << "(5): Last name Z-A" << endl
+         << "(6): Gender" << endl
+         << "(7): Year of birth" << endl
+         << "(8): Year of death" << endl;
+
 }
