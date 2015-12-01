@@ -20,6 +20,10 @@ void showAll(vector<Person>& people);                           //interface
 void sortingMenu();                                             //interface
 void orderOf(vector<Person>& people);
 void sortName(Person& a, Person& b);
+void sortGender(Person& a, Person& b);
+void sortBirthyear(Person& a, Person& b);
+void sortDeathyear(Person& a, Person& b);
+void switching(Person& a, Person& b);
 
 int main()
 {
@@ -86,19 +90,30 @@ void search(vector<Person>& people)
     string sSearch;     //String search
     int iSearch;        //Integer search
     int choice;         //Choice of what to search for
+    int found=0;
     searchMenu(sSearch, iSearch, choice);
 
     for(unsigned i = 0; i < people.size()-1; i++)
     {
-        if(choice == 1 && people[i].getName().find(sSearch) != string::npos) //choice = 1 and match found
+        if(choice == 1 && people[i].getName().find(sSearch) != string::npos) { //choice = 1 and match found
             printPerson(people[i]);
-        else if(choice == 2 && people[i].getGender().find(sSearch) != string::npos) //choice = 1 and match found
+            found++;
+        }
+        else if(choice == 2 && people[i].getGender().find(sSearch) != string::npos) { //choice = 1 and match found
             printPerson(people[i]);
-        else if(choice == 3 && people[i].getyearOfBirth() == iSearch)
+            found++;
+        }
+        else if(choice == 3 && people[i].getyearOfBirth() == iSearch) {
             printPerson(people[i]);
-        else if(choice == 4 && people[i].getyearOfDeath() == iSearch)
+            found++;
+        }
+        else if(choice == 4 && people[i].getyearOfDeath() == iSearch) {
             printPerson(people[i]);
+            found++;
+        }
     }
+    if(found==0)
+        cout << "No match found." << endl;
 }
 
 void searchMenu(string& sSearch, int& iSearch, int& choice)
@@ -147,7 +162,7 @@ void orderOf(vector<Person>& people) {
     int upordown;
     sortingMenu();
     cin >> order;
-    cout << "(1): Ascending order" << endl
+    cout << "(1): Ascending order" << endl             //á ekki beint við kyn samt
          << "(2): Descending order" << endl << endl;
     cin >> upordown;
     cin.ignore();
@@ -161,6 +176,19 @@ void orderOf(vector<Person>& people) {
                     sortName(people[a], people[b]);     //The same function is called twice but with switched inputs to reverse the order.
                 else if(order == 2 && upordown ==2)
                     sortName(people[b], people[a]);
+                if(order == 4 && upordown == 1)
+                    sortGender(people[a], people[b]);
+                else if(order == 4 && upordown ==2)
+                    sortGender(people[b], people[a]);
+                if(order == 5 && upordown == 1)
+                    sortBirthyear(people[a], people[b]);
+                else if(order == 5 && upordown ==2)
+                    sortBirthyear(people[b], people[a]);
+                if(order == 6 && upordown == 1)
+                    sortDeathyear(people[a], people[b]);
+                else if(order == 6 && upordown ==2)
+                    sortDeathyear(people[b], people[a]);
+
 
                 //Restin af sorting möguleikum kemur hér
             }
@@ -172,12 +200,32 @@ void orderOf(vector<Person>& people) {
 void sortName(Person& a, Person& b)
 {
     if(a.getName() < b.getName())
+        switching(a, b);
+}
+
+void sortGender(Person& a, Person& b)
+{
+    if(a.getGender() < b.getGender())
+        switching(a, b);
+}
+
+void sortBirthyear(Person& a, Person& b) {
+    if(a.getyearOfBirth() < b.getyearOfBirth())
+        switching(a, b);
+}
+
+void sortDeathyear(Person& a, Person& b) {
+    if(a.getyearOfDeath() < b.getyearOfDeath())
     {
-        Person temp;
-        temp = a;       //person is moved to a temporary variable so they don't overwrite each other when changing places.
-        a = b;
-        b = temp;
+        switching(a, b); //Þarf að breyta því year of death hjá lifandi er náttúrulega 0
     }
+}
+
+void switching(Person& a, Person& b){
+    Person temp;
+    temp = a;
+    a = b;
+    b = temp;
 }
 
 void showAll(vector<Person>& people)
