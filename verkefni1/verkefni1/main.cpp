@@ -162,8 +162,14 @@ void orderOf(vector<Person>& people) {
     int upordown;
     sortingMenu();
     cin >> order;
-    cout << "(1): Ascending order" << endl             //á ekki beint við kyn samt
-         << "(2): Descending order" << endl << endl;
+    if(order == 4) {
+        cout << "(1): Females first" << endl
+             << "(2): Males first" << endl << endl;
+    }
+    else {
+        cout << "(1): Ascending order" << endl
+             << "(2): Descending order" << endl << endl;
+    }
     cin >> upordown;
     cin.ignore();
     if(order != 1)
@@ -176,6 +182,7 @@ void orderOf(vector<Person>& people) {
                     sortName(people[a], people[b]);     //The same function is called twice but with switched inputs to reverse the order.
                 else if(order == 2 && upordown ==2)
                     sortName(people[b], people[a]);
+
                 if(order == 4 && upordown == 1)
                     sortGender(people[a], people[b]);
                 else if(order == 4 && upordown ==2)
@@ -188,9 +195,6 @@ void orderOf(vector<Person>& people) {
                     sortDeathyear(people[a], people[b]);
                 else if(order == 6 && upordown ==2)
                     sortDeathyear(people[b], people[a]);
-
-
-                //Restin af sorting möguleikum kemur hér
             }
         }
     }

@@ -47,7 +47,7 @@ void Person::setyearOfDeath(){
             trueAge();
         }
         else if(input == 'n'){
-            yearOfDeath = 0;
+            yearOfDeath = 3000;
         }
     }
     else {
@@ -55,7 +55,7 @@ void Person::setyearOfDeath(){
         cin >> yearOfDeath;
         trueAge();
     }
-    if(yearOfDeath<yearOfBirth && yearOfDeath != 0){
+    if(yearOfDeath<yearOfBirth && yearOfDeath != 3000){
         cout << "This person cannot have died before he was born" << endl;
         setyearOfDeath();
     }
@@ -143,7 +143,7 @@ ostream& operator << (ostream& out, const Person& a)
         out << "Female";
     out << endl
         << "Year of birth: " << temp.getyearOfBirth() << endl;
-    if(temp.getyearOfDeath() != 0)
+    if(temp.getyearOfDeath() != 3000)
         out << "Year of death: " << temp.getyearOfDeath() << endl;
     else
         out << temp.getName() << " is alive." << endl;
