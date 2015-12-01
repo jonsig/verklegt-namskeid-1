@@ -27,6 +27,7 @@ void sortGender(Person& a, Person& b);
 void sortBirthyear(Person& a, Person& b);
 void sortDeathyear(Person& a, Person& b);
 void switching(Person& a, Person& b);
+void theFlipSide(vector<Person>& people);
 
 int main()
 {
@@ -214,7 +215,10 @@ void orderOf(vector<Person>& people) {
             }
         }
     }
-    showAll(people);
+   if(upordown==1)
+       showAll(people);
+   else
+       theFlipSide(people);
 }
 
 void sortName(Person& a, Person& b)
@@ -251,6 +255,13 @@ void switching(Person& a, Person& b){
 void showAll(vector<Person>& people)
 {
     for(unsigned i = 0; i < people.size()-1; i++)
+    {
+        cout << people[i];
+    }
+}
+
+void theFlipSide(vector<Person>& people) {
+    for(int i = people.size()-2; i >= 0; i--)
     {
         cout << people[i];
     }
