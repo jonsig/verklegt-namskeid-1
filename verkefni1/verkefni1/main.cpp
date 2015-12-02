@@ -75,7 +75,7 @@ void addPeople()
         Person newGuy;
         newGuy.makePerson();
         printToFile(newGuy);
-        cout << "Add a new person?" << endl << "y/n: ";
+        cout << "Add a new person? " << "(y/n) ";
         cin >> addMore;
         cin.ignore();
     }
@@ -184,34 +184,24 @@ void orderOf(vector<Person>& people) {
         {
             for(unsigned b = 0; b < people.size(); b++)
             {
-                if(order == 2 && upordown == 1)
+                if(order == 2)
                     sortName(people[a], people[b]);     //The same function is called twice but with switched inputs to reverse the order.
-                else if(order == 2 && upordown ==2)
-                    sortName(people[b], people[a]);
-                else if(order == 3 && upordown == 1)
+                else if(order == 3)
                     sortLastName(people[a], people[b]);
-                else if(order == 3 && upordown == 2)
-                   sortLastName(people[b], people[a]);
-                else if(order == 4 && upordown == 1)
+                else if(order == 4)
                     sortGender(people[a], people[b]);
-                else if(order == 4 && upordown ==2)
-                    sortGender(people[b], people[a]);
-                else if(order == 5 && upordown == 1)
+                else if(order == 5)
                     sortBirthyear(people[a], people[b]);
-                else if(order == 5 && upordown ==2)
-                    sortBirthyear(people[b], people[a]);
-                else if(order == 6 && upordown == 1)
+                else if(order == 6)
                     sortDeathyear(people[a], people[b]);
-                else if(order == 6 && upordown ==2)
-                    sortDeathyear(people[b], people[a]);
             }
         }
     }
-   if(order==1&&upordown==2){
-       theFlipSide(people);
-   }
-   else
+   if(upordown==1){
        showAll(people);
+   }
+   else if(upordown == 2)
+       theFlipSide(people);
 }
 
 void sortName(Person& a, Person& b)
@@ -243,7 +233,7 @@ void sortBirthyear(Person& a, Person& b) {
 void sortDeathyear(Person& a, Person& b) {
     if(a.getyearOfDeath() < b.getyearOfDeath())
     {
-        switching(a, b); //Þarf að breyta því year of death hjá lifandi er náttúrulega 0
+        switching(a, b);
     }
 }
 

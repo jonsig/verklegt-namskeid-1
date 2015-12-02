@@ -159,6 +159,8 @@ ostream& operator << (ostream& out, const Person& a)
         out << "Male";
     else if(temp.getGender() == "f")
         out << "Female";
+    else
+        out << "(User error) " << temp.getGender();
     out << endl
         << "Year of birth: " << temp.getyearOfBirth() << endl;
     if(temp.getyearOfDeath() != 3000)
