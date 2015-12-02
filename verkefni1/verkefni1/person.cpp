@@ -100,7 +100,7 @@ void Person::trueAge() {
                 }
             }
         }
-    }while(makesSense==false);
+    }while(makesSense==false && yearOfDeath != 3000);
 }
 
 void Person::fixIt(char& confused, int& choice, const int& ageOfDeath) {
