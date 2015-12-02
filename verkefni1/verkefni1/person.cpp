@@ -28,6 +28,11 @@ void Person::setName(){
 void Person::setGender(){
     cout << "Input gender (m/f): ";
     getline(cin, gender);
+    if(gender != "m" && gender != "f")
+    {
+        cout << "Invalid input. Try again" << endl;
+        setGender();
+    }
 }
 void Person::setyearOfBirth(){
     cout << "Input year of birth: ";
@@ -161,8 +166,6 @@ ostream& operator << (ostream& out, const Person& a)
         out << "Male";
     else if(temp.getGender() == "f")
         out << "Female";
-    else
-        out << "(User error) " << temp.getGender();
     out << endl
         << "Year of birth: " << temp.getyearOfBirth() << endl;
     if(temp.getyearOfDeath() != 3000)
