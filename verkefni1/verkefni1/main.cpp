@@ -14,21 +14,21 @@ const int LIVING_VALUE = 3000;    //Year of death value used to represent living
  */
 void mainMenu(int& choice);                                     //interface
 void addPeople();                                               //interface
-void printToFile(const Person& a);                              //file i/o
-void search(vector<Person>& people);                            //core function
+void printToFile(const Person& a);                              //file i/o          Writes person list file
+void search(vector<Person>& people);                            //Core function
 void searchMenu(string& sSearch, int& iSearch, int& choice);    //interface
-void getPeople(vector<Person>& people);                         //file i/o
+void getPeople(vector<Person>& people);                         //file i/o          Loads people vector from person list file
 void printPerson(const Person& a);                              //interface
 void showAll(vector<Person>& people);                           //interface
-void sortingMenu();                                             //interface
-void orderOf(vector<Person>& people);
-void sortName(Person& a, Person& b);
-void sortLastName(Person& a, Person& b);
-void sortGender(Person& a, Person& b);
-void sortBirthyear(Person& a, Person& b);
-void sortDeathyear(Person& a, Person& b);
-void switching(Person& a, Person& b);
-void theFlipSide(vector<Person>& people);
+void sortingMenu(int& order, int& upordown);                    //interface
+void orderOf(vector<Person>& people);                           //Core function
+void sortName(Person& a, Person& b);                            //Core function
+void sortLastName(Person& a, Person& b);                        //Core function
+void sortGender(Person& a, Person& b);                          //Core function
+void sortBirthyear(Person& a, Person& b);                       //Core function
+void sortDeathyear(Person& a, Person& b);                       //Core function
+void switching(Person& a, Person& b);                           //Core function
+void theFlipSide(vector<Person>& people);                       //interface         prints list of people in reverse order
 
 int main()
 {
@@ -73,7 +73,7 @@ void addPeople()
     do
     {
         Person newGuy;
-        newGuy.makePerson(); //Replaces the old istream overload since it wasn't actually using istream.
+        newGuy.makePerson();
         printToFile(newGuy);
         cout << "Add a new person?" << endl << "y/n: ";
         cin >> addMore;
@@ -177,18 +177,7 @@ void printPerson(const Person& a) //used so cout is seperated from core function
 void orderOf(vector<Person>& people) {
     int order;
     int upordown;
-    sortingMenu();
-    cin >> order;
-    if(order == 4) {
-        cout << "(1): Females first" << endl
-             << "(2): Males first" << endl;
-    }
-    else {
-        cout << "(1): Ascending order" << endl
-             << "(2): Descending order" << endl;
-    }
-    cin >> upordown;
-    cin.ignore();
+    sortingMenu(order, upordown);
     if(order != 1)
     {
         for(unsigned a = 0; a < people.size(); a++)
@@ -280,7 +269,7 @@ void theFlipSide(vector<Person>& people) {
     }
 }
 
-void sortingMenu()
+void sortingMenu(int& order, int& upordown)
 {
     cout << "How would you like to see the list?" << endl
          << "(1): Submit time" << endl
@@ -289,5 +278,15 @@ void sortingMenu()
          << "(4): Gender" << endl
          << "(5): Year of birth" << endl
          << "(6): Year of death" << endl;
-
+    cin >> order;
+    if(order == 4) {
+        cout << "(1): Females first" << endl
+             << "(2): Males first" << endl;
+    }
+    else {
+        cout << "(1): Ascending order" << endl
+             << "(2): Descending order" << endl;
+    }
+    cin >> upordown;
+    cin.ignore();
 }
