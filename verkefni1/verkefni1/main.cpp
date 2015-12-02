@@ -218,10 +218,11 @@ void orderOf(vector<Person>& people) {
             }
         }
     }
-       showAll(people);
    if(order==1&&upordown==2){
        theFlipSide(people);
    }
+   else
+       showAll(people);
 }
 
 void sortName(Person& a, Person& b)
@@ -282,7 +283,7 @@ void theFlipSide(vector<Person>& people) {
 void sortingMenu()
 {
     cout << "How would you like to see the list?" << endl
-         << "(1): In the order it was submitted" << endl
+         << "(1): Submit time" << endl
          << "(2): First name" << endl
          << "(3): Last name" << endl
          << "(4): Gender" << endl
