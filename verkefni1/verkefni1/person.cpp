@@ -40,7 +40,7 @@ void Person::setyearOfBirth(){
 void Person::setDescription()
 {
     char choice;
-    cout << "Add description? (y/n)" << endl;
+    cout << "Add description? (y/n) ";
     cin >> choice;
     cin.ignore();
     if(tolower(choice) == 'y')
@@ -53,7 +53,7 @@ void Person::setDescription()
 void Person::setyearOfDeath(){
     if(2015-yearOfBirth<=100) {
         char input;
-        cout << "Is this person dead?" << endl <<  "y/n: ";
+        cout << "Is this person dead? (y/n) ";
         cin >> input;
         if(input == 'y'){
             cout << "Input year of death: ";
@@ -74,28 +74,27 @@ void Person::setyearOfDeath(){
         setyearOfDeath();
     }
 }
+
 void Person::trueAge() {
     int ageOfDeath;
-    char confused;
+    char confused;  //chooses wether years were correct or not
+    int choice;     //chooses what years to change
     bool makesSense;
     do{
         makesSense =true;
         ageOfDeath = yearOfDeath-yearOfBirth;
        if(ageOfDeath >100){
-           cout << "The person seems to have been " << ageOfDeath << " years old when they died" << endl;
-           cout << "Is this correct? (y/n) ";
-           cin >> confused;
+           fixIt(confused, choice, ageOfDeath);
            if(confused == 'n'){
                makesSense=false;
-               int toFix = fixIt();
-               if(toFix==1) {
+               if(choice==1) {
                    setyearOfBirth();
                    trueAge();
                }
-               else if(toFix==2) {
+               else if(choice==2) {
                    setyearOfDeath();
                }
-               else if(toFix==3) {
+               else if(choice==3) {
                    setyearOfBirth();
                    setyearOfDeath();
                }
@@ -104,14 +103,17 @@ void Person::trueAge() {
     }while(makesSense==false);
 }
 
-int Person::fixIt() {
-    int choice;
+void Person::fixIt(char& confused, int& choice, const int& ageOfDeath) {
+    cout << "The person seems to have been " << ageOfDeath << " years old when they died" << endl;
+    cout << "Is this correct? (y/n) ";
+    cin >> confused;
+
     cout << "What would you like to change?" << endl;
     cout << "(1): Year of birth." << endl;
     cout << "(2): Year of death." << endl;
     cout << "(3): Both." << endl;
     cin >> choice;
-    return choice;
+    cin.ignore();
 }
 
 string Person::getName(){
