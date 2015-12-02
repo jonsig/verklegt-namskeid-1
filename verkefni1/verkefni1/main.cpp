@@ -13,22 +13,23 @@ const int LIVING_VALUE = 3000;    //Year of death value used to represent living
  * file i/o reads and writes files. This is done so they can easily be replaced in the following weeks.
  */
 void mainMenu(int& choice);                                     //interface
-void addPeople();                                               //interface
+void addPeople();                                               //Core function     Adds new people
 void printToFile(const Person& a);                              //file i/o          Writes person list file
-void search(vector<Person>& people);                            //Core function
-void searchMenu(string& sSearch, int& iSearch, int& choice);    //interface
+void search(vector<Person>& people);                            //Core function     Search people
+void searchMenu(string& sSearch, int& iSearch, int& choice);    //interface         Choose how to search people
 void getPeople(vector<Person>& people);                         //file i/o          Loads people vector from person list file
-void printPerson(const Person& a);                              //interface
-void showAll(vector<Person>& people);                           //interface
-void sortingMenu(int& order, int& upordown);                    //interface
-void orderOf(vector<Person>& people);                           //Core function
+void printPerson(const Person& a);                              //interface         show user a person
+void showAll(vector<Person>& people);                           //interface         show all people
+void sortingMenu(int& order, int& upordown);                    //interface         Choose how to sort
+void listAll(vector<Person>& people);                           //Core function     Sorts people using following sort functions
 void sortName(Person& a, Person& b);                            //Core function
 void sortLastName(Person& a, Person& b);                        //Core function
 void sortGender(Person& a, Person& b);                          //Core function
 void sortBirthyear(Person& a, Person& b);                       //Core function
 void sortDeathyear(Person& a, Person& b);                       //Core function
 void switching(Person& a, Person& b);                           //Core function
-void theFlipSide(vector<Person>& people);                       //interface         prints list of people in reverse order
+void theFlipSide(vector<Person>& people);                       //interface         show all people in reverse order
+void noFind();                                                  //interface         just tells the user that the search function didn't find anything
 
 int main()
 {
@@ -48,7 +49,7 @@ int main()
             }
             else if(choice == 3)
             {
-                orderOf(people);
+                listAll(people);
             }
         }
     }
@@ -56,38 +57,11 @@ int main()
     return 0;
 }
 
-void mainMenu(int& choice)
-{
-    cout << "What would you like to do?" << endl
-         << "(1): Add people" << endl
-         << "(2): Search for people" << endl
-         << "(3): Show known people" << endl
-         << "Anything else to quit" << endl;
-    cin >> choice;
-    cin.ignore();
-}
-
 void addPeople()
 {
-    char addMore;
-    do
-    {
         Person newGuy;
         newGuy.makePerson();
         printToFile(newGuy);
-        cout << "Add a new person? " << "(y/n) ";
-        cin >> addMore;
-        cin.ignore();
-    }
-    while(tolower(addMore) == 'y');  //"tolower(choice)" converts upper case to lower
-}
-
-void printToFile(const Person& a)
-{
-    ofstream outf;
-    outf.open("pList.txt", ios::app);
-    outf << a;     //"<<" is overloaded in Person class.
-    outf.close();
 }
 
 void search(vector<Person>& people)
@@ -128,53 +102,10 @@ void search(vector<Person>& people)
         }
     }
     if(found == false)
-        cout << "No match found." << endl;
+        noFind();
 }
 
-void searchMenu(string& sSearch, int& iSearch, int& choice)
-{
-    cout << "What would you like to search for?" << endl
-         << "(1): Name" << endl
-         << "(2): Gender (m/f)" << endl
-         << "(3): Year of birth" << endl
-         << "(4): Year of death" << endl
-         << "(5): Living people" << endl
-         << "(6): Deceased people" << endl;
-    cin >> choice;
-    cin.ignore();
-    if(choice == 1 || choice == 2)
-    {
-        cout << "Enter search term: ";
-        getline(cin, sSearch);
-    }
-    else if(choice == 3 || choice == 4)
-    {
-        cout << "Enter search term: ";
-        cin >> iSearch;
-        cin.ignore();
-    }
-    else if(choice != 5 && choice != 6)
-        cout << "Invalid choice" << endl;
-}
-
-void getPeople(vector<Person>& people)
-{
-    ifstream inf;
-    Person temp;
-    inf.open("pList.txt");
-    while(inf >> temp)
-    {
-        people.push_back(temp);
-    }
-    inf.close();
-}
-
-void printPerson(const Person& a) //used so cout is seperated from core functions and can be replaced by future gui
-{
-    cout << a;
-}
-
-void orderOf(vector<Person>& people) {
+void listAll(vector<Person>& people) {
     int order;
     int upordown;
     sortingMenu(order, upordown);
@@ -185,7 +116,7 @@ void orderOf(vector<Person>& people) {
             for(unsigned b = 0; b < people.size(); b++)
             {
                 if(order == 2)
-                    sortName(people[a], people[b]);     //The same function is called twice but with switched inputs to reverse the order.
+                    sortName(people[a], people[b]);
                 else if(order == 3)
                     sortLastName(people[a], people[b]);
                 else if(order == 4)
@@ -248,15 +179,72 @@ void showAll(vector<Person>& people)
 {
     for(unsigned i = 0; i < people.size(); i++)
     {
-        cout << people[i];
+        printPerson(people[i]);
     }
 }
 
 void theFlipSide(vector<Person>& people) {
     for(int i = people.size()-1; i >= 0; i--)
     {
-        cout << people[i];
+        printPerson(people[i]);
     }
+}
+
+void printToFile(const Person& a)
+{
+    ofstream outf;
+    outf.open("pList.txt", ios::app);
+    outf << a;     //"<<" is overloaded in Person class.
+    outf.close();
+}
+
+void getPeople(vector<Person>& people)
+{
+    ifstream inf;
+    Person temp;
+    inf.open("pList.txt");
+    while(inf >> temp)
+    {
+        people.push_back(temp);
+    }
+    inf.close();
+}
+
+void mainMenu(int& choice)
+{
+    cout << "What would you like to do?" << endl
+         << "(1): Add people" << endl
+         << "(2): Search for people" << endl
+         << "(3): Show known people" << endl
+         << "Anything else to quit" << endl;
+    cin >> choice;
+    cin.ignore();
+}
+
+void searchMenu(string& sSearch, int& iSearch, int& choice)
+{
+    cout << "What would you like to search for?" << endl
+         << "(1): Name" << endl
+         << "(2): Gender (m/f)" << endl
+         << "(3): Year of birth" << endl
+         << "(4): Year of death" << endl
+         << "(5): Living people" << endl
+         << "(6): Deceased people" << endl;
+    cin >> choice;
+    cin.ignore();
+    if(choice == 1 || choice == 2)
+    {
+        cout << "Enter search term: ";
+        getline(cin, sSearch);
+    }
+    else if(choice == 3 || choice == 4)
+    {
+        cout << "Enter search term: ";
+        cin >> iSearch;
+        cin.ignore();
+    }
+    else if(choice != 5 && choice != 6)
+        cout << "Invalid choice" << endl;
 }
 
 void sortingMenu(int& order, int& upordown)
@@ -279,4 +267,14 @@ void sortingMenu(int& order, int& upordown)
     }
     cin >> upordown;
     cin.ignore();
+}
+
+void printPerson(const Person& a) //used so cout is seperated from core functions and can be replaced by future gui
+{
+    cout << a;
+}
+
+void noFind()
+{
+    cout << "No match found." << endl;
 }

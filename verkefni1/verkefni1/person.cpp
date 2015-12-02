@@ -83,23 +83,23 @@ void Person::trueAge() {
     do{
         makesSense =true;
         ageOfDeath = yearOfDeath-yearOfBirth;
-       if(ageOfDeath >100){
-           fixIt(confused, choice, ageOfDeath);
-           if(confused == 'n'){
-               makesSense=false;
-               if(choice==1) {
-                   setyearOfBirth();
-                   trueAge();
-               }
-               else if(choice==2) {
-                   setyearOfDeath();
-               }
-               else if(choice==3) {
-                   setyearOfBirth();
-                   setyearOfDeath();
-               }
-           }
-       }
+        if(ageOfDeath >100){
+            fixIt(confused, choice, ageOfDeath);
+            if(tolower(confused) == 'n'){
+                makesSense=false;
+                if(choice==1) {
+                    setyearOfBirth();
+                    trueAge();
+                }
+                else if(choice==2) {
+                    setyearOfDeath();
+                }
+                else if(choice==3) {
+                    setyearOfBirth();
+                    setyearOfDeath();
+                }
+            }
+        }
     }while(makesSense==false);
 }
 
@@ -107,12 +107,14 @@ void Person::fixIt(char& confused, int& choice, const int& ageOfDeath) {
     cout << "The person seems to have been " << ageOfDeath << " years old when they died" << endl;
     cout << "Is this correct? (y/n) ";
     cin >> confused;
-
-    cout << "What would you like to change?" << endl;
-    cout << "(1): Year of birth." << endl;
-    cout << "(2): Year of death." << endl;
-    cout << "(3): Both." << endl;
-    cin >> choice;
+    if(tolower(confused) == 'n')
+    {
+        cout << "What would you like to change?" << endl;
+        cout << "(1): Year of birth." << endl;
+        cout << "(2): Year of death." << endl;
+        cout << "(3): Both." << endl;
+        cin >> choice;
+    }
     cin.ignore();
 }
 

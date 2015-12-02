@@ -12,7 +12,7 @@ class Person {
         int yearOfBirth, yearOfDeath;
         string description;
     public:
-        Person();
+        Person();                                                       //Core function
         void makePerson();                                              //Core function     Calls all set functions
         void setName();                                                 //Interface
         void setGender();                                               //Interface
