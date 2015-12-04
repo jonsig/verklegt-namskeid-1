@@ -79,19 +79,20 @@ bool ScientistRepository::addScientist(Scientist scientist)
         QSqlQuery query(db);
         string sSex = utils::intToString(scientist.getSex());
         string sYearBorn = utils::intToString(scientist.getYearBorn());
-        string queryInsert = "INSERT INTO scientists(name,sex,yearBorn)VALUES('"+scientist.getName()+"','"+sSex+"','"+sYearBorn+"',)";
-        if(query.exec(QString(queryInsert.c_str())))        //If first command was successful
+        string queryInsert = "INSERT INTO scientists(name,sex,yearBorn)VALUES('"+scientist.getName()+"','"+sSex+"','"+sYearBorn+"')";
+        if(query.exec(QString(queryInsert.c_str())))    //exec returns true if it is successful
         {
-            if(scientist.getYearDied() != constants::YEAR_DIED_DEFAULT_VALUE)   //If year of death has been altered from the default
+            if(scientist.getYearDied() != constants::YEAR_DIED_DEFAULT_VALUE)
             {
                 string sYearDied = utils::intToString(scientist.getYearDied());
-                queryInsert = "UPDATE scientists SET yearDied = '" + sYearDied + "' WHERE sci_id = LAST_INSERT_ID()";
-                if(query.exec(QString(queryInsert.c_str())))       //If second command was successful
-                    return true;        //Both successful
-                return false;           //second unsuccessful
+                queryInsert = "UPDATE scientists SET yearDied = '" + sYearDied + "' WHERE sci_id = (SELECT MAX(sci_id) FROM scientists)";
+                if(query.exec(QString(queryInsert.c_str())))
+                    return true;
+                return false;
             }
-            return true;        //First and only was successful
+            return true;
         }
     }
-    return false;   //db didn't open
+    db.close();
+    return false;
 }
