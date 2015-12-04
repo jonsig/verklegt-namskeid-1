@@ -1,6 +1,4 @@
 #include "ui/consoleui.h"
-#include <QtSql>
-
 
 int main()
 {

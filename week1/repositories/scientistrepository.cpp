@@ -11,6 +11,7 @@ using namespace std;
 
 ScientistRepository::ScientistRepository()
 {
+    db = QSqlDatabase::addDatabase(QString(constants::DATA_BASE.c_str()));
     fileName = constants::DATA_FILE_NAME;
 }
 
@@ -72,33 +73,25 @@ vector<Scientist> ScientistRepository::searchForScientists(string searchTerm)
 
 bool ScientistRepository::addScientist(Scientist scientist)
 {
-    ofstream file;
-
-    file.open(fileName.c_str(), std::ios::app);
-
-    if (file.is_open())
+    db.setDatabaseName(QString(fileName.c_str()));
+    if(db.open())
     {
-        string name = scientist.getName();
-        enum sexType sex = scientist.getSex();
-        int yearBorn = scientist.getYearBorn();
-        int yearDied = scientist.getYearDied();
-
-        file << name << constants::FILE_DELIMETER
-             << sex << constants::FILE_DELIMETER
-             << yearBorn << constants::FILE_DELIMETER;
-
-        if (yearDied != constants::YEAR_DIED_DEFAULT_VALUE)
+        QSqlQuery query(db);
+        string sSex = utils::intToString(scientist.getSex());
+        string sYearBorn = utils::intToString(scientist.getYearBorn());
+        string queryInsert = "INSERT INTO scientists(name,sex,yearBorn)VALUES('"+scientist.getName()+"','"+sSex+"','"+sYearBorn+"',)";
+        if(query.exec(QString(queryInsert.c_str())))        //If first command was successful
         {
-            file << yearDied;
+            if(scientist.getYearDied() != constants::YEAR_DIED_DEFAULT_VALUE)   //If year of death has been altered from the default
+            {
+                string sYearDied = utils::intToString(scientist.getYearDied());
+                queryInsert = "UPDATE scientists SET yearDied = '" + sYearDied + "' WHERE sci_id = LAST_INSERT_ID()";
+                if(query.exec(QString(queryInsert.c_str())))       //If second command was successful
+                    return true;        //Both successful
+                return false;           //second unsuccessful
+            }
+            return true;        //First and only was successful
         }
-
-        file << '\n';
     }
-    else
-    {
-        return false;
-    }
-
-    file.close();
-    return true;
+    return false;   //db didn't open
 }
