@@ -14,7 +14,7 @@ ScientistRepository::ScientistRepository()
     db = QSqlDatabase::addDatabase(QString(constants::DATA_BASE.c_str()));
     fileName = constants::DATA_FILE_NAME;
 }
-
+/*DISABLED
 std::vector<Scientist> ScientistRepository::getAllScientists()
 {
     ifstream file;
@@ -54,6 +54,33 @@ std::vector<Scientist> ScientistRepository::getAllScientists()
 
     return scientists;
 }
+*/
+
+vector<Scientist> ScientistRepository::getAllScientists()
+{       //Örugglega til betri leiðir en þetta virkar
+    vector<Scientist> scientists;
+    db.setDatabaseName(QString(fileName.c_str()));
+    if(db.open()) //Opens db and returns true if it worked
+    {
+        QSqlQuery query;                                //er rangt að kalla þetta query og query insert?
+        string queryInsert = "SELECT name,sex,yearBorn,yearDied FROM scientists";
+        if(query.exec(QString(queryInsert.c_str())))
+        {
+            while(query.next())
+            {
+                string name = query.value("name").toString().toStdString();
+                enum sexType sex = utils::intToSex(query.value("sex").toInt());
+                int yearBorn = query.value("yearBorn").toInt();
+                int yearDied = query.value("yearDied").toInt();
+                if(yearDied == 0)
+                    scientists.push_back(Scientist(name,sex,yearBorn));
+                else
+                    scientists.push_back(Scientist(name,sex,yearBorn,yearDied));
+            }
+        }
+    }
+    return scientists;
+}
 
 vector<Scientist> ScientistRepository::searchForScientists(string searchTerm)
 {
@@ -71,6 +98,7 @@ vector<Scientist> ScientistRepository::searchForScientists(string searchTerm)
     return filteredScientists;
 }
 
+#include <iostream>
 bool ScientistRepository::addScientist(Scientist scientist)
 {
     db.setDatabaseName(QString(fileName.c_str()));
@@ -79,6 +107,7 @@ bool ScientistRepository::addScientist(Scientist scientist)
         QSqlQuery query(db);
         string sSex = utils::intToString(scientist.getSex());
         string sYearBorn = utils::intToString(scientist.getYearBorn());
+        cout << endl << sSex;
         string queryInsert = "INSERT INTO scientists(name,sex,yearBorn)VALUES('"+scientist.getName()+"','"+sSex+"','"+sYearBorn+"')";
         if(query.exec(QString(queryInsert.c_str())))    //exec returns true if it is successful
         {
@@ -93,6 +122,5 @@ bool ScientistRepository::addScientist(Scientist scientist)
             return true;
         }
     }
-    db.close();
     return false;
 }

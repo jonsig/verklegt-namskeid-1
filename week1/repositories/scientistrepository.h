@@ -39,7 +39,6 @@ public:
     bool addScientistSql(Scientist scientist);
 
 private:
-    std::string database;
     QSqlDatabase db;
     std::string fileName;
 };
