@@ -64,6 +64,10 @@ bool ScientistRepository::addScientist(Scientist scientist)
     if(db.open())
     {
         QSqlQuery query(db);
+
+        string tableCreation ="CREATE TABLE IF NOT EXISTS scientists(sci_id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , name VARCHAR, sex INTEGER, yearBorn INTEGER, yearDied INTEGER)";
+        query.exec(QString(tableCreation.c_str()));
+
         string sSex = utils::intToString(scientist.getSex());
         string sYearBorn = utils::intToString(scientist.getYearBorn());
         string queryInsert = "INSERT INTO scientists(name,sex,yearBorn)VALUES('"+scientist.getName()+"','"+sSex+"','"+sYearBorn+"')";
