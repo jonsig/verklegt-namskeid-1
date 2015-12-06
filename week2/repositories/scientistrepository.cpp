@@ -11,46 +11,34 @@ using namespace std;
 
 ScientistRepository::ScientistRepository()
 {
-    fileName = constants::DATA_FILE_NAME;
+    db = QSqlDatabase::addDatabase(QString(constants::DATA_BASE.c_str()));
+    db.setDatabaseName(QString(constants::SCIENTISTS_FILE_NAME.c_str()));
 }
-
-std::vector<Scientist> ScientistRepository::getAllScientists()
-{
-    ifstream file;
-
-    file.open(fileName.c_str());
-
+vector<Scientist> ScientistRepository::getAllScientists()
+{       //Örugglega til betri leiðir en þetta virkar
     vector<Scientist> scientists;
-
-    if (file.is_open())
+    if(db.open()) //Opens db and returns true if it worked
     {
-        string line;
-        while(getline(file, line))
+        QSqlQuery query;                                //er rangt að kalla þetta query og query insert?
+        string queryInsert = "SELECT name,sex,yearBorn,yearDied FROM scientists";
+        if(query.exec(QString(queryInsert.c_str())))
         {
-            vector<string> fields = utils::splitString(line, constants::FILE_DELIMETER);
-
-            if (fields.size() >= 3)
+            while(query.next())
             {
-                string name = fields.at(0);
-                enum sexType sex = utils::stringToSex(fields.at(1));
-                int yearBorn = utils::stringToInt(fields.at(2));
-
-                if (fields.size() == 3)
-                {
-                    scientists.push_back(Scientist(name, sex, yearBorn));
-                }
+                string name = query.value("name").toString().toStdString();
+                enum sexType sex = utils::intToSex(query.value("sex").toInt());
+                int yearBorn = query.value("yearBorn").toInt();
+                if(query.isNull("yearDied"))    //checks if person is alive
+                    scientists.push_back(Scientist(name,sex,yearBorn));
                 else
                 {
-                    int yearDied = utils::stringToInt(fields.at(3));
-
-                    scientists.push_back(Scientist(name, sex, yearBorn, yearDied));
+                    int yearDied = query.value("yearDied").toInt();
+                    scientists.push_back(Scientist(name,sex,yearBorn,yearDied));
                 }
             }
         }
+        db.close();
     }
-
-    file.close();
-
     return scientists;
 }
 
@@ -69,55 +57,32 @@ vector<Scientist> ScientistRepository::searchForScientists(string searchTerm)
 
     return filteredScientists;
 }
-/* Disabled
-bool ScientistRepository::addScientist(Scientist scientist)
-{
-    ofstream file;
 
-    file.open(fileName.c_str(), std::ios::app);
-
-    if (file.is_open())
-    {
-        string name = scientist.getName();
-        enum sexType sex = scientist.getSex();
-        int yearBorn = scientist.getYearBorn();
-        int yearDied = scientist.getYearDied();
-
-        file << name << constants::FILE_DELIMETER
-             << sex << constants::FILE_DELIMETER
-             << yearBorn << constants::FILE_DELIMETER;
-
-        if (yearDied != constants::YEAR_DIED_DEFAULT_VALUE)
-        {
-            file << yearDied;
-        }
-
-        file << '\n';
-    }
-    else
-    {
-        return false;
-    }
-
-    file.close();
-    bool test = addScientistSql(scientist);
-    return true;
-}
-*/
 
 bool ScientistRepository::addScientist(Scientist scientist)
 {
-    QSqlDatabase db = QSqlDatabase::addDatabase("QSQLITE");
-    db.setDatabaseName("scientistRepository.db");
     if(db.open())
     {
         QSqlQuery query(db);
         string sSex = utils::intToString(scientist.getSex());
         string sYearBorn = utils::intToString(scientist.getYearBorn());
-        string sYearDied = utils::intToString(scientist.getYearDied());
-        string queryInsert = "INSERT INTO scientists(name,sex,yearBorn,yearDied)VALUES('"+scientist.getName()+"','"+sSex+"','"+sYearBorn+"','"+sYearDied+"')";
-        if(query.exec(QString(queryInsert.c_str())))
-            return true;
+        string queryInsert = "INSERT INTO scientists(name,sex,yearBorn)VALUES('"+scientist.getName()+"','"+sSex+"','"+sYearBorn+"')";
+        if(query.exec(QString(queryInsert.c_str())))    //exec returns true if it is successful
+        {
+            if(scientist.getYearDied() != constants::YEAR_DIED_DEFAULT_VALUE)
+            {
+                string sYearDied = utils::intToString(scientist.getYearDied());
+                queryInsert = "UPDATE scientists SET yearDied = '" + sYearDied + "' WHERE sci_id = (SELECT MAX(sci_id) FROM scientists)";
+                query.exec(QString(queryInsert.c_str()));
+            }
+        }
+        else{   //first query failed
+            db.close();
+            return false;
+        }
+        db.close();
     }
-    return false;
+    else    //file open failed
+        return false;
+    return true;
 }
