@@ -24,7 +24,12 @@ vector<Scientist> ScientistService::searchForScientists(string searchTerm)
     else if (searchTerm == "female")
         filter += " OR sex LIKE 0";
 
-    filter += " OR yearBorn LIKE '%" + searchTerm +"%' OR yearDied LIKE '%" + searchTerm +"%'";
+    filter += " OR yearBorn LIKE '%" + searchTerm +"%'";
+
+    if (searchTerm == "alive" ||searchTerm == "Alive")
+        filter += " OR yearDied IS NULL OR yearDied IS ''";
+    else
+        filter+= "OR yearDied LIKE '%" + searchTerm +"%'";
     return scientistRepo.getScientists(filter);
 }
 
