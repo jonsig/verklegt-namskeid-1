@@ -1,5 +1,5 @@
 #include "services/scientistservice.h"
-#include "utilities/scientistcomparator.h"
+#include "utilities/scientistsorting.h"
 
 #include <algorithm>
 
@@ -10,16 +10,14 @@ ScientistService::ScientistService()
 
 }
 
-std::vector<Scientist> ScientistService::getAllScientists(std::string orderBy, bool orderAscending)
+vector<Scientist> ScientistService::getAllScientists(string orderBy, bool orderAscending)
 {
-    vector<Scientist> scientists = scientistRepo.getAllScientists();
-
-    std::sort(scientists.begin(), scientists.end(), ScientistComparator(orderBy, orderAscending));
-
+    string whatSort = scientistSort.whichSort(orderBy, orderAscending);
+    vector<Scientist> scientists = scientistRepo.sortTheScientists(whatSort);
     return scientists;
 }
 
-std::vector<Scientist> ScientistService::searchForScientists(std::string searchTerm)
+vector<Scientist> ScientistService::searchForScientists(string searchTerm)
 {
     return scientistRepo.searchForScientists(searchTerm);
 }

@@ -2,6 +2,7 @@
 #define SCIENTISTSERVICE_H
 
 #include "repositories/scientistrepository.h"
+#include "utilities/scientistsorting.h"
 
 /**
  * @brief The ScientistService acts as a middle layer between the UI and Data layers, also handles sorting
@@ -34,6 +35,7 @@ public:
     bool addScientist(Scientist scientist);
 private:
     ScientistRepository scientistRepo;
+    ScientistSorting scientistSort;
 };
 
 #endif // SCIENTISTSERVICE_H

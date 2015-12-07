@@ -29,6 +29,8 @@ public:
      */
     std::vector<Scientist> searchForScientists(std::string searchTerm);
 
+    std::vector<Scientist> sortTheScientists(std::string whatSort);
+
     /**
      * @brief addScientist saves a scientist model to a file
      * @param scientist The model to save
