@@ -14,14 +14,14 @@ ScientistRepository::ScientistRepository()
     db = QSqlDatabase::addDatabase(QString(constants::DATA_BASE.c_str()));
     db.setDatabaseName(QString(constants::SCIENTISTS_FILE_NAME.c_str()));
 }
-vector<Scientist> ScientistRepository::getAllScientists()
-{       //Örugglega til betri leiðir en þetta virkar
+
+vector<Scientist> ScientistRepository::getScientists(string filter)
+{
     vector<Scientist> scientists;
-    if(db.open()) //Opens db and returns true if it worked
+    if(db.open())
     {
-        QSqlQuery query;                                //er rangt að kalla þetta query og query insert?
-        string queryInsert = "SELECT name,sex,yearBorn,yearDied FROM scientists";
-        if(query.exec(QString(queryInsert.c_str())))
+        QSqlQuery query(db);
+        if(query.exec(QString(filter.c_str())))
         {
             while(query.next())
             {
@@ -35,50 +35,6 @@ vector<Scientist> ScientistRepository::getAllScientists()
                     int yearDied = query.value("yearDied").toInt();
                     scientists.push_back(Scientist(name,sex,yearBorn,yearDied));
                 }
-            }
-        }
-        db.close();
-    }
-    return scientists;
-}
-
-vector<Scientist> ScientistRepository::searchForScientists(string searchTerm)
-{
-    vector<Scientist> allScientists = getAllScientists();
-    vector<Scientist> filteredScientists;
-
-    for (unsigned int i = 0; i < allScientists.size(); i++)
-    {
-        if (allScientists.at(i).contains(searchTerm))
-        {
-            filteredScientists.push_back(allScientists.at(i));
-        }
-    }
-
-    return filteredScientists;
-}
-
-vector<Scientist> ScientistRepository::sortTheScientists(std::string whatSort)
-{
-    vector<Scientist> scientists;
-    if(db.open())
-    {
-        QSqlQuery sorting;
-        string sortingInsert= whatSort;
-
-
-        if(sorting.exec(QString(sortingInsert.c_str())))
-        {
-            while(sorting.next())
-            {
-                string name = sorting.value("name").toString().toStdString();
-                enum sexType sex = utils::intToSex(sorting.value("sex").toInt());
-                int yearBorn = sorting.value("yearBorn").toInt();
-                int yearDied = sorting.value("yearDied").toInt();
-                if(yearDied == 0)
-                    scientists.push_back(Scientist(name,sex,yearBorn));
-                else
-                    scientists.push_back(Scientist(name,sex,yearBorn,yearDied));
             }
         }
         db.close();
