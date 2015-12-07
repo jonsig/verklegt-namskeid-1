@@ -1,7 +1,7 @@
 #ifndef SCIENTISTCOMPARATOR_H
 #define SCIENTISTCOMPARATOR_H
 
-#include "models/scientist.h"
+#include <string>
 
 /**
  * @brief The ScientistSorting returns which rule is being used

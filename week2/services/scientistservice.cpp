@@ -1,8 +1,6 @@
 #include "services/scientistservice.h"
 #include "utilities/scientistsorting.h"
 
-#include <algorithm>
-
 using namespace std;
 
 ScientistService::ScientistService()
@@ -19,8 +17,14 @@ vector<Scientist> ScientistService::getAllScientists(string orderBy, bool orderA
 
 vector<Scientist> ScientistService::searchForScientists(string searchTerm)
 {
-    string filter = "SELECT name,sex,yearBorn,yearDied FROM scientists";
-    filter += " WHERE name LIKE '%" + searchTerm + "%' OR yearBorn LIKE '%" + searchTerm +"%' OR yearDied LIKE '%" + searchTerm +"%'";
+    string filter = "SELECT name,sex,yearBorn,yearDied FROM scientists WHERE name LIKE '%" + searchTerm + "%'";
+
+    if (searchTerm == "male")
+        filter += " OR sex LIKE 1";     //because the database stores genders as 1 and 0
+    else if (searchTerm == "female")
+        filter += " OR sex LIKE 0";
+
+    filter += " OR yearBorn LIKE '%" + searchTerm +"%' OR yearDied LIKE '%" + searchTerm +"%'";
     return scientistRepo.getScientists(filter);
 }
 

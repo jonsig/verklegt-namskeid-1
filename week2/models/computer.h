@@ -14,18 +14,15 @@ enum computerType {
 class Computer
 {
 public:
-    Computer(std::string name, int yearMade, computerType compType, bool wasMade);
+    Computer(std::string name, computerType compType, int yearMade);
+    Computer(std::string name, computerType compType);
 
     std::string getName() const;
-    int getYearMade() const;
     enum computerType getType() const;
-    bool getWasMade() const;
-
-    bool contains(std::string searchTerm);
+    int getYearMade() const;
 
 private:
     std::string name;
+    enum computerType compType;
     int yearMade;
-    enum computerType comType;
-    bool wasMade;
 };

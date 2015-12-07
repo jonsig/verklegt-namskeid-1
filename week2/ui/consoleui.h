@@ -2,6 +2,7 @@
 #define CONSOLEUI_H
 
 #include "services/scientistservice.h"
+#include "models/computer.h" //WILL BE REPLACED WHEN COMPUTER REPOSITORY IS READY
 
 /**
  * @brief Holds commands that are available in the UI
@@ -13,8 +14,15 @@ enum command {
     search,
     sort,
     back,
+    changeType,
     quit,
     unknown
+};
+
+enum entryType
+{
+    scientists,
+    computers
 };
 
 class ConsoleUI
@@ -39,16 +47,22 @@ private:
      */
     void readInput();
 
+    void displayTypeMenu();
     void displayMenu();
+    void displayUnknownCommandMenu();
+    void displaySearchMenu();
+    void displaySortMenu();
+
     void displayAddScientistMenu();
     void displayAllScientists();
-    void displayScientistSearchMenu();
-    void displayScientistSortMenu();
-    void displayUnknownCommandMenu();
     void displayScientists(std::vector<Scientist> scientists);
 
+    void displayAddComputerMenu();
+    void displayAllComputers();
+    void displayComputers(std::vector<Computer> computers);
+
     /**
-     * @brief addCommandHandler calls the addScientist function and notifies the user how it went
+     * @brief addSciCommandHandler calls the addScientist function and notifies the user how it went
      * @param userInput the input the user is trying to create a scientist from
      */
     void addCommandHandler(std::string userInput);
@@ -72,6 +86,8 @@ private:
      */
     bool addScientist(std::string data);
 
+    bool addComputer(std::string data);
+
     /**
      * @brief setSort attempts to change how scientists will be sorted based on userinput
      * @param sortCommand the sort rule, rules are stored in constants.h
@@ -83,7 +99,7 @@ private:
 
     ScientistService scientistService;
     enum command lastCommand;
-
+    enum entryType type;
     std::string sortBy;
     bool sortAscending;
 };

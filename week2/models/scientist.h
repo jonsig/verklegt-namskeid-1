@@ -22,8 +22,6 @@ public:
     int getYearBorn() const;
     int getYearDied() const;
 
-    bool contains(std::string searchTerm);
-
 private:
     std::string name;
     enum sexType sex;
