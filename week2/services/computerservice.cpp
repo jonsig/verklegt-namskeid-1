@@ -24,7 +24,7 @@ std::vector<Computer> ComputerService::searchComputers(std::string searchTerm)
     return deletemelater;
 }
 
-bool addComputer(Computer computer)
+bool ComputerService::addComputer(Computer computer)
 {
     Computer drasl = computer; //nota computer bara til að losna við unused variable warning
     //return computerRepo.addCompuer(computer);

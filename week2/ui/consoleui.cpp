@@ -403,8 +403,40 @@ bool ConsoleUI::addScientist(string data)
 
 bool ConsoleUI::addComputer(string data)
 {
-    //make me when computerService has been made
-    data = "I'm just here so you don't get an unused variable warning";
+    vector<string> fields = utils::splitString(data, ',');
+
+    if (fields.size() > 2 && fields.size() < 5)
+    {
+        string name = fields.at(0);
+
+        enum computerType compType;
+        if(fields.at(1) == "mechanical")
+        {
+            compType = computerType::mechanical;
+        }
+        else if (fields.at(1) == "electronic")
+        {
+            compType = computerType::electronic;
+        }
+        else if( fields.at(1) == "transistor")
+        {
+            compType = computerType::transistor;
+        }
+        else
+        {
+            return false;
+        }
+
+        if (fields.size() == 2)
+        {
+            computerService.addComputer(Computer(name, compType));
+        }
+        else
+        {
+            int yearBuilt = utils::stringToInt(fields.at(2));
+            return computerService.addComputer(Computer(name, compType, yearBuilt));
+        }
+    }
     return false;
 }
 

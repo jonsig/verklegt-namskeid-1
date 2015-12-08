@@ -2,7 +2,7 @@
 #define CONSOLEUI_H
 
 #include "services/scientistservice.h"
-#include "models/computer.h" //WILL BE REPLACED WHEN COMPUTER REPOSITORY IS READY
+#include "services/computerservice.h"
 
 /**
  * @brief Holds commands that are available in the UI
@@ -98,6 +98,7 @@ private:
     void displayError(std::string error);
 
     ScientistService scientistService;
+    ComputerService computerService;
     enum command lastCommand;
     enum entryType type;
     std::string sortBy;
