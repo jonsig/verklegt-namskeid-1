@@ -205,11 +205,11 @@ void ConsoleUI::sortCommandHandler(string userInput)
 
 void ConsoleUI::searchCommandHandler(string userInput)
 {
-    if(entryType::scientists)
+    if(type == entryType::scientists)
     {
         displayScientists(scientistService.searchForScientists(userInput));
     }
-    else if(entryType::computers)
+    else if(type == entryType::computers)
     {
         displayComputers(computerService.searchComputers(userInput));
     }
