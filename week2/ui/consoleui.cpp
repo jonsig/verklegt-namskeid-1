@@ -439,7 +439,7 @@ bool ConsoleUI::addComputer(string data)
 {
     vector<string> fields = utils::splitString(data, ',');
 
-    if (fields.size() > 2 && fields.size() < 5)
+    if (fields.size() > 1 && fields.size() < 4)
     {
         string name = fields.at(0);
 
@@ -463,7 +463,7 @@ bool ConsoleUI::addComputer(string data)
 
         if (fields.size() == 2)
         {
-            computerService.addComputer(Computer(name, compType));
+            return computerService.addComputer(Computer(name, compType));
         }
         else
         {
