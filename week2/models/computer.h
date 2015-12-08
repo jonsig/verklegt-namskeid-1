@@ -1,8 +1,6 @@
 #ifndef COMPUTER_H
 #define COMPUTER_H
 
-#endif // COMPUTER_H
-
 #include <string>
 
 enum computerType {
@@ -26,3 +24,5 @@ private:
     enum computerType compType;
     int yearMade;
 };
+
+#endif // COMPUTER_H

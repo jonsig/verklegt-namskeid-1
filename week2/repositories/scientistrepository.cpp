@@ -11,8 +11,8 @@ using namespace std;
 
 ScientistRepository::ScientistRepository()
 {
-    db = QSqlDatabase::addDatabase(QString(constants::DATA_BASE.c_str()));
-    db.setDatabaseName(QString(constants::SCIENTISTS_FILE_NAME.c_str()));
+    db = QSqlDatabase::addDatabase(QString(constants::DATA_BASE.c_str()), "sci");
+    db.setDatabaseName(QString(constants::FILE_NAME.c_str()));
 }
 
 vector<Scientist> ScientistRepository::getScientists(string filter)

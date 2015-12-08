@@ -81,4 +81,9 @@ namespace utils {
     {
         return intToSex(stringToInt(str));
     }
+
+    enum computerType intToComp(int number)
+    {
+        return static_cast<enum computerType>(number);
+    }
 }

@@ -10,11 +10,11 @@ using namespace std;
 
 ComputerRepository::ComputerRepository()
 {
-    db = QSqlDatabase::addDatabase(QString(constants::DATA_BASE.c_str()));
-    db.setDatabaseName(QString(constants::COMPUTERS_FILE_NAME.c_str()));
+    db = QSqlDatabase::addDatabase(QString(constants::DATA_BASE.c_str()), "comp");
+    db.setDatabaseName(QString(constants::FILE_NAME.c_str()));
 }
-/*
-vector<Computer> ComputerRepository::getComputer(string filter)
+
+vector<Computer> ComputerRepository::getComputers(string filter)
 {
     vector<Computer> computers;
     if(db.open())
@@ -39,7 +39,7 @@ vector<Computer> ComputerRepository::getComputer(string filter)
     }
     return computers;
 }
-*/
+
 bool ComputerRepository::addComputer(Computer computer)
 {
     if(db.open())

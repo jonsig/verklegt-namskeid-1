@@ -1,7 +1,7 @@
 #ifndef COMPUTERSERVICE_H
 #define COMPUTERSERVICE_H
-#include<vector>    //<- Will be replaced by inheritance from computer repository
-#include "models/computer.h"
+
+#include "repositories/computerrepository.h"
 
 class ComputerService
 {
@@ -29,6 +29,9 @@ public:
      * @return true or false indicating success
      */
     bool addComputer(Computer computer);
+
+private:
+    ComputerRepository computerRepo;
 };
 
 #endif // COMPUTERSERVICE_H

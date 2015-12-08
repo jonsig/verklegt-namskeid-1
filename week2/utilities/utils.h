@@ -7,6 +7,7 @@
 #include <string>
 
 #include "models/scientist.h"
+#include "models/computer.h"
 
 /**
  * This file contains reusable utility functions used throughout the application
@@ -24,6 +25,8 @@ namespace utils {
     enum sexType intToSex(int number);
 
     enum sexType stringToSex(std::string str);
+
+    enum computerType intToComp(int number);
 }
 
 #endif // UTILS_H
