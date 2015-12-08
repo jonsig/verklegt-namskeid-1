@@ -87,14 +87,26 @@ private:
      */
     bool addScientist(std::string data);
 
+    /**
+     * @brief addComputer attempts to add a computer
+     * @param data, string containing user input
+     * @return true/false indicating success
+     */
     bool addComputer(std::string data);
 
     /**
-     * @brief setSort attempts to change how scientists will be sorted based on userinput
+     * @brief setSciSort attempts to change how scientists will be sorted based on userinput
      * @param sortCommand the sort rule, rules are stored in constants.h
      * @return true if it was a success, false if it was a failure
      */
-    bool setSort(std::string sortCommand);
+    bool setSciSort(std::string sortCommand);
+
+    /**
+     * @brief setCompSort converts user input to sorting commands
+     * @param sortCommand
+     * @return true/false indicating success
+     */
+    bool setCompSort(std::string sortCommand);
 
     void displayError(std::string error);
 

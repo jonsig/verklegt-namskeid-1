@@ -179,13 +179,27 @@ void ConsoleUI::addCommandHandler(string userInput)
 
 void ConsoleUI::sortCommandHandler(string userInput)
 {
-    if (setSort(userInput))
+    if(type == entryType::scientists)
     {
-        lastCommand = command::display;
+        if (setSciSort(userInput))
+        {
+            lastCommand = command::display;
+        }
+        else
+        {
+            displayError("Your input did not match any of the scientist sorting commands");
+        }
     }
-    else
+    else if(type == entryType::computers)
     {
-        displayError("Your input did not match any of the sort commands");
+        if(setCompSort(userInput))
+        {
+            lastCommand = command::display;
+        }
+        else
+        {
+            displayError("Your input did not match any of the computer sorting commands");
+        }
     }
 }
 
@@ -474,7 +488,7 @@ bool ConsoleUI::addComputer(string data)
     return false;
 }
 
-bool ConsoleUI::setSort(string sortCommand)
+bool ConsoleUI::setSciSort(string sortCommand)
 {
     if (sortCommand == constants::SORT_SCIENTIST_NAME_ASCENDING)
     {
@@ -514,6 +528,46 @@ bool ConsoleUI::setSort(string sortCommand)
     else if (sortCommand == constants::SORT_SCIENTIST_YEAR_DIED_DESCENDING)
     {
         sortBy = "yearDied";
+        sortAscending = false;
+    }
+    else
+    {
+        return false;
+    }
+
+    return true;
+}
+
+bool ConsoleUI::setCompSort(string sortCommand)
+{
+    if (sortCommand == constants::SORT_COMPUTER_NAME_ASCENDING)
+    {
+        sortBy = "name";
+        sortAscending = true;
+    }
+    else if (sortCommand == constants::SORT_COMPUTER_NAME_DESCENDING)
+    {
+        sortBy = "name";
+        sortAscending = false;
+    }
+    else if (sortCommand == constants::SORT_COMPUTER_TYPE_ASCENDING)
+    {
+        sortBy = "compType";
+        sortAscending = true;
+    }
+    else if (sortCommand == constants::SORT_COMPUTER_TYPE_DESCENDING)
+    {
+        sortBy = "compType";
+        sortAscending = false;
+    }
+    else if (sortCommand == constants::SORT_COMPUTER_YEAR_MADE_ASCENDING)
+    {
+        sortBy = "yearMade";
+        sortAscending = true;
+    }
+    else if (sortCommand == constants::SORT_COMPUTER_YEAR_MADE_DESCENDING)
+    {
+        sortBy = "yearMade";
         sortAscending = false;
     }
     else
