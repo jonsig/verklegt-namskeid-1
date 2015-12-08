@@ -38,11 +38,11 @@ string ScientistSorting::whichSort(string column, bool sortInAscendingOrder)
     {
         if (sortInAscendingOrder)
         {
-            howToSort = "Select * FROM scientists ORDER BY yearDied ASC";
+            howToSort = "Select * FROM scientists ORDER BY yearDied IS NULL, yearDied ASC";
         }
         else
         {
-            howToSort = "Select * FROM scientists ORDER BY yearDied DESC";
+            howToSort = "Select * FROM scientists ORDER BY CASE WHEN yearDied IS NULL THEN 0 ELSE 1 END, yearDied DESC";
         }
     }
 
