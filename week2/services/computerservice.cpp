@@ -10,7 +10,7 @@ std::vector<Computer> ComputerService::getAllComputers(std::string orderBy, bool
     bool drasl1 = orderAscending;   //<- bara til að losna við unused variable warning
     std::string drasl2 = orderBy;   //<-
     std::vector<Computer> deletemelater;
-    //MAKE ME
+    deletemelater.push_back(Computer("PLACEHOLDER", computerType::electronic));
     std::string command = "SELECT * FROM computers";
     //return computerRepo.getComputers(command);
     return deletemelater;

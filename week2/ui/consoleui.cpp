@@ -258,7 +258,7 @@ void ConsoleUI::displayAllScientists()
 
 void ConsoleUI::displayAllComputers()
 {   //incomplete
-    vector<Computer> computers; // = computerService.getAllComputers(sortBy, sortAscending); // bæta við þegar það er tilbúið
+    vector<Computer> computers = computerService.getAllComputers(sortBy, sortAscending);
 
     displayComputers(computers);
 
@@ -383,16 +383,17 @@ void ConsoleUI::displayComputers(std::vector<Computer> computers)
     for(unsigned int i = 0; i < computers.size(); i++)
     {
         string compType;
-        if(computers[i].getType() == computerType::mechanical)
+        if(computers.at(i).getType() == computerType::mechanical)
             compType = "mechanical";
-        else if(computers[i].getType() == computerType::electronic)
+        else if(computers.at(i).getType() == computerType::electronic)
             compType = "electronic";
-        else if(computers[i].getType() == computerType::transistor)
+        else if(computers.at(i).getType() == computerType::transistor)
             compType = "transistor";
 
+        string made = (computers.at(i).getYearMade() == constants::YEAR_NOT_ENTERED_DEFAULT_VALUE) ? "Not made" : utils::intToString(computers.at(i).getYearMade());
         cout << setw(20) << left << computers[i].getName()
              << setw(12) << left << compType
-             << setw(12) << left << computers[i].getYearMade() << endl;     //muna að skipta year made út fyrir not made eða eitthvað ef það er default value
+             << setw(12) << left << made << endl;
     }
 }
 
