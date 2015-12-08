@@ -8,13 +8,13 @@
 
 using namespace std;
 
-computerrepository::computerrepository()
+ComputerRepository::ComputerRepository()
 {
     db = QSqlDatabase::addDatabase(QString(constants::DATA_BASE.c_str()));
     db.setDatabaseName(QString(constants::COMPUTERS_FILE_NAME.c_str()));
 }
-
-vector<Computer> computerrepository::getComputers(string filter)
+/*
+vector<Computer> ComputerRepository::getComputer(string filter)
 {
     vector<Computer> computers;
     if(db.open())
@@ -25,14 +25,13 @@ vector<Computer> computerrepository::getComputers(string filter)
             while(query.next())
             {
                 string name = query.value("name").toString().toStdString();
-                enum computerType type = utils::intToSex(query.value("type").toInt());
-                int yearBorn = query.value("yearBorn").toInt();
-                if(query.isNull("yearDied"))    //checks if person is alive
-                    scientists.push_back(Scientist(name,sex,yearBorn));
+                enum computerType compType = utils::intToComp(query.value("compType").toInt()); //yet to make intToComp
+                if(query.isNull("yearMade"))    //checks if computer was not built
+                    computers.push_back(Computer(name,compType));
                 else
                 {
-                    int yearDied = query.value("yearDied").toInt();
-                    scientists.push_back(Scientist(name,sex,yearBorn,yearDied));
+                    int yearMade = query.value("yearMade").toInt();
+                    computers.push_back(Computer(name,compType,yearMade));
                 }
             }
         }
@@ -40,27 +39,27 @@ vector<Computer> computerrepository::getComputers(string filter)
     }
     return computers;
 }
-
-bool computerrepository::addComputer(Computer computer)
+*/
+bool ComputerRepository::addComputer(Computer computer)
 {
     if(db.open())
     {
-        string tableCreation ="CREATE TABLE IF NOT EXISTS computers(com_id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , name VARCHAR, type VARCHAR, yearMade INTEGER)";
+        QSqlQuery query(db);
+
+        string tableCreation ="CREATE TABLE IF NOT EXISTS computers(com_id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , name VARCHAR, compType INTEGER, yearMade INTEGER)";
         query.exec(QString(tableCreation.c_str()));
 
-        string cType = utils::intToString(computers.getType());
-        string sYearBorn = utils::intToString(scientist.getYearBorn());
-        string queryInsert = "INSERT INTO scientists(name,sex,yearBorn)VALUES('"+scientist.getName()+"','"+sSex+"','"+sYearBorn+"')";
+        string cType = utils::intToString(computer.getType());
+        string queryInsert = "INSERT INTO computers(name,compType)VALUES('"+computer.getName()+"','"+cType+"')";
         if(query.exec(QString(queryInsert.c_str())))    //exec returns true if it is successful
         {
-            if(scientist.getYearDied() != constants::YEAR_DIED_DEFAULT_VALUE)
+            if(computer.getYearMade() != constants::YEAR_NOT_ENTERED_DEFAULT_VALUE)
             {
-                 string sYearDied = utils::intToString(scientist.getYearDied());
-                 queryInsert = "UPDATE scientists SET yearDied = '" + sYearDied + "' WHERE sci_id = (SELECT MAX(sci_id) FROM scientists)";
-                 query.exec(QString(queryInsert.c_str()));
-             }
+                string cYearMade = utils::intToString(computer.getYearMade());
+                queryInsert = "UPDATE computer SET yearDied = '" + cYearMade + "' WHERE com_id = (SELECT MAX(com_id) FROM computers)";
+                query.exec(QString(queryInsert.c_str()));
+            }
         }
-
         else{   //first query failed
             db.close();
             return false;
@@ -71,3 +70,4 @@ bool computerrepository::addComputer(Computer computer)
         return false;
     return true;
 }
+

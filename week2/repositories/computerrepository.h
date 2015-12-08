@@ -7,10 +7,10 @@
 
 #include "models/computer.h"
 
-class computerrepository
+class ComputerRepository
 {
 public:
-    computerrepository();
+    ComputerRepository();
 
     std::vector<Computer> getComputers(std::string filter);
 
