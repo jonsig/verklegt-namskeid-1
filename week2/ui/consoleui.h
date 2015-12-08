@@ -16,6 +16,7 @@ enum command {
     back,
     changeType,
     quit,
+    noType,
     unknown
 };
 

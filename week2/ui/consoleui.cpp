@@ -48,6 +48,7 @@ void ConsoleUI::display()
             case command::sort:
                 displaySortSciMenu();
                 break;
+            case command::noType:
             default:
                 displayUnknownCommandMenu();
                 break;
@@ -75,6 +76,7 @@ void ConsoleUI::display()
             case command::sort:
                 displaySortCompMenu();
                 break;
+            case command::noType:
             default:
                 displayUnknownCommandMenu();
                 break;
@@ -89,6 +91,10 @@ void ConsoleUI::readInput()
         lastCommand = command::sort;
         return;
     }
+    if (lastCommand == command::noType)
+    {
+        lastCommand = command::changeType;
+    }
 
     string userInput;
     getline(cin, userInput);
@@ -96,21 +102,21 @@ void ConsoleUI::readInput()
     cout << "\n\n";
 
     bool shouldTreatInputAsCommand = (lastCommand != command::search);
-    bool typeSelected = (lastCommand != command::changeType);       //true if scientists or computers have been selected as the type. used to lock commands
+    bool typeIsSelected = (lastCommand != command::changeType);       //So commands can be locked before a type is selected
 
-    if (userInput == "display" && shouldTreatInputAsCommand && typeSelected)
+    if (userInput == "display" && shouldTreatInputAsCommand && typeIsSelected)
     {
         lastCommand = command::sort;
     }
-    else if (userInput == "add" && shouldTreatInputAsCommand && typeSelected)
+    else if (userInput == "add" && shouldTreatInputAsCommand && typeIsSelected)
     {
         lastCommand = command::add;
     }
-    else if (userInput == "search" && shouldTreatInputAsCommand && typeSelected)
+    else if (userInput == "search" && shouldTreatInputAsCommand && typeIsSelected)
     {
         lastCommand = command::search;
     }
-    else if (userInput == "back" && typeSelected)
+    else if (userInput == "back" && typeIsSelected)
     {
         lastCommand = command::menu;
     }
@@ -118,12 +124,12 @@ void ConsoleUI::readInput()
     {
         lastCommand = command::changeType;
     }
-    else if(userInput == "scientists")
+    else if(userInput == "scientists" && !typeIsSelected)
     {
         type = entryType::scientists;
         lastCommand = command::menu;
     }
-    else if(userInput == "computers")
+    else if(userInput == "computers" && !typeIsSelected)
     {
         type = entryType::computers;
         lastCommand = command::menu;
@@ -132,7 +138,7 @@ void ConsoleUI::readInput()
     {
         lastCommand = command::quit;
     }
-    else
+    else if(typeIsSelected)
     {
         if (lastCommand == command::add)
         {
@@ -150,6 +156,10 @@ void ConsoleUI::readInput()
         {
             lastCommand = command::unknown;
         }
+    }
+    else
+    {
+        lastCommand = command::noType;
     }
 }
 

@@ -25,8 +25,8 @@ vector<Scientist> ScientistService::searchForScientists(string searchTerm)
 
     filter += " OR yearBorn LIKE '%" + searchTerm +"%'";
 
-    if (searchTerm == "alive" ||searchTerm == "Alive")
-        filter += " OR yearDied IS NULL OR yearDied IS ''";
+    if (searchTerm == "alive" || searchTerm == "Alive")
+        filter += " OR yearDied IS NULL";
     else
         filter+= "OR yearDied LIKE '%" + searchTerm +"%'";
     return scientistRepo.getScientists(filter);
