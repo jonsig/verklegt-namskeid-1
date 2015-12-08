@@ -46,7 +46,7 @@ void ConsoleUI::display()
                 displaySearchMenu();
                 break;
             case command::sort:
-                displaySortMenuS();
+                displaySortSciMenu();
                 break;
             default:
                 displayUnknownCommandMenu();
@@ -73,7 +73,7 @@ void ConsoleUI::display()
                 displaySearchMenu();
                 break;
             case command::sort:
-                displaySortMenuC();
+                displaySortCompMenu();
                 break;
             default:
                 displayUnknownCommandMenu();
@@ -191,7 +191,14 @@ void ConsoleUI::sortCommandHandler(string userInput)
 
 void ConsoleUI::searchCommandHandler(string userInput)
 {
-    displayScientists(scientistService.searchForScientists(userInput));
+    if(entryType::scientists)
+    {
+        displayScientists(scientistService.searchForScientists(userInput));
+    }
+    else if(entryType::computers)
+    {
+        displayComputers(computerService.searchComputers(userInput));
+    }
 }
 
 void ConsoleUI::displayTypeMenu()
@@ -268,7 +275,7 @@ void ConsoleUI::displaySearchMenu()
     cout << "Input: ";
 }
 
-void ConsoleUI::displaySortMenuS()
+void ConsoleUI::displaySortSciMenu()
 {
     cout << "How should the list be sorted:\n\n";
     cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
@@ -300,7 +307,7 @@ void ConsoleUI::displaySortMenuS()
     cout << "Command: ";
 }
 
-void ConsoleUI::displaySortMenuC()
+void ConsoleUI::displaySortCompMenu()
 {
     cout << "How should the list be sorted:\n\n";
     cout << setw(constants::MENU_COMMAND_WIDTH) << std::left

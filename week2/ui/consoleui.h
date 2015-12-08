@@ -51,14 +51,15 @@ private:
     void displayMenu();
     void displayUnknownCommandMenu();
     void displaySearchMenu();
-    void displaySortMenu();
 
     void displayAddScientistMenu();
     void displayAllScientists();
+    void displaySortSciMenu();
     void displayScientists(std::vector<Scientist> scientists);
 
     void displayAddComputerMenu();
     void displayAllComputers();
+    void displaySortCompMenu();
     void displayComputers(std::vector<Computer> computers);
 
     /**
