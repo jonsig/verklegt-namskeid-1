@@ -359,7 +359,7 @@ void ConsoleUI::displayScientists(std::vector<Scientist> scientists)
         string scientistSex = (scientists.at(i).getSex() == sexType::male) ? "Male" : "Female";
 
         int yearDied = scientists.at(i).getYearDied();
-        string died = (yearDied == constants::YEAR_DIED_DEFAULT_VALUE) ? "Alive" : utils::intToString(yearDied);
+        string died = (yearDied == constants::YEAR_NOT_ENTERED_DEFAULT_VALUE) ? "Alive" : utils::intToString(yearDied);
 
         cout << setw(20) << std::left << scientists.at(i).getName()
              << setw(8) << std::left << scientistSex

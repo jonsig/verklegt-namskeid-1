@@ -9,9 +9,10 @@
 
 namespace constants {
     const std::string SCIENTISTS_FILE_NAME = "scientistRepository.db";
+    const std::string COMPUTERS_FILE_NAME = "computerRepository.db";
     const std::string DATA_BASE = "QSQLITE";
     const char FILE_DELIMETER = '\t';
-    const int YEAR_DIED_DEFAULT_VALUE = 13337;
+    const int YEAR_NOT_ENTERED_DEFAULT_VALUE = 13337;
 
     const unsigned int MENU_COMMAND_WIDTH = 15;
 

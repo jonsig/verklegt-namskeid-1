@@ -1,4 +1,5 @@
 #include "computer.h"
+#include "utilities/constants.h"
 
 Computer::Computer(std::string name, enum computerType compType, int yearMade)
 {
@@ -11,7 +12,7 @@ Computer::Computer(std::string name, enum computerType compType)
 {
     this->name = name;
     this->compType = compType;
-    this->yearMade = 13337;
+    this->yearMade = constants::YEAR_NOT_ENTERED_DEFAULT_VALUE;
 }
 
 std::string Computer::getName() const

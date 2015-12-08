@@ -56,7 +56,7 @@ bool ScientistRepository::addScientist(Scientist scientist)
         string queryInsert = "INSERT INTO scientists(name,sex,yearBorn)VALUES('"+scientist.getName()+"','"+sSex+"','"+sYearBorn+"')";
         if(query.exec(QString(queryInsert.c_str())))    //exec returns true if it is successful
         {
-            if(scientist.getYearDied() != constants::YEAR_DIED_DEFAULT_VALUE)
+            if(scientist.getYearDied() != constants::YEAR_NOT_ENTERED_DEFAULT_VALUE)
             {
                 string sYearDied = utils::intToString(scientist.getYearDied());
                 queryInsert = "UPDATE scientists SET yearDied = '" + sYearDied + "' WHERE sci_id = (SELECT MAX(sci_id) FROM scientists)";

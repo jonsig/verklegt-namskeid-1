@@ -9,7 +9,7 @@ Scientist::Scientist(string name, enum sexType sex, int yearBorn)
     this->name = name;
     this->sex = sex;
     this->yearBorn = yearBorn;
-    this->yearDied = constants::YEAR_DIED_DEFAULT_VALUE;
+    this->yearDied = constants::YEAR_NOT_ENTERED_DEFAULT_VALUE;
 }
 
 Scientist::Scientist(string name, enum sexType sex, int yearBorn, int yearDied)
