@@ -17,6 +17,8 @@ namespace constants {
 
     const std::string SORT_SCIENTIST_NAME_ASCENDING = "name-asc";
     const std::string SORT_SCIENTIST_NAME_DESCENDING = "name-desc";
+    const std::string SORT_SCIENTIST_SEX_ASCENDING = "sex-asc";
+    const std::string SORT_SCIENTIST_SEX_DESCENDING = "sex-desc";
     const std::string SORT_SCIENTIST_YEAR_BORN_ASCENDING = "born-asc";
     const std::string SORT_SCIENTIST_YEAR_BORN_DESCENDING = "born-desc";
     const std::string SORT_SCIENTIST_YEAR_DIED_ASCENDING = "died-asc";

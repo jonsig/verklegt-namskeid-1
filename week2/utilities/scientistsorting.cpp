@@ -23,6 +23,17 @@ string ScientistSorting::whichSort(string column, bool sortInAscendingOrder)
             howToSort = "Select * FROM scientists ORDER BY name DESC";
         }
     }
+    else if (sortColumn == "sex")
+    {
+        if (sortInAscendingOrder)
+        {
+            howToSort = "Select * FROM scientists ORDER BY sex ASC";
+        }
+        else
+        {
+            howToSort = "Select * FROM scientists ORDER BY sex DESC";
+        }
+    }
     else if (sortColumn == "yearBorn")
     {
         if (sortInAscendingOrder)
