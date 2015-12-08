@@ -46,7 +46,7 @@ void ConsoleUI::display()
                 displaySearchMenu();
                 break;
             case command::sort:
-                displaySortMenu();
+                displaySortMenuS();
                 break;
             default:
                 displayUnknownCommandMenu();
@@ -73,7 +73,7 @@ void ConsoleUI::display()
                 displaySearchMenu();
                 break;
             case command::sort:
-                displaySortMenu();
+                displaySortMenuC();
                 break;
             default:
                 displayUnknownCommandMenu();
@@ -268,7 +268,7 @@ void ConsoleUI::displaySearchMenu()
     cout << "Input: ";
 }
 
-void ConsoleUI::displaySortMenu()
+void ConsoleUI::displaySortMenuS()
 {
     cout << "How should the list be sorted:\n\n";
     cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
@@ -294,6 +294,32 @@ void ConsoleUI::displaySortMenu()
 
     cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
          << constants::SORT_SCIENTIST_YEAR_DIED_DESCENDING << "Sorts by year died, descending.\n\n";
+
+    cout << "If you would like to go back to the main menu, please type: back\n";
+
+    cout << "Command: ";
+}
+
+void ConsoleUI::displaySortMenuC()
+{
+    cout << "How should the list be sorted:\n\n";
+    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+         << constants::SORT_COMPUTER_NAME_ASCENDING << "Sorts by name, ascending.\n";
+
+    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+         << constants::SORT_COMPUTER_NAME_DESCENDING << "Sorts by name, descending.\n";
+
+    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+         << constants::SORT_COMPUTER_TYPE_ASCENDING << "Sorts by type, ascending.\n";
+
+    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+         << constants::SORT_COMPUTER_TYPE_DESCENDING << "Sorts by type, descending.\n";
+
+    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+         << constants::SORT_COMPUTER_YEAR_MADE_ASCENDING << "Sorts by year made, ascending.\n";
+
+    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+         << constants::SORT_COMPUTER_YEAR_MADE_DESCENDING << "Sorts by year made, descending.\n\n";
 
     cout << "If you would like to go back to the main menu, please type: back\n";
 
