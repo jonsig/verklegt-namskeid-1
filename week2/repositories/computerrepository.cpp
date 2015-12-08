@@ -56,7 +56,7 @@ bool ComputerRepository::addComputer(Computer computer)
             if(computer.getYearMade() != constants::YEAR_NOT_ENTERED_DEFAULT_VALUE)
             {
                 string cYearMade = utils::intToString(computer.getYearMade());
-                queryInsert = "UPDATE computer SET yearDied = '" + cYearMade + "' WHERE com_id = (SELECT MAX(com_id) FROM computers)";
+                queryInsert = "UPDATE computers SET yearMade = '" + cYearMade + "' WHERE com_id = (SELECT MAX(com_id) FROM computers)";
                 query.exec(QString(queryInsert.c_str()));
             }
         }
