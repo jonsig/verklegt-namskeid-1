@@ -51,7 +51,8 @@ private:
     void displayMenu();
     void displayUnknownCommandMenu();
     void displaySearchMenu();
-    void displaySortMenu();
+    void displaySortMenuS();
+    void displaySortMenuC();
 
     void displayAddScientistMenu();
     void displayAllScientists();
