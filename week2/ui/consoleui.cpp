@@ -54,6 +54,7 @@ void ConsoleUI::display()
                 break;
             case command::findRelations:
                 displayFindRelationMenu();
+                break;
             default:
                 displayUnknownCommandMenu();
                 break;
@@ -86,6 +87,7 @@ void ConsoleUI::display()
                 break;
             case command::findRelations:
                 displayFindRelationMenu();
+                break;
             default:
                 displayUnknownCommandMenu();
                 break;
@@ -433,7 +435,7 @@ bool ConsoleUI::addRelation(string data)
 
 void ConsoleUI::displayFindRelationMenu()
 {
-    cout << "To find relations, type in a full name\n";
+    cout << "To find relations, type in a full name of the selected entry type\n";
 
     cout << "If you would like to go back to the main menu, please type: back\n";
     cout << "Input: ";
