@@ -16,7 +16,9 @@ public:
     RelationRepository();
 
     bool addConnection(string compName, string sciName);
+
     bool connectThe(Scientist scientist, Computer computer);
+
 private:
     QSqlDatabase db;
 };

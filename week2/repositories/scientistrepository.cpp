@@ -15,7 +15,7 @@ ScientistRepository::ScientistRepository()
     db.setDatabaseName(QString(constants::FILE_NAME.c_str()));
 }
 
-vector<Scientist> ScientistRepository::getAllScientists(std::string orderBy, bool orderAscending)
+vector<Scientist> ScientistRepository::getAllScientists(string orderBy, bool orderAscending)
 {
     string command = "SELECT name,sex,yearBorn,yearDied FROM scientists ORDER BY ";
     command += orderBy;
@@ -26,7 +26,7 @@ vector<Scientist> ScientistRepository::getAllScientists(std::string orderBy, boo
     return getScientists(command);
 }
 
-vector<Scientist> ScientistRepository::findScientists(std::string searchTerm)
+vector<Scientist> ScientistRepository::findScientists(string searchTerm)
 {
     string command = "SELECT name,sex,yearBorn,yearDied FROM scientists WHERE name LIKE '%" + searchTerm + "%'";
 

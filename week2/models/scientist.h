@@ -3,6 +3,8 @@
 
 #include <string>
 
+using namespace std;
+
 enum sexType {
     female,
     male
@@ -14,16 +16,16 @@ enum sexType {
 class Scientist
 {
 public:
-    Scientist(std::string name, sexType sex, int yearBorn);
-    Scientist(std::string name, sexType sex, int yearBorn, int yearDied);
+    Scientist(string name, sexType sex, int yearBorn);
+    Scientist(string name, sexType sex, int yearBorn, int yearDied);
 
-    std::string getName() const;
+    string getName() const;
     enum sexType getSex() const;
     int getYearBorn() const;
     int getYearDied() const;
 
 private:
-    std::string name;
+    string name;
     enum sexType sex;
     int yearBorn;
     int yearDied;

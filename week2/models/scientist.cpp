@@ -20,7 +20,7 @@ Scientist::Scientist(string name, enum sexType sex, int yearBorn, int yearDied)
     this->yearDied = yearDied;
 }
 
-std::string Scientist::getName() const
+string Scientist::getName() const
 {
     return name;
 }

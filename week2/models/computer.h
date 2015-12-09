@@ -3,6 +3,8 @@
 
 #include <string>
 
+using namespace std;
+
 enum computerType {
     electronic,
     mechanical,
@@ -13,19 +15,19 @@ enum computerType {
 class Computer
 {
 public:
-    Computer(std::string name, computerType compType, std::string wasMade, int yearMade);
-    Computer(std::string name, computerType compType, std::string wasMade);
+    Computer(string name, computerType compType, string wasMade, int yearMade);
+    Computer(string name, computerType compType, string wasMade);
 
-    std::string getName() const;
+    string getName() const;
     enum computerType getType() const;
-    std::string getWasMade() const;
+    string getWasMade() const;
     int getYearMade() const;
 
 private:
-    std::string name;
+    string name;
     enum computerType compType;
     int yearMade;
-    std::string wasMade;
+    string wasMade;
 };
 
 #endif // COMPUTER_H

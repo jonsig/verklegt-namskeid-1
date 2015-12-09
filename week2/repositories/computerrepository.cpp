@@ -16,7 +16,7 @@ ComputerRepository::ComputerRepository()
 
 vector<Computer> ComputerRepository::getAllComputers(string orderBy, bool orderAscending)
 {
-    std::string command = "SELECT name,compType,wasMade,yearMade FROM computers";
+    string command = "SELECT name,compType,wasMade,yearMade FROM computers";
     command += " ORDER BY " + orderBy;
     if(!orderAscending)
     {
@@ -27,7 +27,7 @@ vector<Computer> ComputerRepository::getAllComputers(string orderBy, bool orderA
 
 vector<Computer> ComputerRepository::findComputers(string searchTerm)
 {
-    std::string command = "SELECT name,compType,wasMade,yearMade FROM computers WHERE name LIKE '%" + searchTerm +"%'";
+    string command = "SELECT name,compType,wasMade,yearMade FROM computers WHERE name LIKE '%" + searchTerm +"%'";
 
     if(searchTerm == "electronic")
     {
