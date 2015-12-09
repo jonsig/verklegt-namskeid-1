@@ -16,7 +16,6 @@ SOURCES += main.cpp \
     ui/consoleui.cpp \
     utilities/utils.cpp \
     models/computer.cpp \
-    utilities/scientistsorting.cpp \
     services/computerservice.cpp \
     repositories/computerrepository.cpp \
 
@@ -28,7 +27,6 @@ HEADERS += \
     services/scientistservice.h \
     ui/consoleui.h \
     models/computer.h \
-    utilities/scientistsorting.h \
     services/computerservice.h \
     repositories/computerrepository.h \
 

@@ -15,6 +15,35 @@ ScientistRepository::ScientistRepository()
     db.setDatabaseName(QString(constants::FILE_NAME.c_str()));
 }
 
+vector<Scientist> ScientistRepository::getAllScientists(std::string orderBy, bool orderAscending)
+{
+    string command = "SELECT name,sex,yearBorn,yearDied FROM scientists ORDER BY ";
+    command += orderBy;
+    if(!orderAscending)
+    {
+        command += " desc";
+    }
+    return getScientists(command);
+}
+
+vector<Scientist> ScientistRepository::findScientists(std::string searchTerm)
+{
+    string command = "SELECT name,sex,yearBorn,yearDied FROM scientists WHERE name LIKE '%" + searchTerm + "%'";
+
+    if (searchTerm == "male")
+        command += " OR sex LIKE 1";     //because the database stores genders as 1 and 0
+    else if (searchTerm == "female")
+        command += " OR sex LIKE 0";
+
+    command += " OR yearBorn LIKE '%" + searchTerm +"%'";
+
+    if (searchTerm == "alive" || searchTerm == "Alive")
+        command += " OR yearDied IS NULL";
+    else
+        command+= "OR yearDied LIKE '%" + searchTerm +"%'";
+    return getScientists(command);
+}
+
 vector<Scientist> ScientistRepository::getScientists(string filter)
 {
     vector<Scientist> scientists;

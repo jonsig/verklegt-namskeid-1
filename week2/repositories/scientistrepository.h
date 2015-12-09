@@ -17,6 +17,20 @@ public:
     ScientistRepository();
 
     /**
+     * @brief getAllScientists creates a command and sends it to getScientists to read and sort all scientist entries
+     * @param orderBy chooses what to sort the entries by
+     * @param orderAscending chooses descending or ascending order
+     * @return vector containing all scientists in sorted order
+     */
+    std::vector<Scientist> getAllScientists(std::string orderBy, bool orderAscending);
+
+    /**
+     * @brief findScientists creates a command and sends it to getScientists to find entries fitting the search term
+     * @param searchTerm is used to make the search command
+     * @return vector containing search results
+     */
+    std::vector<Scientist> findScientists(std::string searchTerm);
+    /**
      * @brief getScientist reads scientists from the database using the filter
      * @param filter is an SQL SELECT command
      * @return vector of scientists
