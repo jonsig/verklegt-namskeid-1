@@ -7,6 +7,10 @@
 
 #include "models/computer.h"
 
+
+/**
+ * @brief The ComputerRepository class handles all read/write in the database
+ */
 class ComputerRepository
 {
 public:

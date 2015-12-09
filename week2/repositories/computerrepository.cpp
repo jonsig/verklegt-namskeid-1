@@ -108,7 +108,8 @@ bool ComputerRepository::addComputer(Computer computer)
                 query.exec(QString(queryInsert.c_str()));
             }
         }
-        else{   //first query failed
+        else
+        {   //first query failed
             db.close();
             return false;
         }
