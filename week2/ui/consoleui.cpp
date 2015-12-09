@@ -52,6 +52,8 @@ void ConsoleUI::display()
             case command::addRelations:
                 displayAddRelationMenu();
                 break;
+            case command::findRelations:
+                displayFindRelationMenu();
             default:
                 displayUnknownCommandMenu();
                 break;
@@ -82,6 +84,8 @@ void ConsoleUI::display()
             case command::addRelations:
                 displayAddRelationMenu();
                 break;
+            case command::findRelations:
+                displayFindRelationMenu();
             default:
                 displayUnknownCommandMenu();
                 break;
@@ -126,6 +130,10 @@ void ConsoleUI::readInput()
     {
         lastCommand = command::addRelations;
     }
+    else if (userInput == "find relations" && shouldTreatInputAsCommand && typeIsSelected)
+    {
+        lastCommand = command::findRelations;
+    }
     else if (userInput == "back" && typeIsSelected)
     {
         lastCommand = command::menu;
@@ -165,6 +173,10 @@ void ConsoleUI::readInput()
         else if (lastCommand == command::addRelations)
         {
             addRelationCommandHandler(userInput);
+        }
+        else if (lastCommand == command::findRelations)
+        {
+            findRelationCommandHandler(userInput);
         }
         else
         {
@@ -264,6 +276,9 @@ void ConsoleUI::displayMenu()
 
     cout << setw(constants::MENU_COMMAND_WIDTH) << left
          << "add relations:" << "Add relations between computers and scientists\n";
+
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
+         << "find relations:" << "Find relations between computers and scientists\n";
 
     cout << "Command: ";
 }
@@ -394,11 +409,12 @@ void ConsoleUI::addRelationCommandHandler(string userInput)
 {
     if(addRelation(userInput))
     {
+        cout << "\nNew relation successfully established\n";
         lastCommand = command::menu;
     }
     else
     {
-        cout << "There was an error in your input\n";
+        displayError("There was an error in your input");
     }
 }
 
@@ -407,11 +423,52 @@ bool ConsoleUI::addRelation(string data)
     vector<string> fields = utils::splitString(data, ',');
     if(fields.size() == 2)
     {
-        return relationRepository.addRelation(fields.at(0), fields.at(1));
+        return relationService.addRelation(fields.at(0), fields.at(1));
     }
     else
     {
         return false;
+    }
+}
+
+void ConsoleUI::displayFindRelationMenu()
+{
+    cout << "To find relations, type in a full name\n";
+
+    cout << "If you would like to go back to the main menu, please type: back\n";
+    cout << "Input: ";
+}
+
+void ConsoleUI::findRelationCommandHandler(string userInput)
+{
+    if(type == entryType::scientists)
+    {
+        displayRelations(relationService.findSciRelation(userInput));
+    }
+    else if(type == entryType::computers)
+    {
+        displayRelations(relationService.findCompRelation(userInput));
+    }
+}
+
+void ConsoleUI::displayRelations(vector<string> relations)
+{
+    if(relations.size() != 0)
+    {
+        cout << relations.at(0) << " has relations to:" << endl;
+        if(relations.size() == 1)
+        {
+            cout << "\tNo relations found\n\n";
+            return;
+        }
+        else
+        {
+            for(unsigned i = 1; i < relations.size(); i++)
+            {
+                cout << "\t" << relations.at(i) << endl;
+            }
+            cout << endl;
+        }
     }
 }
 

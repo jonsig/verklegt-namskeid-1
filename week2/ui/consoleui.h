@@ -3,7 +3,7 @@
 
 #include "services/scientistservice.h"
 #include "services/computerservice.h"
-#include "repositories/relationrepository.h"
+#include "services/relationservice.h"
 
 using namespace std;
 
@@ -17,6 +17,7 @@ enum command {
     search,
     sort,
     addRelations,
+    findRelations,
     back,
     changeType,
     quit,
@@ -57,6 +58,8 @@ private:
     void displayUnknownCommandMenu();
     void displaySearchMenu();
     void displayAddRelationMenu();
+    void displayFindRelationMenu();
+    void displayRelations(vector<string> relations);
 
     void displayAddScientistMenu();
     void displayAllScientists();
@@ -93,10 +96,17 @@ private:
     void addRelationCommandHandler(string userInput);
 
     /**
+     * @brief findRelationCommandHandler calls a relation repository function to find all known relations to the input name
+     * @param userInput is the input name
+     */
+    void findRelationCommandHandler(string userInput);
+
+    /**
      * @brief addScientist attempts to add a scientist
      * @param data A string containing the user input
      * @return true if it was a success, false if it was a failure
      */
+
     bool addScientist(string data);
 
     /**
@@ -112,6 +122,8 @@ private:
      * @return true(false indicating success
      */
     bool addRelation(string data);
+
+
     /**
      * @brief setSciSort attempts to change how scientists will be sorted based on userinput
      * @param sortCommand the sort rule, rules are stored in constants.h
@@ -130,7 +142,7 @@ private:
 
     ScientistService scientistService;
     ComputerService computerService;
-    RelationRepository relationRepository;
+    RelationService relationService;
     enum command lastCommand;
     enum entryType type;
     string sortBy;

@@ -15,7 +15,7 @@ namespace constants {
     const char FILE_DELIMETER = '\t';
     const int YEAR_NOT_ENTERED_DEFAULT_VALUE = 13337;
 
-    const unsigned int MENU_COMMAND_WIDTH = 15;
+    const unsigned int MENU_COMMAND_WIDTH = 17;
 
     const string SORT_SCIENTIST_NAME_ASCENDING = "name-asc";
     const string SORT_SCIENTIST_NAME_DESCENDING = "name-desc";

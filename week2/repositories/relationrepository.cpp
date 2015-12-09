@@ -91,6 +91,11 @@ bool RelationRepository::addRelation(string compName, string sciName)
             return false;
         }
         query.next();
+        if(query.isNull("com_id"))
+        {
+            db.close();
+            return false;
+        }
         string compId = query.value("com_id").toString().toStdString();
 
         queryInsert = "SELECT sci_id FROM scientists WHERE name LIKE '" + sciName + "'";
@@ -100,6 +105,11 @@ bool RelationRepository::addRelation(string compName, string sciName)
             return false;
         }
         query.next();
+        if(query.isNull("sci_id"))
+        {
+            db.close();
+            return false;
+        }
         string sciId = query.value("sci_id").toString().toStdString();
 
         queryInsert = "INSERT INTO compSciRelation VALUES ('" + compId + "','" + sciId + "')";
