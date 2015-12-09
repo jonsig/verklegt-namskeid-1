@@ -25,7 +25,7 @@ int ConsoleUI::start()
 }
 
 void ConsoleUI::display()
-{   //Now has different options for scientists and computers, only prints menus.
+{
     if(type == entryType::scientists)
     {
         switch (lastCommand)
@@ -261,11 +261,11 @@ void ConsoleUI::displayAddScientistMenu()
 
 void ConsoleUI::displayAddComputerMenu()
 {
-    cout << "To add a computer, type in:\n"
-         << "Name,type,yearMade (yearMade is optional)\n"
-         << "Comma seperated like in the example above.\n\n"
-         << "If you would like to go back to the main menu, please type: back\n"
-         << "Input: ";
+    cout << "To add a computer, type in:\n";
+    cout << "Name,type,wasMade,yearMade where wasMade is yes/no/unknown and yearMade is optional\n";
+    cout << "Comma seperated like in the example above.\n\n";
+    cout << "If you would like to go back to the main menu, please type: back\n";
+    cout << "Input: ";
 }
 
 void ConsoleUI::displayAllScientists()
@@ -346,6 +346,12 @@ void ConsoleUI::displaySortCompMenu()
          << constants::SORT_COMPUTER_TYPE_DESCENDING << "Sorts by type, descending.\n";
 
     cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+         << constants::SORT_COMPUTER_WAS_MADE_ASCENDING << "Sorts by wether or not it was made, ascending.\n";
+
+    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+         << constants::SORT_COMPUTER_WAS_MADE_DESCENDING << "Sorts by wether or not it was made, descending.\n";
+
+    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
          << constants::SORT_COMPUTER_YEAR_MADE_ASCENDING << "Sorts by year made, ascending.\n";
 
     cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
@@ -399,8 +405,9 @@ void ConsoleUI::displayComputers(std::vector<Computer> computers)
         return;
     }
     cout << "Printing all computers:\n";
-    cout << setw(20) << left << "Name:"
-         << setw(12) << left << "Type:"
+    cout << setw(22) << left << "Name:"
+         << setw(14) << left << "Type:"
+         << setw(16) << left << "Was it made?:"
          << setw(12) << left << "Year built:" << endl;
 
     for(unsigned int i = 0; i < computers.size(); i++)
@@ -412,11 +419,16 @@ void ConsoleUI::displayComputers(std::vector<Computer> computers)
             compType = "electronic";
         else if(computers.at(i).getType() == computerType::transistor)
             compType = "transistor";
+        else if(computers.at(i).getType() == computerType::other)
+            compType = "other";
 
-        string made = (computers.at(i).getYearMade() == constants::YEAR_NOT_ENTERED_DEFAULT_VALUE) ? "Not made" : utils::intToString(computers.at(i).getYearMade());
-        cout << setw(20) << left << computers[i].getName()
-             << setw(12) << left << compType
-             << setw(12) << left << made << endl;
+        string wasMade = computers.at(i).getWasMade();
+        int year = computers.at(i).getYearMade();
+        string yearMade = (year == constants::YEAR_NOT_ENTERED_DEFAULT_VALUE) ? "N/A" : utils::intToString(year);
+        cout << setw(22) << left << computers.at(i).getName()
+             << setw(14) << left << compType
+             << setw(16) << left << wasMade
+             << setw(12) << left << yearMade << endl;
     }
 }
 
@@ -462,7 +474,7 @@ bool ConsoleUI::addComputer(string data)
 {
     vector<string> fields = utils::splitString(data, ',');
 
-    if (fields.size() > 1 && fields.size() < 4)
+    if (fields.size() > 1 && fields.size() < 5)
     {
         string name = fields.at(0);
 
@@ -479,19 +491,29 @@ bool ConsoleUI::addComputer(string data)
         {
             compType = computerType::transistor;
         }
+        else if( fields.at(1) == "other")
+        {
+            compType = computerType::other;
+
+        }
         else
         {
             return false;
         }
 
-        if (fields.size() == 2)
+        string wasBuilt = utils::stringToLower(fields.at(2));
+        if(wasBuilt != "yes" && wasBuilt != "no" && wasBuilt != "unknown")
         {
-            return computerService.addComputer(Computer(name, compType));
+            return false;
         }
-        else
+        if (fields.size() == 3)
         {
-            int yearBuilt = utils::stringToInt(fields.at(2));
-            return computerService.addComputer(Computer(name, compType, yearBuilt));
+            return computerService.addComputer(Computer(name, compType, wasBuilt));
+        }
+        else if(fields.size() == 4 && wasBuilt == "yes")
+        {
+            int yearMade = utils::stringToInt(fields.at(3));
+            return computerService.addComputer(Computer(name, compType, wasBuilt, yearMade));
         }
     }
     return false;
@@ -567,6 +589,16 @@ bool ConsoleUI::setCompSort(string sortCommand)
     else if (sortCommand == constants::SORT_COMPUTER_TYPE_DESCENDING)
     {
         sortBy = "compType";
+        sortAscending = false;
+    }
+    else if (sortCommand == constants::SORT_COMPUTER_WAS_MADE_ASCENDING)
+    {
+        sortBy = "wasMade";
+        sortAscending = true;
+    }
+    else if (sortCommand == constants::SORT_COMPUTER_WAS_MADE_DESCENDING)
+    {
+        sortBy = "wasMade";
         sortAscending = false;
     }
     else if (sortCommand == constants::SORT_COMPUTER_YEAR_MADE_ASCENDING)

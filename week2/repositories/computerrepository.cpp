@@ -16,7 +16,7 @@ ComputerRepository::ComputerRepository()
 
 vector<Computer> ComputerRepository::getAllComputers(string orderBy, bool orderAscending)
 {
-    std::string command = "SELECT name,compType,yearMade FROM computers";
+    std::string command = "SELECT name,compType,wasMade,yearMade FROM computers";
     command += " ORDER BY " + orderBy;
     if(!orderAscending)
     {
@@ -27,20 +27,28 @@ vector<Computer> ComputerRepository::getAllComputers(string orderBy, bool orderA
 
 vector<Computer> ComputerRepository::findComputers(string searchTerm)
 {
-    std::string command = "SELECT * FROM computers WHERE name LIKE '%" + searchTerm +"%'";
-    if(searchTerm == "mechanical")
+    std::string command = "SELECT name,compType,wasMade,yearMade FROM computers WHERE name LIKE '%" + searchTerm +"%'";
+    if(searchTerm == "electronic")
     {
         command += " OR compType = 0";
     }
-    else if(searchTerm == "electronic")
+    else if(searchTerm == "mechanical")
     {
-        command += " OR compType = 1";
+     command += " OR compType = 1";
     }
     else if(searchTerm == "transistor")
     {
-        command += " OR compType = 2";
+     command += " OR compType = 2";
+    }
+    else if(searchTerm == "other")
+    {
+        command += " OR compType = 3";
     }
 
+    if(utils::stringToLower(searchTerm) == "was made")
+    {
+        command += " OR wasMade = 'yes'";
+    }
     command += " OR yearMade LIKE '%" + searchTerm + "%'";
 
     return getComputers(command);
@@ -58,12 +66,15 @@ vector<Computer> ComputerRepository::getComputers(string filter)
             {
                 string name = query.value("name").toString().toStdString();
                 enum computerType compType = utils::intToComp(query.value("compType").toInt()); //yet to make intToComp
+                string wasMade = query.value("wasMade").toString().toStdString();
                 if(query.isNull("yearMade"))    //checks if computer was not built
-                    computers.push_back(Computer(name,compType));
+                {
+                    computers.push_back(Computer(name,compType,wasMade));
+                }
                 else
                 {
                     int yearMade = query.value("yearMade").toInt();
-                    computers.push_back(Computer(name,compType,yearMade));
+                    computers.push_back(Computer(name,compType,wasMade,yearMade));
                 }
             }
         }
@@ -78,17 +89,17 @@ bool ComputerRepository::addComputer(Computer computer)
     {
         QSqlQuery query(db);
 
-        string tableCreation ="CREATE TABLE IF NOT EXISTS computers(com_id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , name VARCHAR, compType INTEGER, yearMade INTEGER)";
+        string tableCreation ="CREATE TABLE IF NOT EXISTS computers(com_id INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , name VARCHAR, compType INTEGER, wasMade VARCHAR, yearMade INTEGER)";
         query.exec(QString(tableCreation.c_str()));
 
-        string cType = utils::intToString(computer.getType());
-        string queryInsert = "INSERT INTO computers(name,compType)VALUES('"+computer.getName()+"','"+cType+"')";
+        string sType = utils::intToString(computer.getType());
+        string queryInsert = "INSERT INTO computers(name,compType,wasMade)VALUES('"+computer.getName()+"','"+sType+"','"+computer.getWasMade()+"')";
         if(query.exec(QString(queryInsert.c_str())))    //exec returns true if it is successful
         {
             if(computer.getYearMade() != constants::YEAR_NOT_ENTERED_DEFAULT_VALUE)
             {
-                string cYearMade = utils::intToString(computer.getYearMade());
-                queryInsert = "UPDATE computers SET yearMade = '" + cYearMade + "' WHERE com_id = (SELECT MAX(com_id) FROM computers)";
+                string sYearMade = utils::intToString(computer.getYearMade());
+                queryInsert = "UPDATE computers SET yearMade = '" + sYearMade + "' WHERE com_id = (SELECT MAX(com_id) FROM computers)";
                 query.exec(QString(queryInsert.c_str()));
             }
         }

@@ -28,8 +28,10 @@ namespace constants {
     const std::string SORT_COMPUTER_NAME_DESCENDING = "name-desc";
     const std::string SORT_COMPUTER_TYPE_ASCENDING = "type-asc";
     const std::string SORT_COMPUTER_TYPE_DESCENDING = "type-desc";
-    const std::string SORT_COMPUTER_YEAR_MADE_ASCENDING = "made-asc";
-    const std::string SORT_COMPUTER_YEAR_MADE_DESCENDING = "made-desc";
+    const std::string SORT_COMPUTER_WAS_MADE_ASCENDING = "wasMade-asc";
+    const std::string SORT_COMPUTER_WAS_MADE_DESCENDING = "wasMade-desc";
+    const std::string SORT_COMPUTER_YEAR_MADE_ASCENDING = "yearMade-asc";
+    const std::string SORT_COMPUTER_YEAR_MADE_DESCENDING = "yearMade-desc";
 
 }
 
