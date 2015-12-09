@@ -412,6 +412,8 @@ void ConsoleUI::displayComputers(std::vector<Computer> computers)
             compType = "electronic";
         else if(computers.at(i).getType() == computerType::transistor)
             compType = "transistor";
+        else if(computers.at(i).getType() == computerType::other)
+            compType = "other";
 
         string made = (computers.at(i).getYearMade() == constants::YEAR_NOT_ENTERED_DEFAULT_VALUE) ? "Not made" : utils::intToString(computers.at(i).getYearMade());
         cout << setw(20) << left << computers[i].getName()
@@ -478,6 +480,10 @@ bool ConsoleUI::addComputer(string data)
         else if( fields.at(1) == "transistor")
         {
             compType = computerType::transistor;
+        }
+        else if( fields.at(1) == "other")
+        {
+            compType = computerType::other;
         }
         else
         {
