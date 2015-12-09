@@ -48,7 +48,6 @@ void ConsoleUI::display()
             case command::sort:
                 displaySortSciMenu();
                 break;
-            case command::noType:
             default:
                 displayUnknownCommandMenu();
                 break;
@@ -76,7 +75,6 @@ void ConsoleUI::display()
             case command::sort:
                 displaySortCompMenu();
                 break;
-            case command::noType:
             default:
                 displayUnknownCommandMenu();
                 break;
@@ -94,6 +92,7 @@ void ConsoleUI::readInput()
     if (lastCommand == command::noType)
     {
         lastCommand = command::changeType;
+        return;
     }
 
     string userInput;
@@ -101,8 +100,8 @@ void ConsoleUI::readInput()
 
     cout << "\n\n";
 
-    bool shouldTreatInputAsCommand = (lastCommand != command::search);
-    bool typeIsSelected = (lastCommand != command::changeType);       //So commands can be locked before a type is selected
+    bool shouldTreatInputAsCommand = (lastCommand != command::search);  //So commands can be locked during searches
+    bool typeIsSelected = (lastCommand != command::changeType);         //So commands can be locked before a type is selected
 
     if (userInput == "display" && shouldTreatInputAsCommand && typeIsSelected)
     {
@@ -120,7 +119,7 @@ void ConsoleUI::readInput()
     {
         lastCommand = command::menu;
     }
-    else if(userInput == "change type")
+    else if(userInput == "change type" && shouldTreatInputAsCommand)
     {
         lastCommand = command::changeType;
     }

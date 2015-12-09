@@ -14,6 +14,38 @@ ComputerRepository::ComputerRepository()
     db.setDatabaseName(QString(constants::FILE_NAME.c_str()));
 }
 
+vector<Computer> ComputerRepository::getAllComputers(string orderBy, bool orderAscending)
+{
+    std::string command = "SELECT name,compType,yearMade FROM computers";
+    command += " ORDER BY " + orderBy;
+    if(!orderAscending)
+    {
+        command += " desc";
+    }
+    return getComputers(command);
+}
+
+vector<Computer> ComputerRepository::findComputers(string searchTerm)
+{
+    std::string command = "SELECT * FROM computers WHERE name LIKE '%" + searchTerm +"%'";
+    if(searchTerm == "mechanical")
+    {
+        command += " OR compType = 0";
+    }
+    else if(searchTerm == "electronic")
+    {
+        command += " OR compType = 1";
+    }
+    else if(searchTerm == "transistor")
+    {
+        command += " OR compType = 2";
+    }
+
+    command += " OR yearMade LIKE '%" + searchTerm + "%'";
+
+    return getComputers(command);
+}
+
 vector<Computer> ComputerRepository::getComputers(string filter)
 {
     vector<Computer> computers;
