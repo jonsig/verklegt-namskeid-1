@@ -28,6 +28,7 @@ vector<Computer> ComputerRepository::getAllComputers(string orderBy, bool orderA
 vector<Computer> ComputerRepository::findComputers(string searchTerm)
 {
     std::string command = "SELECT name,compType,wasMade,yearMade FROM computers WHERE name LIKE '%" + searchTerm +"%'";
+
     if(searchTerm == "electronic")
     {
         command += " OR compType = 0";
@@ -39,6 +40,10 @@ vector<Computer> ComputerRepository::findComputers(string searchTerm)
     else if(searchTerm == "transistor")
     {
      command += " OR compType = 2";
+    }
+    else if(searchTerm == "other")
+    {
+        command += " OR compType = 3";
     }
     else if(searchTerm == "other")
     {

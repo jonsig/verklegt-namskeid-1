@@ -280,7 +280,7 @@ void ConsoleUI::displayAllScientists()
 }
 
 void ConsoleUI::displayAllComputers()
-{   //incomplete
+{
     vector<Computer> computers = computerService.getAllComputers(sortBy, sortAscending);
 
     displayComputers(computers);
@@ -408,7 +408,7 @@ void ConsoleUI::displayComputers(std::vector<Computer> computers)
     cout << setw(22) << left << "Name:"
          << setw(14) << left << "Type:"
          << setw(16) << left << "Was it made?:"
-         << setw(12) << left << "Year built:" << endl;
+         << setw(12) << left << "Year made:" << endl;
 
     for(unsigned int i = 0; i < computers.size(); i++)
     {
@@ -494,7 +494,6 @@ bool ConsoleUI::addComputer(string data)
         else if( fields.at(1) == "other")
         {
             compType = computerType::other;
-
         }
         else
         {
