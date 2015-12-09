@@ -7,6 +7,7 @@
 
 #include "models/computer.h"
 
+using namespace std;
 
 /**
  * @brief The ComputerRepository class handles all read/write in the database
@@ -22,21 +23,21 @@ public:
      * @param orderAscending is true for ascending order, false for descending
      * @return vector of all entries in sorted order
      */
-    std::vector<Computer> getAllComputers(std::string orderBy, bool orderAscending);
+    vector<Computer> getAllComputers(string orderBy, bool orderAscending);
 
     /**
      * @brief findComputers makes a search query and sends it to getComputers
      * @param searchTerm is a string that will be used to create the search query
      * @return vector containing search results
      */
-    std::vector<Computer> findComputers(std::string searchTerm);
+    vector<Computer> findComputers(string searchTerm);
 
     /**
      * @brief getComputers reads entries in the computer database using a given command
      * @param filter is a command that is used to select entries
      * @return vector of computers fitting desciption in filter
      */
-    std::vector<Computer> getComputers(std::string filter);
+    vector<Computer> getComputers(string filter);
 
     bool addComputer(Computer computer);
 

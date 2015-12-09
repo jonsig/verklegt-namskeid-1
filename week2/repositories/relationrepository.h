@@ -15,7 +15,8 @@ class RelationRepository
 public:
     RelationRepository();
 
-    bool addConnection(string compName, string sciName);
+    bool addRelation(string compName, string sciName);
+
 private:
     QSqlDatabase db;
 };

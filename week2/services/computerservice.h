@@ -3,6 +3,8 @@
 
 #include "repositories/computerrepository.h"
 
+using namespace std;
+
 class ComputerService
 {
 public:
@@ -14,14 +16,14 @@ public:
      * @param orderAscending decides if the list is ascending or descending
      * @return sorted vector of all computers
      */
-    std::vector<Computer> getAllComputers(std::string orderBy, bool orderAscending);
+    vector<Computer> getAllComputers(string orderBy, bool orderAscending);
 
     /**
      * @brief searchComputers calls a search function in the repository
      * @param searchTerm is searched for in the database
      * @return vector of entries containing the serach term
      */
-    std::vector<Computer> searchComputers(std::string searchTerm);
+    vector<Computer> searchComputers(string searchTerm);
 
     /**
      * @brief addComputer calls an add function in the repository

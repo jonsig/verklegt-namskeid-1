@@ -1,16 +1,18 @@
 #include "computerservice.h"
 
+using namespace std;
+
 ComputerService::ComputerService()
 {
 
 }
 
-std::vector<Computer> ComputerService::getAllComputers(std::string orderBy, bool orderAscending)
+vector<Computer> ComputerService::getAllComputers(string orderBy, bool orderAscending)
 {
     return computerRepo.getAllComputers(orderBy, orderAscending);
 }
 
-std::vector<Computer> ComputerService::searchComputers(std::string searchTerm)
+vector<Computer> ComputerService::searchComputers(string searchTerm)
 {
     return computerRepo.findComputers(searchTerm);
 }

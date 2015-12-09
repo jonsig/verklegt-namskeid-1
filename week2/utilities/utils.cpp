@@ -3,12 +3,14 @@
 #include <sstream>
 #include <cstdlib>
 
-namespace utils {
-    std::vector<std::string> splitString(std::string line, char delimeter) 
-    {
-        std::vector<std::string> result;
+using namespace std;
 
-        std::string currentWord = "";
+namespace utils {
+    vector<string> splitString(string line, char delimeter)
+    {
+        vector<string> result;
+
+        string currentWord = "";
 
         for (unsigned int i = 0; i < line.length(); i++) 
         {
@@ -38,14 +40,14 @@ namespace utils {
         return result;
     }
 
-    int stringToInt(std::string str) 
+    int stringToInt(string str)
     {
         return atoi(str.c_str());
     }
 
-    std::string stringToLower(std::string str) 
+    string stringToLower(string str)
     {
-        std::string result = "";
+        string result = "";
 
         for (unsigned int i = 0; i < str.length(); i++)
         {
@@ -65,9 +67,9 @@ namespace utils {
         return result;
     }
 
-    std::string intToString(int number) 
+    string intToString(int number)
     {
-        std::stringstream stream;
+        stringstream stream;
         stream << number;
         return stream.str();
     }
@@ -77,7 +79,7 @@ namespace utils {
         return static_cast<enum sexType>(number);
     }
 
-    enum sexType stringToSex(std::string str) 
+    enum sexType stringToSex(string str)
     {
         return intToSex(stringToInt(str));
     }

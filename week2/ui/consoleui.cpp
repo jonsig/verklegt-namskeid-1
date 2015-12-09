@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <iomanip>
+
 using namespace std;
 
 ConsoleUI::ConsoleUI()
@@ -48,8 +49,8 @@ void ConsoleUI::display()
             case command::sort:
                 displaySortSciMenu();
                 break;
-            case command:relations:
-                displayRelationsMenu();
+            case command::addRelations:
+                displayAddRelationMenu();
                 break;
             default:
                 displayUnknownCommandMenu();
@@ -78,8 +79,8 @@ void ConsoleUI::display()
             case command::sort:
                 displaySortCompMenu();
                 break;
-            case command:relations:
-                displayRelationsMenu();
+            case command::addRelations:
+                displayAddRelationMenu();
                 break;
             default:
                 displayUnknownCommandMenu();
@@ -121,9 +122,9 @@ void ConsoleUI::readInput()
     {
         lastCommand = command::search;
     }
-    else if (userInput == "relations" && shouldTreatInputAsCommand && typeIsSelected)
+    else if (userInput == "add relations" && shouldTreatInputAsCommand && typeIsSelected)
     {
-        lastCommand = command::relations;
+        lastCommand = command::addRelations;
     }
     else if (userInput == "back" && typeIsSelected)
     {
@@ -160,6 +161,10 @@ void ConsoleUI::readInput()
         else if (lastCommand == command::search)
         {
             searchCommandHandler(userInput);
+        }
+        else if (lastCommand == command::addRelations)
+        {
+            addRelationCommandHandler(userInput);
         }
         else
         {
@@ -245,17 +250,20 @@ void ConsoleUI::displayTypeMenu()
 void ConsoleUI::displayMenu()
 {
     cout << "Enter a command:\n\n";
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
          << "add:" << "Adds an entry\n";
 
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
          << "display:" << "Displays all entries of selected type\n";
 
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
          << "search:" << "Search for entries of selected type\n";
 
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
          << "change type:" << "Change the entry type\n";
+
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
+         << "add relations:" << "Add relations between computers and scientists\n";
 
     cout << "Command: ";
 }
@@ -311,28 +319,28 @@ void ConsoleUI::displaySearchMenu()
 void ConsoleUI::displaySortSciMenu()
 {
     cout << "How should the list be sorted:\n\n";
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
          << constants::SORT_SCIENTIST_NAME_ASCENDING << "Sorts by name, ascending.\n";
 
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
          << constants::SORT_SCIENTIST_NAME_DESCENDING << "Sorts by name, descending.\n";
 
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
          << constants::SORT_SCIENTIST_SEX_ASCENDING << "Sorts by sex, ascending.\n";
 
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
          << constants::SORT_SCIENTIST_SEX_DESCENDING << "Sorts by sex, descending.\n";
 
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
          << constants::SORT_SCIENTIST_YEAR_BORN_ASCENDING << "Sorts by year born, ascending.\n";
 
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
          << constants::SORT_SCIENTIST_YEAR_BORN_DESCENDING << "Sorts by year born, descending.\n";
 
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
          << constants::SORT_SCIENTIST_YEAR_DIED_ASCENDING << "Sorts by year died, ascending.\n";
 
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
          << constants::SORT_SCIENTIST_YEAR_DIED_DESCENDING << "Sorts by year died, descending.\n\n";
 
     cout << "If you would like to go back to the main menu, please type: back\n";
@@ -343,28 +351,28 @@ void ConsoleUI::displaySortSciMenu()
 void ConsoleUI::displaySortCompMenu()
 {
     cout << "How should the list be sorted:\n\n";
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
          << constants::SORT_COMPUTER_NAME_ASCENDING << "Sorts by name, ascending.\n";
 
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
          << constants::SORT_COMPUTER_NAME_DESCENDING << "Sorts by name, descending.\n";
 
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
          << constants::SORT_COMPUTER_TYPE_ASCENDING << "Sorts by type, ascending.\n";
 
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
          << constants::SORT_COMPUTER_TYPE_DESCENDING << "Sorts by type, descending.\n";
 
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
-         << constants::SORT_COMPUTER_WAS_MADE_ASCENDING << "Sorts by wether or not it was made, ascending.\n";
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
+         << constants::SORT_COMPUTER_WAS_MADE_ASCENDING << "Sorts by whether or not it was made, ascending.\n";
 
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
-         << constants::SORT_COMPUTER_WAS_MADE_DESCENDING << "Sorts by wether or not it was made, descending.\n";
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
+         << constants::SORT_COMPUTER_WAS_MADE_DESCENDING << "Sorts by whether or not it was made, descending.\n";
 
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
          << constants::SORT_COMPUTER_YEAR_MADE_ASCENDING << "Sorts by year made, ascending.\n";
 
-    cout << setw(constants::MENU_COMMAND_WIDTH) << std::left
+    cout << setw(constants::MENU_COMMAND_WIDTH) << left
          << constants::SORT_COMPUTER_YEAR_MADE_DESCENDING << "Sorts by year made, descending.\n\n";
 
     cout << "If you would like to go back to the main menu, please type: back\n";
@@ -372,11 +380,39 @@ void ConsoleUI::displaySortCompMenu()
     cout << "Command: ";
 }
 
-void consoleUI::displayRelationsMenu()
+void ConsoleUI::displayAddRelationMenu()
 {
     cout << "To add a relation type in:\n";
 
-    cout << "ComputerName,ScientistName";
+    cout << "ComputerName,ScientistName\n";
+    cout << "Comma separated exact full names like in the example above.\n\n";
+    cout << "If you would like to go back to the main menu, please type: back\n";
+    cout << "Input: ";
+}
+
+void ConsoleUI::addRelationCommandHandler(string userInput)
+{
+    if(addRelation(userInput))
+    {
+        lastCommand = command::menu;
+    }
+    else
+    {
+        cout << "There was an error in your input\n";
+    }
+}
+
+bool ConsoleUI::addRelation(string data)
+{
+    vector<string> fields = utils::splitString(data, ',');
+    if(fields.size() == 2)
+    {
+        return relationRepository.addRelation(fields.at(0), fields.at(1));
+    }
+    else
+    {
+        return false;
+    }
 }
 
 void ConsoleUI::displayUnknownCommandMenu()
@@ -385,7 +421,7 @@ void ConsoleUI::displayUnknownCommandMenu()
     cout << "Command: ";
 }
 
-void ConsoleUI::displayScientists(std::vector<Scientist> scientists)
+void ConsoleUI::displayScientists(vector<Scientist> scientists)
 {
     if (scientists.size() == 0)
     {
@@ -395,10 +431,10 @@ void ConsoleUI::displayScientists(std::vector<Scientist> scientists)
 
     cout << "Printing all scientists:\n";
 
-    cout << setw(20) << std::left << "Name:"
-         << setw(8) << std::left << "Sex:"
-         << setw(12) << std::left << "Year born:"
-         << setw(12) << std::left << "Year died:" << endl;
+    cout << setw(20) << left << "Name:"
+         << setw(8) << left << "Sex:"
+         << setw(12) << left << "Year born:"
+         << setw(12) << left << "Year died:" << endl;
 
     for (unsigned int i = 0; i < scientists.size(); i++)
     {
@@ -407,14 +443,14 @@ void ConsoleUI::displayScientists(std::vector<Scientist> scientists)
         int yearDied = scientists.at(i).getYearDied();
         string died = (yearDied == constants::YEAR_NOT_ENTERED_DEFAULT_VALUE) ? "Alive" : utils::intToString(yearDied);
 
-        cout << setw(20) << std::left << scientists.at(i).getName()
-             << setw(8) << std::left << scientistSex
-             << setw(12) << std::left << scientists.at(i).getYearBorn()
-             << setw(12) << std::left << died << endl;
+        cout << setw(20) << left << scientists.at(i).getName()
+             << setw(8) << left << scientistSex
+             << setw(12) << left << scientists.at(i).getYearBorn()
+             << setw(12) << left << died << endl;
     }
 }
 
-void ConsoleUI::displayComputers(std::vector<Computer> computers)
+void ConsoleUI::displayComputers(vector<Computer> computers)
 {
     if(computers.size() == 0)
     {

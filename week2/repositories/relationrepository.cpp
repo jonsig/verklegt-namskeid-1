@@ -10,12 +10,12 @@ using namespace std;
 
 RelationRepository::RelationRepository()
 {
-    db = QSqlDatabase::addDatabase(QString(constants::DATA_BASE.c_str()), "connect");
+    db = QSqlDatabase::addDatabase(QString(constants::DATA_BASE.c_str()), "relation");
     db.setDatabaseName(QString(constants::FILE_NAME.c_str()));
 }
 
-
-bool RelationRepository::addConnection(string compName, string sciName)
+#include <iostream>
+bool RelationRepository::addRelation(string compName, string sciName)
 {
     if(db.open())
     {
@@ -29,19 +29,21 @@ bool RelationRepository::addConnection(string compName, string sciName)
                 ")";
         query.exec(QString(queryInsert.c_str()));
 
-        queryInsert = "SELECT com_id FROM computers WHERE name = '" + compName + "'";
-        query.exec(QString(queryInsert.c_str()));
-        int compId = query.value("com_id").toInt();
+        queryInsert = "SELECT com_id FROM computers WHERE name LIKE '" + compName + "'";
+        if(query.exec(QString(queryInsert.c_str())))
+            return false;
+        query.next();
+        string compId = query.value("com_id").toString().toStdString();
 
-        queryInsert = "SELECT sci_id FROM scientists WHERE name = '" + sciName + "'";
-        query.exec(QString(queryInsert.c_str()));
-        int sciId = query.value("sci_id").toInt();
+        queryInsert = "SELECT sci_id FROM scientists WHERE name LIKE '" + sciName + "'";
+        if(query.exec(QString(queryInsert.c_str())))
+            return false;
+        query.next();
+        string sciId = query.value("sci_id").toString().toStdString();
 
-        queryInsert = "INSERT INTO compSciRelation VALUES (?1,?2)";
-        query.prepare(QString(queryInsert.c_str()));
-        query.bindValue(1,compId);
-        query.bindValue(2,sciId);
-        if(query.exec())
+        cout << endl << compId << " " << sciId << endl;
+        queryInsert = "INSERT INTO compSciRelation VALUES ('" + compId + "','" + sciId + "')";
+        if(query.exec(QString(queryInsert.c_str())))
         {
             db.close();
             return true;
