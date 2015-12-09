@@ -18,6 +18,7 @@ SOURCES += main.cpp \
     models/computer.cpp \
     services/computerservice.cpp \
     repositories/computerrepository.cpp \
+    repositories/connectionrepository.cpp \
 
 HEADERS += \
     models/scientist.h \
@@ -29,4 +30,5 @@ HEADERS += \
     models/computer.h \
     services/computerservice.h \
     repositories/computerrepository.h \
+    repositories/connectionrepository.h \
 
