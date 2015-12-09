@@ -48,6 +48,9 @@ void ConsoleUI::display()
             case command::sort:
                 displaySortSciMenu();
                 break;
+            case command:relations:
+                displayRelationsMenu();
+                break;
             default:
                 displayUnknownCommandMenu();
                 break;
@@ -74,6 +77,9 @@ void ConsoleUI::display()
                 break;
             case command::sort:
                 displaySortCompMenu();
+                break;
+            case command:relations:
+                displayRelationsMenu();
                 break;
             default:
                 displayUnknownCommandMenu();
@@ -115,20 +121,24 @@ void ConsoleUI::readInput()
     {
         lastCommand = command::search;
     }
+    else if (userInput == "relations" && shouldTreatInputAsCommand && typeIsSelected)
+    {
+        lastCommand = command::relations;
+    }
     else if (userInput == "back" && typeIsSelected)
     {
         lastCommand = command::menu;
     }
-    else if(userInput == "change type" && shouldTreatInputAsCommand)
+    else if (userInput == "change type" && shouldTreatInputAsCommand)
     {
         lastCommand = command::changeType;
     }
-    else if(userInput == "scientists" && !typeIsSelected)
+    else if (userInput == "scientists" && !typeIsSelected)
     {
         type = entryType::scientists;
         lastCommand = command::menu;
     }
-    else if(userInput == "computers" && !typeIsSelected)
+    else if (userInput == "computers" && !typeIsSelected)
     {
         type = entryType::computers;
         lastCommand = command::menu;
@@ -137,7 +147,7 @@ void ConsoleUI::readInput()
     {
         lastCommand = command::quit;
     }
-    else if(typeIsSelected)
+    else if (typeIsSelected)
     {
         if (lastCommand == command::add)
         {
@@ -262,7 +272,7 @@ void ConsoleUI::displayAddScientistMenu()
 void ConsoleUI::displayAddComputerMenu()
 {
     cout << "To add a computer, type in:\n";
-    cout << "Name,type,wasMade,yearMade where wasMade is yes/no/unknown and yearMade is optional\n";
+    cout << "Name,type,wasMade,yearMade where wasMade is yes/no/unknown, yearMade is optional if appropriate\n";
     cout << "Comma seperated like in the example above.\n\n";
     cout << "If you would like to go back to the main menu, please type: back\n";
     cout << "Input: ";
@@ -360,6 +370,13 @@ void ConsoleUI::displaySortCompMenu()
     cout << "If you would like to go back to the main menu, please type: back\n";
 
     cout << "Command: ";
+}
+
+void consoleUI::displayRelationsMenu()
+{
+    cout << "To add a relation type in:\n";
+
+    cout << "ComputerName,ScientistName";
 }
 
 void ConsoleUI::displayUnknownCommandMenu()

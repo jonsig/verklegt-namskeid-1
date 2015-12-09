@@ -13,6 +13,7 @@ enum command {
     display,
     search,
     sort,
+    relations,
     back,
     changeType,
     quit,
@@ -52,6 +53,7 @@ private:
     void displayMenu();
     void displayUnknownCommandMenu();
     void displaySearchMenu();
+    void displayRelationsMenu();
 
     void displayAddScientistMenu();
     void displayAllScientists();
