@@ -7,7 +7,7 @@
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
+QT += core sql
 TARGET = week3
 TEMPLATE = app
 
@@ -24,7 +24,7 @@ SOURCES += main.cpp\
     services/scientistservice.cpp \
     utilities/scientistcomparator.cpp \
     utilities/scientistsorting.cpp \
-    utilities/utils.cpp
+    utilities/utils.cpp \
 
 HEADERS  += mainwindow.h \
     models/computer.h \
@@ -38,6 +38,6 @@ HEADERS  += mainwindow.h \
     utilities/constants.h \
     utilities/scientistcomparator.h \
     utilities/scientistsorting.h \
-    utilities/utils.h
+    utilities/utils.h \
 
 FORMS    += mainwindow.ui
