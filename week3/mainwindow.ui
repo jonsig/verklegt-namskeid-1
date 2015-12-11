@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>570</width>
-    <height>541</height>
+    <height>670</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,11 +23,11 @@
       <x>0</x>
       <y>0</y>
       <width>571</width>
-      <height>471</height>
+      <height>631</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_scientist">
      <attribute name="title">
@@ -37,13 +37,13 @@
       <property name="geometry">
        <rect>
         <x>0</x>
-        <y>30</y>
+        <y>0</y>
         <width>571</width>
-        <height>411</height>
+        <height>571</height>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page">
        <property name="geometry">
@@ -51,7 +51,7 @@
          <x>0</x>
          <y>0</y>
          <width>571</width>
-         <height>241</height>
+         <height>416</height>
         </rect>
        </property>
        <attribute name="label">
@@ -60,8 +60,8 @@
        <widget class="QPushButton" name="addScientistButton">
         <property name="geometry">
          <rect>
-          <x>460</x>
-          <y>400</y>
+          <x>440</x>
+          <y>280</y>
           <width>93</width>
           <height>28</height>
          </rect>
@@ -189,7 +189,7 @@
          <x>0</x>
          <y>0</y>
          <width>571</width>
-         <height>241</height>
+         <height>416</height>
         </rect>
        </property>
        <attribute name="label">
@@ -302,7 +302,7 @@
          <x>0</x>
          <y>0</y>
          <width>571</width>
-         <height>241</height>
+         <height>416</height>
         </rect>
        </property>
        <attribute name="label">
@@ -389,7 +389,7 @@
          <x>0</x>
          <y>0</y>
          <width>571</width>
-         <height>241</height>
+         <height>416</height>
         </rect>
        </property>
        <attribute name="label">
@@ -402,7 +402,7 @@
          <x>0</x>
          <y>0</y>
          <width>571</width>
-         <height>241</height>
+         <height>416</height>
         </rect>
        </property>
        <attribute name="label">
@@ -421,11 +421,11 @@
         <x>0</x>
         <y>0</y>
         <width>571</width>
-        <height>431</height>
+        <height>571</height>
        </rect>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="page_6">
        <property name="geometry">
@@ -433,7 +433,7 @@
          <x>0</x>
          <y>0</y>
          <width>571</width>
-         <height>261</height>
+         <height>416</height>
         </rect>
        </property>
        <attribute name="label">
@@ -554,14 +554,14 @@
        <widget class="QPushButton" name="addComputerButton">
         <property name="geometry">
          <rect>
-          <x>450</x>
-          <y>410</y>
+          <x>440</x>
+          <y>280</y>
           <width>93</width>
           <height>28</height>
          </rect>
         </property>
         <property name="text">
-         <string>Add</string>
+         <string>add</string>
         </property>
        </widget>
       </widget>
@@ -570,8 +570,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>571</width>
-         <height>261</height>
+         <width>100</width>
+         <height>30</height>
         </rect>
        </property>
        <attribute name="label">
@@ -666,7 +666,7 @@
          <x>0</x>
          <y>0</y>
          <width>571</width>
-         <height>261</height>
+         <height>376</height>
         </rect>
        </property>
        <attribute name="label">
@@ -753,7 +753,7 @@
          <x>0</x>
          <y>0</y>
          <width>571</width>
-         <height>261</height>
+         <height>416</height>
         </rect>
        </property>
        <attribute name="label">
@@ -766,7 +766,7 @@
          <x>0</x>
          <y>0</y>
          <width>571</width>
-         <height>261</height>
+         <height>446</height>
         </rect>
        </property>
        <attribute name="label">
@@ -796,8 +796,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>571</width>
-         <height>421</height>
+         <width>100</width>
+         <height>30</height>
         </rect>
        </property>
        <attribute name="label">
@@ -823,7 +823,7 @@
          <x>0</x>
          <y>0</y>
          <width>571</width>
-         <height>221</height>
+         <height>236</height>
         </rect>
        </property>
        <attribute name="label">
@@ -848,8 +848,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>571</width>
-         <height>221</height>
+         <width>100</width>
+         <height>30</height>
         </rect>
        </property>
        <attribute name="label">
@@ -866,7 +866,7 @@
      <x>0</x>
      <y>0</y>
      <width>570</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>
