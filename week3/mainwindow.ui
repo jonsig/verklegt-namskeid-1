@@ -27,7 +27,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab_scientist">
      <attribute name="title">
@@ -432,8 +432,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>100</width>
-         <height>30</height>
+         <width>571</width>
+         <height>261</height>
         </rect>
        </property>
        <attribute name="label">
@@ -526,7 +526,7 @@
          <rect>
           <x>220</x>
           <y>110</y>
-          <width>71</width>
+          <width>101</width>
           <height>22</height>
          </rect>
         </property>
@@ -536,7 +536,7 @@
          <rect>
           <x>220</x>
           <y>170</y>
-          <width>71</width>
+          <width>101</width>
           <height>22</height>
          </rect>
         </property>
@@ -570,8 +570,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>100</width>
-         <height>30</height>
+         <width>571</width>
+         <height>261</height>
         </rect>
        </property>
        <attribute name="label">
@@ -713,7 +713,7 @@
          <rect>
           <x>220</x>
           <y>20</y>
-          <width>71</width>
+          <width>111</width>
           <height>22</height>
          </rect>
         </property>
@@ -723,7 +723,7 @@
          <rect>
           <x>220</x>
           <y>50</y>
-          <width>71</width>
+          <width>111</width>
           <height>22</height>
          </rect>
         </property>

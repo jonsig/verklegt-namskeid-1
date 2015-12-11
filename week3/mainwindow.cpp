@@ -15,6 +15,19 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->scientistSortBy->addItem("Year died");
     ui->scientistSortOrder->addItem("Ascending");
     ui->scientistSortOrder->addItem("Descending");
+    ui->computerType->addItem("Electronic");
+    ui->computerType->addItem("Mechanical");
+    ui->computerType->addItem("Transistor");
+    ui->computerType->addItem("Other");
+    ui->computerBuilt->addItem("Yes");
+    ui->computerBuilt->addItem("No");
+    ui->computerBuilt->addItem("Unknown");
+    ui->computerSortBy->addItem("Name");
+    ui->computerSortBy->addItem("Type");
+    ui->computerSortBy->addItem("Was made");
+    ui->computerSortBy->addItem("Year made");
+    ui->computerSortOrder->addItem("Ascending");
+    ui->computerSortOrder->addItem("Descending");
 
 }
 
