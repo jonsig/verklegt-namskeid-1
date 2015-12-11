@@ -1,5 +1,12 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "utilities/constants.h"
+#include "utilities/utils.h"
+
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -37,17 +44,28 @@ MainWindow::~MainWindow()
 
 }
 
-void MainWindow::on_pushButton_add_scientist_clicked()
-{
-
-}
 
 void MainWindow::on_addScientistButton_clicked()
 {
-    QString name = ui->scientistName->text();
-    QString yearborn = ui->scientistYearBorn->text();
-    QString yeardied = ui->scientistYearDied->text();
-    QString sex = ui->scientistSex->currentText();
-
-
+    string name = ui->scientistName->text().toStdString();
+    string sType = ui->scientistSex->currentText().toStdString();
+    enum sexType sex;
+    if (sType == "male")
+    {
+        sex = sexType::male;
+    }
+    else if (sType == "female")
+    {
+        sex = sexType::female;
+    }
+    int yearBorn = ui->scientistYearBorn->text().toInt();
+    string yearofDied = ui->scientistYearDied->text().toStdString();
+    if(yearofDied == "")
+        scientistService.addScientist(Scientist(name, sex, yearBorn));
+    else
+    {
+        int yearDied = utils::stringToInt(yearofDied);
+        scientistService.addScientist(Scientist(name, sex, yearBorn, yearDied));
+    }
+    return;
 }
