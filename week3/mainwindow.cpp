@@ -50,22 +50,28 @@ void MainWindow::on_addScientistButton_clicked()
     string name = ui->scientistName->text().toStdString();
     string sType = ui->scientistSex->currentText().toStdString();
     enum sexType sex;
-    if (sType == "male")
+    if (sType == "Male")
     {
-        sex = sexType::male; //why u no work
+        sex = male;
     }
-    else if (sType == "female")
+    else if (sType == "Female")
     {
-        sex = sexType::female;
+        sex = female;
     }
-    int yearBorn = ui->scientistYearBorn->text().toInt();
-    string yearofDied = ui->scientistYearDied->text().toStdString();
-    if(yearofDied == "")
+    string yearOfBirth = ui->scientistYearBorn->text().toStdString();
+    int yearBorn =utils::stringToInt(yearOfBirth);
+    string yearOfDeath = ui->scientistYearDied->text().toStdString();
+    if(yearOfDeath == "")
         scientistService.addScientist(Scientist(name, sex, yearBorn));
     else
     {
-        int yearDied = utils::stringToInt(yearofDied);
+        int yearDied = utils::stringToInt(yearOfDeath);
         scientistService.addScientist(Scientist(name, sex, yearBorn, yearDied));
     }
+    ui->scientistName->setText("");
+    ui->scientistSex->setCurrentText("Male");
+    ui->scientistYearBorn->setText("");
+    ui->scientistYearDied->setText("");
+
     return;
 }
