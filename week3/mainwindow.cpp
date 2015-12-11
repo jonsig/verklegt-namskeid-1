@@ -33,12 +33,21 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-
     delete ui;
 
 }
 
 void MainWindow::on_pushButton_add_scientist_clicked()
 {
+
+}
+
+void MainWindow::on_addScientistButton_clicked()
+{
+    QString name = ui->scientistName->text();
+    QString yearborn = ui->scientistYearBorn->text();
+    QString yeardied = ui->scientistYearDied->text();
+    QString sex = ui->scientistSex->currentText();
+
 
 }
