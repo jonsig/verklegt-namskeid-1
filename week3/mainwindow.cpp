@@ -9,6 +9,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->scientistSex->addItem("Male");
     ui->scientistSex->addItem("Female");
+    ui->scientistSortBy->addItem("Name");
+    ui->scientistSortBy->addItem("Sex");
+    ui->scientistSortBy->addItem("Year born");
+    ui->scientistSortBy->addItem("Year died");
+    ui->scientistSortOrder->addItem("Ascending");
+    ui->scientistSortOrder->addItem("Descending");
 
 }
 
