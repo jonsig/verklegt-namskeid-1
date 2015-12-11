@@ -21,7 +21,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_addScientistButton_clicked();
+    void on_addScientistButton_clicked(); //eitthvað vesen
 
 private:
     Ui::MainWindow *ui;

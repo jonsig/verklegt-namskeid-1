@@ -52,7 +52,7 @@ void MainWindow::on_addScientistButton_clicked()
     enum sexType sex;
     if (sType == "male")
     {
-        sex = sexType::male;
+        sex = sexType::male; //why u no work
     }
     else if (sType == "female")
     {
