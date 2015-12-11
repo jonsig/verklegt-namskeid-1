@@ -2,6 +2,11 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "services/scientistservice.h"
+#include "services/computerservice.h"
+#include "services/relationservice.h"
+
+using namespace std;
 
 namespace Ui {
 class MainWindow;
@@ -15,8 +20,14 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void on_addScientistButton_clicked();
+
 private:
     Ui::MainWindow *ui;
+    ScientistService scientistService;
+    ComputerService computerService;
+    RelationService relationService;
 };
 
 #endif // MAINWINDOW_H
