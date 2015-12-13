@@ -1,4 +1,5 @@
 #include "utilities/utils.h"
+#include "utilities/constants.h"
 
 #include <sstream>
 #include <cstdlib>
@@ -87,5 +88,25 @@ namespace utils {
     enum computerType intToComp(int number)
     {
         return static_cast<enum computerType>(number);
+    }
+
+    QSqlDatabase getDatabaseConnection()
+    {
+        QString connectionName = "Smuu";
+        QSqlDatabase db;
+
+        if(QSqlDatabase::contains(connectionName))
+        {
+            db = QSqlDatabase::database(connectionName);
+        }
+        else
+        {
+            db = QSqlDatabase::addDatabase(constants::DATABASE_TYPE.c_str(), connectionName);
+            db.setDatabaseName(constants::DATABASE_NAME.c_str());
+
+            db.open();
+        }
+
+        return db;
     }
 }

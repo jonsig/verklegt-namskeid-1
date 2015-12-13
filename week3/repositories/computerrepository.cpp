@@ -10,8 +10,7 @@ using namespace std;
 
 ComputerRepository::ComputerRepository()
 {
-    db = QSqlDatabase::addDatabase(QString(constants::DATA_BASE.c_str()), "comp");
-    db.setDatabaseName(QString(constants::FILE_NAME.c_str()));
+    db = utils::getDatabaseConnection();
 }
 
 vector<Computer> ComputerRepository::getAllComputers(string orderBy, bool orderAscending)

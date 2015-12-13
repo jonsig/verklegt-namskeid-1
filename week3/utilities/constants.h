@@ -10,8 +10,8 @@ using namespace std;
  */
 
 namespace constants {
-    const string FILE_NAME = "repository.sqlite";
-    const string DATA_BASE = "QSQLITE";
+    const string DATABASE_NAME = "repository.sqlite";
+    const string DATABASE_TYPE = "QSQLITE";
     const char FILE_DELIMETER = '\t';
     const int YEAR_NOT_ENTERED_DEFAULT_VALUE = 13337;
 

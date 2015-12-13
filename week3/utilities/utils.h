@@ -5,6 +5,7 @@
 #include <sstream>
 #include <vector>
 #include <string>
+#include <QtSql>
 
 #include "models/scientist.h"
 #include "models/computer.h"
@@ -29,6 +30,8 @@ namespace utils {
     enum sexType stringToSex(string str);
 
     enum computerType intToComp(int number);
+
+    QSqlDatabase getDatabaseConnection();
 }
 
 #endif // UTILS_H

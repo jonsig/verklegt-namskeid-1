@@ -11,8 +11,7 @@ using namespace std;
 
 ScientistRepository::ScientistRepository()
 {
-    db = QSqlDatabase::addDatabase(QString(constants::DATA_BASE.c_str()), "sci");
-    db.setDatabaseName(QString(constants::FILE_NAME.c_str()));
+    db = utils::getDatabaseConnection();
 }
 
 vector<Scientist> ScientistRepository::getAllScientists(string orderBy, bool orderAscending)

@@ -10,8 +10,7 @@ using namespace std;
 
 RelationRepository::RelationRepository()
 {
-    db = QSqlDatabase::addDatabase(QString(constants::DATA_BASE.c_str()), "relation");
-    db.setDatabaseName(QString(constants::FILE_NAME.c_str()));
+    db = utils::getDatabaseConnection();
 }
 
 vector<string> RelationRepository::findSciRelation(string name)
