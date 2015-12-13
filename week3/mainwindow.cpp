@@ -14,64 +14,63 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->scientistSex->addItem("Male");
-    ui->scientistSex->addItem("Female");
-    ui->scientistSortBy->addItem("Name");
-    ui->scientistSortBy->addItem("Sex");
-    ui->scientistSortBy->addItem("Year born");
-    ui->scientistSortBy->addItem("Year died");
-    ui->scientistSortOrder->addItem("Ascending");
-    ui->scientistSortOrder->addItem("Descending");
-    ui->computerType->addItem("Electronic");
-    ui->computerType->addItem("Mechanical");
-    ui->computerType->addItem("Transistor");
-    ui->computerType->addItem("Other");
-    ui->computerBuilt->addItem("Yes");
-    ui->computerBuilt->addItem("No");
-    ui->computerBuilt->addItem("Unknown");
-    ui->computerSortBy->addItem("Name");
-    ui->computerSortBy->addItem("Type");
-    ui->computerSortBy->addItem("Was made");
-    ui->computerSortBy->addItem("Year made");
-    ui->computerSortOrder->addItem("Ascending");
-    ui->computerSortOrder->addItem("Descending");
+    displayAllScientists();
 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-
 }
 
 
-void MainWindow::on_addScientistButton_clicked()
+void MainWindow::on_input_search_term_textChanged()
 {
-    string name = ui->scientistName->text().toStdString();
-    string sType = ui->scientistSex->currentText().toStdString();
-    enum sexType sex;
-    if (sType == "Male")
-    {
-        sex = male;
-    }
-    else if (sType == "Female")
-    {
-        sex = female;
-    }
-    string yearOfBirth = ui->scientistYearBorn->text().toStdString();
-    int yearBorn =utils::stringToInt(yearOfBirth);
-    string yearOfDeath = ui->scientistYearDied->text().toStdString();
-    if(yearOfDeath == "")
-        scientistService.addScientist(Scientist(name, sex, yearBorn));
-    else
-    {
-        int yearDied = utils::stringToInt(yearOfDeath);
-        scientistService.addScientist(Scientist(name, sex, yearBorn, yearDied));
-    }
-    ui->scientistName->setText("");
-    ui->scientistSex->setCurrentText("Male");
-    ui->scientistYearBorn->setText("");
-    ui->scientistYearDied->setText("");
+    string searchTerm = ui->input_search_term->text().toStdString();
+    vector<Scientist> scientists = scientistService.searchForScientists(searchTerm);
+    displayScientists(scientists);
+}
 
-    return;
+void MainWindow::displayAllScientists()
+{
+    vector<Scientist> scientists = scientistService.getAllScientists("name", true);
+    displayScientists(scientists);
+}
+
+void MainWindow::displayScientists(vector<Scientist> scientists)
+{
+    ui->scientist_table->clearContents();
+    ui->scientist_table->setRowCount(scientists.size());
+
+    for(unsigned row = 0; row < scientists.size(); row++)
+    {
+        Scientist currentSci = scientists.at(row);
+        QString name = QString(currentSci.getName().c_str());
+        QString sex;
+
+        if (currentSci.getSex() == 0)
+        {
+            sex = "Female";
+        }
+        else
+        {
+            sex = "Male";
+        }
+
+        QString yearBorn = QString(utils::intToString(currentSci.getYearBorn()).c_str());
+        QString yearDied;
+        if (currentSci.getYearDied() != constants::YEAR_NOT_ENTERED_DEFAULT_VALUE)
+        {
+           yearDied = QString(utils::intToString(currentSci.getYearDied()).c_str());
+        }
+        else
+        {
+            yearDied = "";
+        }
+
+        ui->scientist_table->setItem(row, 0, new QTableWidgetItem(name));
+        ui->scientist_table->setItem(row, 1, new QTableWidgetItem(sex));
+        ui->scientist_table->setItem(row, 2, new QTableWidgetItem(yearBorn));
+        ui->scientist_table->setItem(row, 3, new QTableWidgetItem(yearDied));
+    }
 }

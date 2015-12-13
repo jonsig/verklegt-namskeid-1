@@ -31,6 +31,10 @@ public:
      * @return vector containing search results
      */
     vector<Scientist> findScientists(string searchTerm);
+
+    bool addScientist(Scientist scientist);
+
+private:
     /**
      * @brief getScientist reads scientists from the database using the filter
      * @param filter is an SQL SELECT command
@@ -38,9 +42,6 @@ public:
      */
     vector<Scientist> getScientists(string filter);
 
-    bool addScientist(Scientist scientist);
-
-private:
     QSqlDatabase db;
 };
 

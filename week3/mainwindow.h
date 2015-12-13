@@ -21,9 +21,12 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_addScientistButton_clicked(); //eitthvað vesen
+    void on_input_search_term_textChanged();
 
 private:
+    void displayAllScientists();
+    void displayScientists(vector<Scientist> scientists);
+
     Ui::MainWindow *ui;
     ScientistService scientistService;
     ComputerService computerService;

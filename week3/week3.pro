@@ -22,9 +22,7 @@ SOURCES += main.cpp\
     services/computerservice.cpp \
     services/relationservice.cpp \
     services/scientistservice.cpp \
-    utilities/scientistcomparator.cpp \
-    utilities/scientistsorting.cpp \
-    utilities/utils.cpp \
+    utilities/utils.cpp
 
 HEADERS  += mainwindow.h \
     models/computer.h \
@@ -36,8 +34,6 @@ HEADERS  += mainwindow.h \
     services/relationservice.h \
     services/scientistservice.h \
     utilities/constants.h \
-    utilities/scientistcomparator.h \
-    utilities/scientistsorting.h \
-    utilities/utils.h \
+    utilities/utils.h
 
 FORMS    += mainwindow.ui
