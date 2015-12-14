@@ -22,7 +22,8 @@ SOURCES += main.cpp\
     services/computerservice.cpp \
     services/relationservice.cpp \
     services/scientistservice.cpp \
-    utilities/utils.cpp
+    utilities/utils.cpp \
+    addscientist.cpp \
 
 HEADERS  += mainwindow.h \
     models/computer.h \
@@ -34,6 +35,8 @@ HEADERS  += mainwindow.h \
     services/relationservice.h \
     services/scientistservice.h \
     utilities/constants.h \
-    utilities/utils.h
+    utilities/utils.h \
+    addscientist.h \
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    addscientist.ui
