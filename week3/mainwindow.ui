@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>500</width>
-    <height>475</height>
+    <width>446</width>
+    <height>456</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,7 +29,7 @@
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QLineEdit" name="input_search_term">
+         <widget class="QLineEdit" name="input_scientist_search_term">
           <property name="dragEnabled">
            <bool>false</bool>
           </property>
@@ -43,16 +43,13 @@
         </item>
         <item>
          <widget class="QTableWidget" name="scientist_table">
-          <property name="editTriggers">
-           <set>QAbstractItemView::NoEditTriggers</set>
-          </property>
-          <property name="selectionBehavior">
-           <enum>QAbstractItemView::SelectRows</enum>
-          </property>
           <property name="sortingEnabled">
            <bool>true</bool>
           </property>
-          <attribute name="horizontalHeaderVisible">
+          <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="horizontalHeaderStretchLastSection">
            <bool>true</bool>
           </attribute>
           <attribute name="verticalHeaderVisible">
@@ -86,365 +83,54 @@
        <attribute name="title">
         <string>Computers</string>
        </attribute>
-       <widget class="QToolBox" name="toolBox_2">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>571</width>
-          <height>571</height>
-         </rect>
-        </property>
-        <property name="currentIndex">
-         <number>0</number>
-        </property>
-        <widget class="QWidget" name="page_6">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>571</width>
-           <height>436</height>
-          </rect>
-         </property>
-         <attribute name="label">
-          <string>Add computer</string>
-         </attribute>
-         <widget class="QLabel" name="cName">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>50</y>
-            <width>81</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Name:</string>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QLineEdit" name="input_computer_search_term">
+          <property name="placeholderText">
+           <string>Enter a search term</string>
           </property>
          </widget>
-         <widget class="QLabel" name="cType">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>110</y>
-            <width>55</width>
-            <height>16</height>
-           </rect>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="computer_table">
+          <property name="sortingEnabled">
+           <bool>true</bool>
           </property>
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Type:</string>
-          </property>
+          <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="verticalHeaderStretchLastSection">
+           <bool>false</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>Name</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Type</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Was it made?</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Year Made</string>
+           </property>
+          </column>
          </widget>
-         <widget class="QLabel" name="cBuilt">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>170</y>
-            <width>111</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Was it built? </string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="cWhen">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>230</y>
-            <width>191</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>When was it built? (optional)</string>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="computerName">
-          <property name="geometry">
-           <rect>
-            <x>220</x>
-            <y>50</y>
-            <width>281</width>
-            <height>22</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QComboBox" name="computerType">
-          <property name="geometry">
-           <rect>
-            <x>220</x>
-            <y>110</y>
-            <width>101</width>
-            <height>22</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QComboBox" name="computerBuilt">
-          <property name="geometry">
-           <rect>
-            <x>220</x>
-            <y>170</y>
-            <width>101</width>
-            <height>22</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="computerYear">
-          <property name="geometry">
-           <rect>
-            <x>220</x>
-            <y>230</y>
-            <width>281</width>
-            <height>22</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QPushButton" name="addComputerButton">
-          <property name="geometry">
-           <rect>
-            <x>440</x>
-            <y>280</y>
-            <width>93</width>
-            <height>28</height>
-           </rect>
-          </property>
-          <property name="text">
-           <string>add</string>
-          </property>
-         </widget>
-        </widget>
-        <widget class="QWidget" name="page_8">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>100</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <attribute name="label">
-          <string>Search computers</string>
-         </attribute>
-         <widget class="QLabel" name="label_14">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>10</y>
-            <width>341</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>To search for a computer, enter the computers :</string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_15">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>30</y>
-            <width>251</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>name, type or year of build</string>
-          </property>
-         </widget>
-         <widget class="QLineEdit" name="lineEdit_7">
-          <property name="geometry">
-           <rect>
-            <x>80</x>
-            <y>90</y>
-            <width>391</width>
-            <height>22</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QLabel" name="cSearch">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>90</y>
-            <width>55</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Search: </string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="cSResult">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>150</y>
-            <width>71</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Resaults: </string>
-          </property>
-         </widget>
-        </widget>
-        <widget class="QWidget" name="page_9">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>100</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <attribute name="label">
-          <string>Show list of computers</string>
-         </attribute>
-         <widget class="QLabel" name="cSort">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>20</y>
-            <width>111</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Sort the list by: </string>
-          </property>
-         </widget>
-         <widget class="QLabel" name="cOrder">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>50</y>
-            <width>181</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>Ascending or descending?</string>
-          </property>
-         </widget>
-         <widget class="QComboBox" name="computerSortBy">
-          <property name="geometry">
-           <rect>
-            <x>220</x>
-            <y>20</y>
-            <width>111</width>
-            <height>22</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QComboBox" name="computerSortOrder">
-          <property name="geometry">
-           <rect>
-            <x>220</x>
-            <y>50</y>
-            <width>111</width>
-            <height>22</height>
-           </rect>
-          </property>
-         </widget>
-         <widget class="QLabel" name="label_23">
-          <property name="geometry">
-           <rect>
-            <x>20</x>
-            <y>90</y>
-            <width>131</width>
-            <height>16</height>
-           </rect>
-          </property>
-          <property name="font">
-           <font>
-            <pointsize>9</pointsize>
-           </font>
-          </property>
-          <property name="text">
-           <string>The computers:</string>
-          </property>
-         </widget>
-        </widget>
-        <widget class="QWidget" name="page_10">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>100</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <attribute name="label">
-          <string>Change computer</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="page_7">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>100</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <attribute name="label">
-          <string>Delete computer</string>
-         </attribute>
-        </widget>
-       </widget>
+        </item>
+       </layout>
       </widget>
       <widget class="QWidget" name="tab_relations">
        <attribute name="title">
@@ -460,7 +146,7 @@
          </rect>
         </property>
         <property name="currentIndex">
-         <number>0</number>
+         <number>4</number>
         </property>
         <widget class="QWidget" name="page_11">
          <property name="geometry">
@@ -480,8 +166,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>100</width>
-           <height>30</height>
+           <width>571</width>
+           <height>256</height>
           </rect>
          </property>
          <attribute name="label">
@@ -493,8 +179,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>100</width>
-           <height>30</height>
+           <width>571</width>
+           <height>256</height>
           </rect>
          </property>
          <attribute name="label">
@@ -506,8 +192,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>100</width>
-           <height>30</height>
+           <width>571</width>
+           <height>256</height>
           </rect>
          </property>
          <attribute name="label">
@@ -519,8 +205,8 @@
           <rect>
            <x>0</x>
            <y>0</y>
-           <width>100</width>
-           <height>30</height>
+           <width>571</width>
+           <height>256</height>
           </rect>
          </property>
          <attribute name="label">
