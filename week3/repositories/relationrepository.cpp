@@ -2,7 +2,6 @@
 #include "utilities/utils.h"
 #include "utilities/constants.h"
 
-
 #include <cstdlib>
 #include <QtSql>
 
@@ -13,56 +12,45 @@ RelationRepository::RelationRepository()
     db = utils::getDatabaseConnection();
 }
 
-vector<string> RelationRepository::findSciRelation(string name)
+vector<namePair> RelationRepository::findRelations(string name, string relateTo)
 {
-    vector<string> results;
-    results.push_back(name);
+    vector<namePair> results;
 
     if(db.open())
     {
         QSqlQuery query(db);
 
-        string queryInsert = "SELECT c.name"
+        string queryInsert = "SELECT c.name AS compName, s.name AS sciName"
                              " FROM compSciRelation sic"
                              " JOIN computers c"
                              " ON c.com_id = sic.com_id"
                              " JOIN scientists s"
-                             " ON s.sci_id = sic.sci_id"
-                             " WHERE s.name LIKE '" + name +"'";
+                             " ON s.sci_id = sic.sci_id";
+
+        if(relateTo == "Computers")
+        {
+            queryInsert += " WHERE compName LIKE '%" + name + "%'";
+        }
+        else if (relateTo == "Scientists")
+        {
+            queryInsert += " WHERE sciName LIKE '%" + name + "%'";
+        }
+        else
+        {
+            queryInsert += " WHERE compName LIKE '%" + name + "%' OR sciName LIKE '%" + name + "%'";
+        }
 
         query.exec(QString(queryInsert.c_str()));
         while(query.next())
         {
-            results.push_back(query.value("name").toString().toStdString());
+            namePair relation;
+            string compName = query.value("compName").toString().toStdString();
+            string sciName = query.value("sciName").toString().toStdString();
+            relation.compName = compName;
+            relation.sciName = sciName;
+            results.push_back(relation);
         }
 
-        db.close();
-    }
-    return results;
-}
-
-vector<string> RelationRepository::findCompRelation(string name)
-{
-    vector<string> results;
-    results.push_back(name);
-
-    if(db.open())
-    {
-        QSqlQuery query(db);
-
-        string queryInsert = "SELECT s.name"
-                             " FROM compSciRelation sic"
-                             " JOIN computers c"
-                             " ON c.com_id = sic.com_id"
-                             " JOIN scientists s"
-                             " ON s.sci_id = sic.sci_id"
-                             " WHERE c.name LIKE '" + name +"'";
-
-        query.exec(QString(queryInsert.c_str()));
-        while(query.next())
-        {
-            results.push_back(query.value("name").toString().toStdString());
-        }
         db.close();
     }
     return results;

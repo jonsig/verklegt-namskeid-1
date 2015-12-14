@@ -8,9 +8,7 @@ class RelationService
 public:
     RelationService();
 
-    vector<string> findSciRelation(string name);
-
-    vector<string> findCompRelation(string name);
+    vector<namePair> findRelations(string name, string relateTo);
 
     bool addRelation(string compName, string sciName);
 

@@ -10,24 +10,24 @@
 
 using namespace std;
 
+struct namePair
+{
+    string compName;
+    string sciName;
+};
+
 class RelationRepository
 {
 public:
     RelationRepository();
 
     /**
-     * @brief findSciRelation finds all relations to a given scientist name
-     * @param name is the scientist name
-     * @return vector where the first value is the scientists name and the rest are results
+     * @brief findRelations finds relations to names resembling a search term
+     * @param name is the search term
+     * @param relateTo chooses wether the search term is a computer/scientist/all
+     * @return a vector of namePair, consisting of a computer name and scientist name. namePair maintains the connection
      */
-    vector<string> findSciRelation(string name);
-
-    /**
-     * @brief findCompRelation finds all relations to a given computer name
-     * @param name is the computer name
-     * @return vector where the first value is the computer name and the rest are results
-     */
-    vector<string> findCompRelation(string name);
+    vector<namePair> findRelations(string name, string relateTo);
 
     /**
      * @brief addRelation adds a relation between a computer and a scientist in the relation database

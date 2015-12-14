@@ -17,6 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     displayScientists();
     displayComputers();
+    displayRelations();
 
 }
 
@@ -36,6 +37,11 @@ void MainWindow::on_input_computer_search_term_textChanged()
     displayComputers();
 }
 
+
+void MainWindow::on_choice_relate_to_currentIndexChanged()
+{
+    displayRelations();
+}
 
 void MainWindow::displayScientists()
 {
@@ -131,6 +137,46 @@ void MainWindow::displayComputers()
     ui->computer_table->setSortingEnabled(true);
 }
 
+void MainWindow::displayRelations()
+{
+    string searchTerm = ui->inputRelationSearchTerm->text().toStdString();
+    string relateTo = ui->choice_relate_to->currentText().toStdString();
+
+    vector<namePair> relations = relationService.findRelations(searchTerm, relateTo);
+
+    ui->relation_table->setSortingEnabled(false);
+    ui->relation_table->clearContents();
+    ui->relation_table->setRowCount(relations.size());
+
+    ui->relation_table->resizeColumnsToContents();
+    if (relateTo == "Computers")
+    {
+        ui->relation_table->setColumnHidden(0, true);
+        ui->relation_table->setColumnHidden(1, false);
+    }
+    else if (relateTo == "Scientists")
+    {
+        ui->relation_table->setColumnHidden(1, true);
+        ui->relation_table->setColumnHidden(0, false);
+    }
+    else
+    {
+        ui->relation_table->setColumnHidden(0, false);
+        ui->relation_table->setColumnHidden(1, false);
+    }
+
+    for (unsigned row = 0; row < relations.size(); row++)
+    {
+        namePair currentRelation = relations.at(row);
+        QString compName = QString(currentRelation.compName.c_str());
+        QString sciName = QString(currentRelation.sciName.c_str());
+
+        ui->relation_table->setItem(row, 0, new QTableWidgetItem(compName));
+        ui->relation_table->setItem(row, 1, new QTableWidgetItem(sciName));
+    }
+    ui->relation_table->setSortingEnabled(true);
+}
+
 
 void MainWindow::on_tabs_currentChanged(int index)
 {
@@ -141,6 +187,10 @@ void MainWindow::on_tabs_currentChanged(int index)
     else if (index == 1)
     {
         displayComputers();
+    }
+    else if (index == 2)
+    {
+        displayRelations();
     }
 }
 
@@ -156,3 +206,7 @@ void MainWindow::on_buttonAddNewScientist_clicked()
 
 }
 
+void MainWindow::on_inputRelationSearchTerm_textChanged()
+{
+    displayRelations();
+}

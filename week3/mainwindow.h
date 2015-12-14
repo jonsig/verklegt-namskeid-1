@@ -27,8 +27,11 @@ private slots:
 
     void on_tabs_currentChanged(int index);
 
-
     void on_buttonAddNewScientist_clicked();
+
+    void on_choice_relate_to_currentIndexChanged();
+
+    void on_inputRelationSearchTerm_textChanged();
 
 private:
     /**
@@ -38,10 +41,15 @@ private:
     void displayScientists();
 
     /**
-     * @brief displayComputers searcher for computers and writes the computer table.
+     * @brief displayComputers searches for computers and writes the computer table.
      *        If there's no input in the search bar, all computers are shown. The table handles sorting.
      */
     void displayComputers();
+
+    /**
+     * @brief displayRelations searches for relations between scientists and computers and writes the relation table.
+     */
+    void displayRelations();
 
     Ui::MainWindow *ui;
     ScientistService scientistService;

@@ -21,7 +21,7 @@
     <item>
      <widget class="QTabWidget" name="tabs">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tab_scientist">
        <attribute name="title">
@@ -147,84 +147,85 @@
        <attribute name="title">
         <string>Relations</string>
        </attribute>
-       <widget class="QToolBox" name="toolBox_3">
-        <property name="geometry">
-         <rect>
-          <x>0</x>
-          <y>0</y>
-          <width>571</width>
-          <height>391</height>
-         </rect>
-        </property>
-        <property name="currentIndex">
-         <number>4</number>
-        </property>
-        <widget class="QWidget" name="page_11">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>100</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <attribute name="label">
-          <string>Add relations</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="page_12">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>100</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <attribute name="label">
-          <string>Search relations</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="page_13">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>100</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <attribute name="label">
-          <string>Show relations</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="page_14">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>100</width>
-           <height>30</height>
-          </rect>
-         </property>
-         <attribute name="label">
-          <string>Change relations</string>
-         </attribute>
-        </widget>
-        <widget class="QWidget" name="page_15">
-         <property name="geometry">
-          <rect>
-           <x>0</x>
-           <y>0</y>
-           <width>571</width>
-           <height>236</height>
-          </rect>
-         </property>
-         <attribute name="label">
-          <string>Delete relations</string>
-         </attribute>
-        </widget>
-       </widget>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QLineEdit" name="inputRelationSearchTerm">
+          <property name="placeholderText">
+           <string>Enter a search term</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="text">
+           <string>Search for relations to:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QComboBox" name="choice_relate_to">
+          <item>
+           <property name="text">
+            <string>All</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Computers</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Scientists</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTableWidget" name="relation_table">
+          <property name="sizeAdjustPolicy">
+           <enum>QAbstractScrollArea::AdjustIgnored</enum>
+          </property>
+          <property name="editTriggers">
+           <set>QAbstractItemView::NoEditTriggers</set>
+          </property>
+          <property name="selectionBehavior">
+           <enum>QAbstractItemView::SelectRows</enum>
+          </property>
+          <property name="sortingEnabled">
+           <bool>true</bool>
+          </property>
+          <attribute name="horizontalHeaderCascadingSectionResizes">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="horizontalHeaderDefaultSectionSize">
+           <number>200</number>
+          </attribute>
+          <attribute name="horizontalHeaderMinimumSectionSize">
+           <number>200</number>
+          </attribute>
+          <attribute name="horizontalHeaderStretchLastSection">
+           <bool>true</bool>
+          </attribute>
+          <attribute name="verticalHeaderVisible">
+           <bool>false</bool>
+          </attribute>
+          <attribute name="verticalHeaderCascadingSectionResizes">
+           <bool>true</bool>
+          </attribute>
+          <column>
+           <property name="text">
+            <string>Computer</string>
+           </property>
+          </column>
+          <column>
+           <property name="text">
+            <string>Scientist</string>
+           </property>
+          </column>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>

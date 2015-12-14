@@ -5,14 +5,9 @@ RelationService::RelationService()
 
 }
 
-vector<string> RelationService::findSciRelation(string name)
+vector<namePair> RelationService::findRelations(string name, string relateTo)
 {
-    return relationRepository.findSciRelation(name);
-}
-
-vector<string> RelationService::findCompRelation(string name)
-{
-    return relationRepository.findCompRelation(name);
+    return relationRepository.findRelations(name, relateTo);
 }
 
 bool RelationService::addRelation(string compName, string sciName)
