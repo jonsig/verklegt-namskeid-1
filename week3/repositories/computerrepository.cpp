@@ -26,6 +26,7 @@ vector<Computer> ComputerRepository::getAllComputers(string orderBy, bool orderA
 
 vector<Computer> ComputerRepository::findComputers(string searchTerm)
 {
+    searchTerm = utils::stringToLower(searchTerm);
     string command = "SELECT name,compType,wasMade,yearMade FROM computers WHERE name LIKE '%" + searchTerm +"%'";
 
     if(searchTerm == "electronic")
@@ -49,7 +50,7 @@ vector<Computer> ComputerRepository::findComputers(string searchTerm)
         command += " OR compType = 3";
     }
 
-    if(utils::stringToLower(searchTerm) == "was made")
+    if(searchTerm == "was made")
     {
         command += " OR wasMade = 'yes'";
     }

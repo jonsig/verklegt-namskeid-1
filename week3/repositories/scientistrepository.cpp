@@ -27,8 +27,8 @@ vector<Scientist> ScientistRepository::getAllScientists(string orderBy, bool ord
 
 vector<Scientist> ScientistRepository::findScientists(string searchTerm)
 {
+    searchTerm = utils::stringToLower(searchTerm);
     string command = "SELECT name,sex,yearBorn,yearDied FROM scientists WHERE name LIKE '%" + searchTerm + "%'";
-
     if (searchTerm == "male")
         command += " OR sex LIKE 1";     //because the database stores genders as 1 and 0
     else if (searchTerm == "female")

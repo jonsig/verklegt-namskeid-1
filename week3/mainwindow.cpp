@@ -3,7 +3,6 @@
 #include "utilities/constants.h"
 #include "utilities/utils.h"
 
-#include <iostream>
 #include <iomanip>
 
 using namespace std;
@@ -39,9 +38,9 @@ void MainWindow::displayAllScientists()
 
 void MainWindow::displayScientists(vector<Scientist> scientists)
 {
+    ui->scientist_table->setSortingEnabled(false);
     ui->scientist_table->clearContents();
     ui->scientist_table->setRowCount(scientists.size());
-
     for(unsigned row = 0; row < scientists.size(); row++)
     {
         Scientist currentSci = scientists.at(row);
@@ -59,6 +58,7 @@ void MainWindow::displayScientists(vector<Scientist> scientists)
 
         QString yearBorn = QString(utils::intToString(currentSci.getYearBorn()).c_str());
         QString yearDied;
+
         if (currentSci.getYearDied() != constants::YEAR_NOT_ENTERED_DEFAULT_VALUE)
         {
            yearDied = QString(utils::intToString(currentSci.getYearDied()).c_str());
@@ -73,4 +73,5 @@ void MainWindow::displayScientists(vector<Scientist> scientists)
         ui->scientist_table->setItem(row, 2, new QTableWidgetItem(yearBorn));
         ui->scientist_table->setItem(row, 3, new QTableWidgetItem(yearDied));
     }
+    ui->scientist_table->setSortingEnabled(true);
 }

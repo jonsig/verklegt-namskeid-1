@@ -33,7 +33,6 @@ vector<string> RelationRepository::findSciRelation(string name)
         query.exec(QString(queryInsert.c_str()));
         while(query.next())
         {
-            printf("\nchecking next\n");
             results.push_back(query.value("name").toString().toStdString());
         }
 
