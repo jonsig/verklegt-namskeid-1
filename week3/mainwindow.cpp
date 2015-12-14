@@ -148,23 +148,6 @@ void MainWindow::displayRelations()
     ui->relation_table->clearContents();
     ui->relation_table->setRowCount(relations.size());
 
-    ui->relation_table->resizeColumnsToContents();
-    if (relateTo == "Computers")
-    {
-        ui->relation_table->setColumnHidden(0, true);
-        ui->relation_table->setColumnHidden(1, false);
-    }
-    else if (relateTo == "Scientists")
-    {
-        ui->relation_table->setColumnHidden(1, true);
-        ui->relation_table->setColumnHidden(0, false);
-    }
-    else
-    {
-        ui->relation_table->setColumnHidden(0, false);
-        ui->relation_table->setColumnHidden(1, false);
-    }
-
     for (unsigned row = 0; row < relations.size(); row++)
     {
         namePair currentRelation = relations.at(row);
