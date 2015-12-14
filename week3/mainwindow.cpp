@@ -48,9 +48,9 @@ void MainWindow::displayScientists()
     string searchTerm = ui->inputScientistSearchTerm->text().toStdString();
     vector<Scientist> scientists = scientistService.searchForScientists(searchTerm);
 
-    ui->scientist_table->setSortingEnabled(false);
-    ui->scientist_table->clearContents();
-    ui->scientist_table->setRowCount(scientists.size());
+    ui->scientistTable->setSortingEnabled(false);
+    ui->scientistTable->clearContents();
+    ui->scientistTable->setRowCount(scientists.size());
     for (unsigned row = 0; row < scientists.size(); row++)
     {
         Scientist currentSci = scientists.at(row);
@@ -74,12 +74,12 @@ void MainWindow::displayScientists()
            yearDied = QString(utils::intToString(currentSci.getYearDied()).c_str());
         }
 
-        ui->scientist_table->setItem(row, 0, new QTableWidgetItem(name));
-        ui->scientist_table->setItem(row, 1, new QTableWidgetItem(sex));
-        ui->scientist_table->setItem(row, 2, new QTableWidgetItem(yearBorn));
-        ui->scientist_table->setItem(row, 3, new QTableWidgetItem(yearDied));
+        ui->scientistTable->setItem(row, 0, new QTableWidgetItem(name));
+        ui->scientistTable->setItem(row, 1, new QTableWidgetItem(sex));
+        ui->scientistTable->setItem(row, 2, new QTableWidgetItem(yearBorn));
+        ui->scientistTable->setItem(row, 3, new QTableWidgetItem(yearDied));
     }
-    ui->scientist_table->setSortingEnabled(true);
+    ui->scientistTable->setSortingEnabled(true);
 }
 
 void MainWindow::displayComputers()
@@ -144,9 +144,9 @@ void MainWindow::displayRelations()
 
     vector<namePair> relations = relationService.findRelations(searchTerm, relateTo);
 
-    ui->relation_table->setSortingEnabled(false);
-    ui->relation_table->clearContents();
-    ui->relation_table->setRowCount(relations.size());
+    ui->relationTable->setSortingEnabled(false);
+    ui->relationTable->clearContents();
+    ui->relationTable->setRowCount(relations.size());
 
     for (unsigned row = 0; row < relations.size(); row++)
     {
@@ -154,10 +154,10 @@ void MainWindow::displayRelations()
         QString compName = QString(currentRelation.compName.c_str());
         QString sciName = QString(currentRelation.sciName.c_str());
 
-        ui->relation_table->setItem(row, 0, new QTableWidgetItem(compName));
-        ui->relation_table->setItem(row, 1, new QTableWidgetItem(sciName));
+        ui->relationTable->setItem(row, 0, new QTableWidgetItem(compName));
+        ui->relationTable->setItem(row, 1, new QTableWidgetItem(sciName));
     }
-    ui->relation_table->setSortingEnabled(true);
+    ui->relationTable->setSortingEnabled(true);
 }
 
 

@@ -42,7 +42,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QTableWidget" name="scientist_table">
+         <widget class="QTableWidget" name="scientistTable">
           <property name="sortingEnabled">
            <bool>true</bool>
           </property>
@@ -182,7 +182,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QTableWidget" name="relation_table">
+         <widget class="QTableWidget" name="relationTable">
           <property name="sizeAdjustPolicy">
            <enum>QAbstractScrollArea::AdjustIgnored</enum>
           </property>
