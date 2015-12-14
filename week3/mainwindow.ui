@@ -23,13 +23,13 @@
       <property name="currentIndex">
        <number>2</number>
       </property>
-      <widget class="QWidget" name="tab_scientist">
+      <widget class="QWidget" name="tabScientists">
        <attribute name="title">
         <string>Scientists</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QLineEdit" name="input_scientist_search_term">
+         <widget class="QLineEdit" name="inputScientistSearchTerm">
           <property name="dragEnabled">
            <bool>false</bool>
           </property>
@@ -90,20 +90,20 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_computers">
+      <widget class="QWidget" name="tabComputers">
        <attribute name="title">
         <string>Computers</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="QLineEdit" name="input_computer_search_term">
+         <widget class="QLineEdit" name="inputComputerSearchTerm">
           <property name="placeholderText">
            <string>Enter a search term</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QTableWidget" name="computer_table">
+         <widget class="QTableWidget" name="computerTable">
           <property name="sortingEnabled">
            <bool>true</bool>
           </property>
@@ -143,7 +143,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="tab_relations">
+      <widget class="QWidget" name="tablRelations">
        <attribute name="title">
         <string>Relations</string>
        </attribute>
@@ -156,14 +156,14 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="label">
+         <widget class="QLabel" name="labelRelationTo">
           <property name="text">
            <string>Search for relations to:</string>
           </property>
          </widget>
         </item>
         <item>
-         <widget class="QComboBox" name="choice_relate_to">
+         <widget class="QComboBox" name="choiceRelateTo">
           <item>
            <property name="text">
             <string>All</string>

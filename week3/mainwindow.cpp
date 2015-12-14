@@ -27,25 +27,25 @@ MainWindow::~MainWindow()
 }
 
 
-void MainWindow::on_input_scientist_search_term_textChanged()
+void MainWindow::on_inputScientistSearchTerm_textChanged()
 {
     displayScientists();
 }
 
-void MainWindow::on_input_computer_search_term_textChanged()
+void MainWindow::on_inputComputerSearchTerm_textChanged()
 {
     displayComputers();
 }
 
 
-void MainWindow::on_choice_relate_to_currentIndexChanged()
+void MainWindow::on_choiceRelateTo_currentIndexChanged()
 {
     displayRelations();
 }
 
 void MainWindow::displayScientists()
 {
-    string searchTerm = ui->input_scientist_search_term->text().toStdString();
+    string searchTerm = ui->inputScientistSearchTerm->text().toStdString();
     vector<Scientist> scientists = scientistService.searchForScientists(searchTerm);
 
     ui->scientist_table->setSortingEnabled(false);
@@ -67,7 +67,7 @@ void MainWindow::displayScientists()
         }
 
         QString yearBorn = QString(utils::intToString(currentSci.getYearBorn()).c_str());
-        QString yearDied = "";
+        QString yearDied = "N/A";
 
         if (currentSci.getYearDied() != constants::YEAR_NOT_ENTERED_DEFAULT_VALUE)
         {
@@ -84,12 +84,12 @@ void MainWindow::displayScientists()
 
 void MainWindow::displayComputers()
 {
-    string searchTerm = ui->input_computer_search_term->text().toStdString();
+    string searchTerm = ui->inputComputerSearchTerm->text().toStdString();
     vector<Computer> computers = computerService.searchComputers(searchTerm);
 
-    ui->computer_table->setSortingEnabled(false);
-    ui->computer_table->clearContents();
-    ui->computer_table->setRowCount(computers.size());
+    ui->computerTable->setSortingEnabled(false);
+    ui->computerTable->clearContents();
+    ui->computerTable->setRowCount(computers.size());
     for (unsigned row = 0; row < computers.size(); row++)
     {
         Computer currentComp = computers.at(row);
@@ -129,18 +129,18 @@ void MainWindow::displayComputers()
             yearMade = QString(utils::intToString(currentComp.getYearMade()).c_str());
         }
 
-        ui->computer_table->setItem(row, 0, new QTableWidgetItem(name));
-        ui->computer_table->setItem(row, 1, new QTableWidgetItem(type));
-        ui->computer_table->setItem(row, 2, new QTableWidgetItem(wasMade));
-        ui->computer_table->setItem(row, 3, new QTableWidgetItem(yearMade));
+        ui->computerTable->setItem(row, 0, new QTableWidgetItem(name));
+        ui->computerTable->setItem(row, 1, new QTableWidgetItem(type));
+        ui->computerTable->setItem(row, 2, new QTableWidgetItem(wasMade));
+        ui->computerTable->setItem(row, 3, new QTableWidgetItem(yearMade));
     }
-    ui->computer_table->setSortingEnabled(true);
+    ui->computerTable->setSortingEnabled(true);
 }
 
 void MainWindow::displayRelations()
 {
     string searchTerm = ui->inputRelationSearchTerm->text().toStdString();
-    string relateTo = ui->choice_relate_to->currentText().toStdString();
+    string relateTo = ui->choiceRelateTo->currentText().toStdString();
 
     vector<namePair> relations = relationService.findRelations(searchTerm, relateTo);
 
@@ -161,7 +161,7 @@ void MainWindow::displayRelations()
 }
 
 
-void MainWindow::on_tabs_currentChanged(int index)
+void MainWindow::on_tabsCurrentChanged(int index)
 {
     if (index == 0)
     {
@@ -182,7 +182,7 @@ void MainWindow::on_buttonAddNewScientist_clicked()
     AddScientist addScientist;
     addScientist.exec();
 
-    ui->input_scientist_search_term->setText("");
+    ui->inputScientistSearchTerm->setText("");
     displayScientists();
 
     //ui->statusBar->showMessage("Successfully added student", 1500);

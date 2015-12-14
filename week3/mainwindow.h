@@ -21,15 +21,15 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_input_scientist_search_term_textChanged();
+    void on_inputScientistSearchTerm_textChanged();
 
-    void on_input_computer_search_term_textChanged();
+    void on_inputComputerSearchTerm_textChanged();
 
-    void on_tabs_currentChanged(int index);
+    void on_tabsCurrentChanged(int index);
 
     void on_buttonAddNewScientist_clicked();
 
-    void on_choice_relate_to_currentIndexChanged();
+    void on_choiceRelateTo_currentIndexChanged();
 
     void on_inputRelationSearchTerm_textChanged();
 
