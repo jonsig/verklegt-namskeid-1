@@ -2,6 +2,7 @@
 #include "ui_addscientist.h"
 #include "utilities/utils.h"
 
+#include <QMessageBox>
 
 AddScientist::AddScientist(QWidget *parent) :
     QDialog(parent),
@@ -47,6 +48,13 @@ void AddScientist::on_buttonAddScientist_clicked()
 
     if (inputError == true)
         return;
+
+    int isSure = QMessageBox::question(this, "Confirm", "Are you sure?");
+
+    if (isSure == QMessageBox::No)
+    {
+        return;
+    }
 
     int yearBorn =utils::stringToInt(yearOfBirth);
     string yearOfDeath = ui->scientistYearDied->text().toStdString();
