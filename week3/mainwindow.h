@@ -28,6 +28,8 @@ private slots:
     void on_tabs_currentChanged(int index);
 
 
+    void on_buttonAddNewScientist_clicked();
+
 private:
     /**
      * @brief displayScientists searches for scientists and writes the scientist table.

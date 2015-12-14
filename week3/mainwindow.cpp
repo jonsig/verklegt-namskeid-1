@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "utilities/constants.h"
 #include "utilities/utils.h"
+#include "addscientist.h"
 
 #include <iomanip>
 #include <iostream>
@@ -142,3 +143,16 @@ void MainWindow::on_tabs_currentChanged(int index)
         displayComputers();
     }
 }
+
+void MainWindow::on_buttonAddNewScientist_clicked()
+{
+    AddScientist addScientist;
+    addScientist.exec();
+
+    ui->input_scientist_search_term->setText("");
+    displayScientists();
+
+    //ui->statusBar->showMessage("Successfully added student", 1500);
+
+}
+
