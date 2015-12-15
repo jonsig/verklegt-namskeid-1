@@ -91,7 +91,8 @@ bool ScientistRepository::addScientist(Scientist scientist)
                 query.exec(QString(queryInsert.c_str()));
             }
         }
-        else{   //first query failed
+        else
+        {   //first query failed
             db.close();
             return false;
         }
@@ -110,6 +111,7 @@ bool ScientistRepository::removeScientist(Scientist scientist)
 
     stringstream sqlQuery;
 
+    //All scientists with the exact same information as the input scientist will be deleted from the database. The primary key is irrelevant.
     sqlQuery << "DELETE FROM scientists WHERE name = '" << scientist.getName() << "' AND sex = " << scientist.getSex() << " AND yearBorn = " << scientist.getYearBorn();
 
     if (scientist.getYearDied() == constants::YEAR_NOT_ENTERED_DEFAULT_VALUE)

@@ -126,7 +126,7 @@ bool ComputerRepository::removeComputer(Computer computer)
     db.open();
 
     QSqlQuery query(db);
-
+    //All computers with the exact same information as the input computer will be deleted from the database. The primary key is irrelevant.
     stringstream sqlQuery;
     sqlQuery << "DELETE FROM computers WHERE name = '" << computer.getName() << "' AND compType = '" << computer.getType() << "' AND wasMade = '" << computer.getWasMade() << "'";
     if (computer.getYearMade() == constants::YEAR_NOT_ENTERED_DEFAULT_VALUE)
