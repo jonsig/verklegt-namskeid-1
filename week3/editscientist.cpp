@@ -67,12 +67,12 @@ void EditScientist::on_buttonEditScientist_clicked()
 
     if(name == "")
     {
-        ui->editScientistNameError->setText("<span style='color: #DF0101'>Scientist must have name</span>");
+        ui->editScientistNameError->setText("<span style='color: #DF0101'>Scientists must have a name</span>");
         inputError = true;
     }
     if(yearOfBirth == "")
     {
-        ui->editScientistYearOfBirthError->setText("<span style='color: #DF0101'>Scientist must have existed</span>");
+        ui->editScientistYearOfBirthError->setText("<span style='color: #DF0101'>Scientists must have existed</span>");
         inputError = true;
     }
     if(inputError == true)

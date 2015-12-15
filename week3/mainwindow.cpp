@@ -120,11 +120,11 @@ void MainWindow::displayComputers()
 
         QString wasMade = "Unknown";
 
-        if (currentComp.getWasMade() == "yes")
+        if (utils::stringToLower(currentComp.getWasMade()) == "yes")
         {
             wasMade = "Yes";
         }
-        else if (currentComp.getWasMade() == "No")
+        else if (utils::stringToLower(currentComp.getWasMade()) == "no")
         {
             wasMade = "No";
         }
@@ -206,8 +206,6 @@ void MainWindow::on_buttonAddNewScientist_clicked()
 
     ui->inputScientistSearchTerm->setText("");
     displayScientists();
-
-    //ui->statusBar->showMessage("Successfully added student", 1500);
 
 }
 

@@ -49,18 +49,15 @@ void AddComputer::on_buttonAddComputer_clicked()
     string wasBuilt = ui->computerBuilt->currentText().toStdString();
 
     if (wasBuilt == "Yes")
+    {
         wasBuilt = utils::stringToLower(wasBuilt);
-
-    bool inputError = false;
+    }
 
     if(name == "")
     {
-        ui->computerNameError->setText("<span style='color: #DF0101'>Computer must have name</span>");
-        inputError = true;
-    }
-
-    if (inputError == true)
+        ui->computerNameError->setText("<span style='color: #DF0101'>Computers must have a name</span>");
         return;
+    }
 
     string yearOfBuild = ui->computerYearBuilt->text().toStdString();
 
@@ -73,7 +70,6 @@ void AddComputer::on_buttonAddComputer_clicked()
         return;
     }
 
-
     if(yearOfBuild == "")
         computerService.addComputer(Computer(name, type, wasBuilt));
     else
@@ -81,6 +77,7 @@ void AddComputer::on_buttonAddComputer_clicked()
         int yearBuilt = utils::stringToInt(yearOfBuild);
         computerService.addComputer(Computer(name, type, wasBuilt, yearBuilt));
     }
+
     ui->computerName->setText("");
     ui->computerType->setCurrentText("Electronic");
     ui->computerBuilt->setCurrentText("Yes");
