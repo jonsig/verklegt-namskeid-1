@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>447</width>
-    <height>390</height>
+    <width>448</width>
+    <height>364</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -60,7 +60,7 @@
    <item>
     <widget class="QLabel" name="computerLabelWasBuilt">
      <property name="text">
-      <string>Was it ever built?</string>
+      <string>Was it built?</string>
      </property>
     </widget>
    </item>

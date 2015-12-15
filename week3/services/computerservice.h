@@ -31,7 +31,6 @@ public:
      */
     bool removeComputer(Computer computer);
 
-
 private:
     ComputerRepository computerRepo;
 };

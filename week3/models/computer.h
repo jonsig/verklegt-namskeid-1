@@ -12,6 +12,10 @@ enum computerType {
     other
 };
 
+/**
+ * @brief The data model for computers
+ */
+
 class Computer
 {
 public:

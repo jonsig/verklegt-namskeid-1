@@ -13,6 +13,7 @@ enum sexType {
 /**
  * @brief The data model for scientists
  */
+
 class Scientist
 {
 public:

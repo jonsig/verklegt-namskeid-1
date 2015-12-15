@@ -90,6 +90,11 @@ namespace utils {
         return static_cast<enum computerType>(number);
     }
 
+    enum computerType stringToComp(string str)
+    {
+        return intToComp(stringToInt(stringToLower(str)));
+    }
+
     QSqlDatabase getDatabaseConnection()
     {
         QString connectionName = "Smuu";

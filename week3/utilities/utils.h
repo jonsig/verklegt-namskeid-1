@@ -31,6 +31,8 @@ namespace utils {
 
     enum computerType intToComp(int number);
 
+    enum computerType stringToComp(string str);
+
     QSqlDatabase getDatabaseConnection();
 }
 
