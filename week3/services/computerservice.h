@@ -31,6 +31,12 @@ public:
      * @return true or false indicating success
      */
     bool addComputer(Computer computer);
+
+    /**
+     * @brief removeComputer calls a remove function in the repository
+     * @param computer is the variable to be removed
+     * @return true or false indicating success
+     */
     bool removeComputer(Computer computer);
 
 

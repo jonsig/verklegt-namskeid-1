@@ -12,6 +12,7 @@ using namespace std;
 /**
  * @brief The ComputerRepository class handles reading and writing computers from a file
  */
+
 class ComputerRepository
 {
 public:
@@ -39,7 +40,18 @@ public:
      */
     vector<Computer> getComputers(string filter);
 
+    /**
+     * @brief addComputer adds a computer to the computer database
+     * @param computer is the variable to be added
+     * @return true or false indicating success
+     */
     bool addComputer(Computer computer);
+
+    /**
+     * @brief removeComputer removes a computer from the computer database
+     * @param computer is the variable to be removed
+     * @return true or false indicating success
+     */
     bool removeComputer(Computer computer);
 
 private:
