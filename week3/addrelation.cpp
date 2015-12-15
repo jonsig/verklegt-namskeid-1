@@ -34,8 +34,8 @@ void AddRelation::on_buttonAddRelation_clicked()
     string sciName = ui->sciNameInput->currentText().toStdString();
     string compName = ui->compNameInput->currentText().toStdString();
 
-
-    int isSure = QMessageBox::question(this, "Confirm", "Are you sure?");
+    QString prompt = "About to relate \n" + QString::fromStdString(sciName) + " and " + QString::fromStdString(compName) + "\nAre you sure?";
+    int isSure = QMessageBox::question(this, "Confirm", prompt);
 
     if(isSure == QMessageBox::No)
     {
