@@ -110,7 +110,7 @@ bool ScientistRepository::removeScientist(Scientist scientist)
 
     stringstream sqlQuery;
 
-    sqlQuery << "DELETE FROM scientists WHERE name = " << scientist.getName();
+    sqlQuery << "DELETE FROM scientists WHERE name = '" << scientist.getName() << "' AND yearBorn = '" << scientist.getYearBorn() << "'";
 
     bool success = query.exec(QString::fromStdString(sqlQuery.str()));
 
