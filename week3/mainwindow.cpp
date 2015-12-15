@@ -300,7 +300,9 @@ void MainWindow::on_buttonComputerEdit_clicked()
 {
     int row = ui->computerTable->currentIndex().row();
     EditComputer editComputer(displayedComputer.at(row));
+    editComputer.exec();
 
+    ui->buttonComputerEdit->setEnabled(false);
     ui->inputComputerSearchTerm->setText("");
     displayComputers();
 }
@@ -313,6 +315,7 @@ void MainWindow::on_buttonScientistEdit_clicked()
     EditScientist editScientist(displayedScientist.at(row));
     editScientist.exec();
 
+    ui->buttonScientistEdit->setEnabled(false);
     ui->inputScientistSearchTerm->setText("");
     displayScientists();
 }

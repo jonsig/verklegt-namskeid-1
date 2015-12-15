@@ -64,8 +64,9 @@ void AddComputer::on_buttonAddComputer_clicked()
 
     string yearOfBuild = ui->computerYearBuilt->text().toStdString();
 
+    QString prompt = "About to add\n" + ui->computerName->text() + "\nAre you sure?";
 
-    int isSure = QMessageBox::question(this, "Confirm", "Are you sure?");
+    int isSure = QMessageBox::question(this, "Confirm", prompt);
 
     if (isSure == QMessageBox::No)
     {
