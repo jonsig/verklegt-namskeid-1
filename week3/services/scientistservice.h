@@ -29,11 +29,17 @@ public:
     vector<Scientist> searchForScientists(string searchTerm);
 
     /**
-     * @brief addScientist saves a scientist model to a file
-     * @param scientist The model to save
+     * @brief addScientist calls an add function in the repository
+     * @param scientist is the variable to be added
      * @return true if it was a success, false if it was a failure
      */
     bool addScientist(Scientist scientist);
+
+    /**
+     * @brief removeScientist calls a remove function in the repository
+     * @param scientist is the variable to be added
+     * @return true if it was a success, false if it was a failure
+     */
     bool removeScientist(Scientist scientist);
 
 private:

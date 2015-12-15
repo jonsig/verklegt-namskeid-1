@@ -28,14 +28,14 @@ public:
     /**
      * @brief addComputer calls an add function in the repository
      * @param computer is the variable to be added
-     * @return true or false indicating success
+     * @return true if it was a success, false if it was a failure
      */
     bool addComputer(Computer computer);
 
     /**
      * @brief removeComputer calls a remove function in the repository
      * @param computer is the variable to be removed
-     * @return true or false indicating success
+     * @return true if it was a success, false if it was a failure
      */
     bool removeComputer(Computer computer);
 
