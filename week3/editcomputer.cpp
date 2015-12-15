@@ -123,7 +123,6 @@ void EditComputer::on_buttonEditComputer_clicked()
     else
     {
         ui->editComputerFeedbackLabel->setText("<span style='color: #DF0101'>An unknown error occurred, further changes not attempted</span>");
-         this->close();
     }
 
 
