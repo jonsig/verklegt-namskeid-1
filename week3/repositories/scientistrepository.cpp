@@ -110,7 +110,16 @@ bool ScientistRepository::removeScientist(Scientist scientist)
 
     stringstream sqlQuery;
 
-    sqlQuery << "DELETE FROM scientists WHERE name = '" << scientist.getName() << "' AND yearBorn = '" << scientist.getYearBorn() << "'";
+    sqlQuery << "DELETE FROM scientists WHERE name = '" << scientist.getName() << "' AND sex = " << scientist.getSex() << " AND yearBorn = " << scientist.getYearBorn();
+
+    if (scientist.getYearDied() == constants::YEAR_NOT_ENTERED_DEFAULT_VALUE)
+    {   //No year of death entered, search empty fields
+        sqlQuery << " AND yearDied IS NULL";
+    }
+    else
+    {   //year of death entered, normal search
+        sqlQuery << " AND yearDied = " << scientist.getYearDied();
+    }
 
     bool success = query.exec(QString::fromStdString(sqlQuery.str()));
 
