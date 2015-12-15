@@ -120,3 +120,19 @@ bool ComputerRepository::addComputer(Computer computer)
     return true;
 }
 
+bool ComputerRepository::removeComputer(Computer computer)
+{
+    db.open();
+
+    QSqlQuery query(db);
+
+    stringstream sqlQuery;
+    sqlQuery << "DELETE FROM computers WHERE name LIKE '" << computer.getName() << "' AND yearMade LIKE '" << computer.getYearMade() << "'";
+
+    bool success = query.exec(QString::fromStdString(sqlQuery.str()));
+    db.close();
+
+    return success;
+
+}
+

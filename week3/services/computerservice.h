@@ -31,6 +31,8 @@ public:
      * @return true or false indicating success
      */
     bool addComputer(Computer computer);
+    bool removeComputer(Computer computer);
+
 
 private:
     ComputerRepository computerRepo;

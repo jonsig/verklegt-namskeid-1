@@ -40,6 +40,7 @@ public:
     vector<Computer> getComputers(string filter);
 
     bool addComputer(Computer computer);
+    bool removeComputer(Computer computer);
 
 private:
     QSqlDatabase db;

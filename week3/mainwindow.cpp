@@ -142,6 +142,7 @@ void MainWindow::displayComputers()
         ui->computerTable->setItem(row, 3, new QTableWidgetItem(yearMade));
     }
     ui->computerTable->setSortingEnabled(true);
+    displayedComputers = computers;
 }
 
 void MainWindow::displayRelations()
@@ -259,4 +260,29 @@ void MainWindow::on_scientistTable_itemClicked()
 {
     ui->deleteScientist->setEnabled(true);
 
+}
+
+void MainWindow::on_deleteComputer_clicked()
+{
+    int selectedComputerIndex = ui->computerTable->currentIndex().row();
+    Computer selectedComputer  = displayedComputers.at(selectedComputerIndex);
+
+    bool success = computerService.removeComputer(selectedComputer);
+
+    if (success)
+    {
+        ui->inputComputerSearchTerm->setText("");
+        displayComputers();
+
+        ui->deleteComputer->setEnabled(false);
+    }
+    else
+    {
+        // display some error
+    }
+}
+
+void MainWindow::on_computerTable_itemClicked()
+{
+    ui->deleteComputer->setEnabled(true);
 }
