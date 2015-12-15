@@ -5,7 +5,7 @@
 #include "addscientist.h"
 #include "addcomputer.h"
 #include "addrelation.h"
-#include "editcomputer.h"
+//#include "editcomputer.h"
 #include "editscientist.h"
 
 #include <iostream>
@@ -300,17 +300,20 @@ void MainWindow::on_buttonRelationAdd_clicked()
 
 void MainWindow::on_buttonComputerEdit_clicked()
 {
-    EditComputer editComputer;
+  /*  EditComputer editComputer;
     editComputer.exec();
 
     ui->inputComputerSearchTerm->setText("");
-    displayComputers();
+    displayComputers();  */
 }
 
 void MainWindow::on_buttonScientistEdit_clicked()
 {
-    EditScientist editScientist;
-    editComputer.exec();
+
+    int row = ui->scientistTable->currentIndex().row();
+
+    EditScientist editScientist(displayedScientist.at(row));
+    editScientist.exec();
 
     ui->inputScientistSearchTerm->setText("");
     displayScientists();
