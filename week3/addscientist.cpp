@@ -37,19 +37,21 @@ void AddScientist::on_buttonAddScientist_clicked()
 
     if(name == "")
     {
-        ui->addScientistNameError->setText("<span style='color: #DF0101'>Scientist must have name</span>");
+        ui->addScientistNameError->setText("<span style='color: #DF0101'>Scientists must have names</span>");
         inputError = true;
     }
     if(yearOfBirth == "")
     {
-        ui->addScientistYearBornError->setText("<span style='color: #DF0101'>Scientist have existed</span>");
+        ui->addScientistYearBornError->setText("<span style='color: #DF0101'>Scientists must have existed</span>");
         inputError = true;
     }
 
     if (inputError == true)
         return;
 
-    int isSure = QMessageBox::question(this, "Confirm", "Are you sure?");
+    QString prompt = "About to add\n" + ui->addScientistName->text() + "\nAre you sure?";
+
+    int isSure = QMessageBox::question(this, "Confirm", prompt);
 
     if (isSure == QMessageBox::No)
     {
