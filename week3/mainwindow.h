@@ -35,17 +35,17 @@ private slots:
 
     void on_relationTable_itemClicked();
 
-    void on_buttonDelete_clicked();
+    void on_buttonRelationDelete_clicked();
 
     void on_buttonAddNewComputer_clicked();
 
     void on_scientistTable_itemClicked();
 
-    void on_deleteScientist_clicked();
+    void on_buttonScientistDelete_clicked();
 
     void on_computerTable_itemClicked();
 
-    void on_deleteComputer_clicked();
+    void on_buttonComputerDelete_clicked();
 
 private:
     /**

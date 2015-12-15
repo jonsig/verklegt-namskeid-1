@@ -215,14 +215,14 @@ void MainWindow::on_buttonAddNewScientist_clicked()
 
 void MainWindow::on_relationTable_itemClicked()
 {
-    ui->buttonDelete->setEnabled(true);
+    ui->buttonRelationDelete->setEnabled(true);
 }
 
-void MainWindow::on_buttonDelete_clicked()
+void MainWindow::on_buttonRelationDelete_clicked()
 {
     removeRelation();
     displayRelations();
-    ui->buttonDelete->setEnabled(false);
+    ui->buttonRelationDelete->setEnabled(false);
 }
 
 void MainWindow::on_buttonAddNewComputer_clicked()
@@ -236,7 +236,7 @@ void MainWindow::on_buttonAddNewComputer_clicked()
 
 
 
-void MainWindow::on_deleteScientist_clicked()
+void MainWindow::on_buttonScientistDelete_clicked()
 {
     int selectedScientistIndex = ui->scientistTable->currentIndex().row();
     Scientist selectedScientist  = displayedScientist.at(selectedScientistIndex);
@@ -248,7 +248,7 @@ void MainWindow::on_deleteScientist_clicked()
         ui->inputScientistSearchTerm->setText("");
         displayScientists();
 
-        ui->deleteScientist->setEnabled(false);
+        ui->buttonScientistDelete->setEnabled(false);
     }
     else
     {
@@ -258,11 +258,11 @@ void MainWindow::on_deleteScientist_clicked()
 
 void MainWindow::on_scientistTable_itemClicked()
 {
-    ui->deleteScientist->setEnabled(true);
+    ui->buttonScientistDelete->setEnabled(true);
 
 }
 
-void MainWindow::on_deleteComputer_clicked()
+void MainWindow::on_buttonComputerDelete_clicked()
 {
     int selectedComputerIndex = ui->computerTable->currentIndex().row();
     Computer selectedComputer  = displayedComputers.at(selectedComputerIndex);
@@ -274,7 +274,7 @@ void MainWindow::on_deleteComputer_clicked()
         ui->inputComputerSearchTerm->setText("");
         displayComputers();
 
-        ui->deleteComputer->setEnabled(false);
+        ui->buttonComputerDelete->setEnabled(false);
     }
     else
     {
@@ -284,5 +284,5 @@ void MainWindow::on_deleteComputer_clicked()
 
 void MainWindow::on_computerTable_itemClicked()
 {
-    ui->deleteComputer->setEnabled(true);
+    ui->buttonComputerDelete->setEnabled(true);
 }

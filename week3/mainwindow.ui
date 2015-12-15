@@ -21,7 +21,7 @@
     <item>
      <widget class="QTabWidget" name="tabs">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabScientists">
        <attribute name="title">
@@ -89,17 +89,17 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QPushButton" name="buttonScientistDelete">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Delete Scientist</string>
+            </property>
+           </widget>
+          </item>
          </layout>
-        </item>
-        <item>
-         <widget class="QPushButton" name="deleteScientist">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Delete Scientist</string>
-          </property>
-         </widget>
         </item>
        </layout>
       </widget>
@@ -166,17 +166,17 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QPushButton" name="buttonComputerDelete">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Delete Computer</string>
+            </property>
+           </widget>
+          </item>
          </layout>
-        </item>
-        <item>
-         <widget class="QPushButton" name="deleteComputer">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Delete Computer</string>
-          </property>
-         </widget>
         </item>
        </layout>
       </widget>
@@ -263,14 +263,18 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="buttonDelete">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="text">
-           <string>Delete relation</string>
-          </property>
-         </widget>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QPushButton" name="buttonRelationDelete">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
+            <property name="text">
+             <string>Delete relation</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
