@@ -19,6 +19,7 @@ struct namePair
 /**
  * @brief The RelationRepository class handles reading and writing relations between computers and scientists from a file
  */
+
 class RelationRepository
 {
 public:
