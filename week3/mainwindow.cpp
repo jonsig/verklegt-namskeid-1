@@ -4,6 +4,7 @@
 #include "utilities/utils.h"
 #include "addscientist.h"
 #include "addcomputer.h"
+#include "addrelation.h"
 
 #include <iomanip>
 #include <iostream>
