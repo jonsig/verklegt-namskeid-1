@@ -22,7 +22,6 @@ AddRelation::AddRelation(QWidget *parent) :
         QString compName = QString::fromStdString(currentComputers.at(i).getName());
         ui->compNameInput->addItem(compName);
     }
-
 }
 
 AddRelation::~AddRelation()

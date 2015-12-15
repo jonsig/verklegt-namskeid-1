@@ -4,9 +4,9 @@
 
 #include <QMessageBox>
 
-addComputer::addComputer(QWidget *parent) :
+AddComputer::AddComputer(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::addComputer)
+    ui(new Ui::AddComputer)
 {
     ui->setupUi(this);
 
@@ -19,12 +19,12 @@ addComputer::addComputer(QWidget *parent) :
     ui->computerBuilt->addItem("Unknown");
 }
 
-addComputer::~addComputer()
+AddComputer::~AddComputer()
 {
     delete ui;
 }
 
-void addComputer::on_buttonAddComputer_clicked()
+void AddComputer::on_buttonAddComputer_clicked()
 {
     string name = ui->computerName->text().toStdString();
     string cType = ui->computerType->currentText().toStdString();
@@ -86,7 +86,7 @@ void addComputer::on_buttonAddComputer_clicked()
     ui->computerYearBuilt->setText("");
 }
 
-void addComputer::on_buttonCancelAddComputer_clicked()
+void AddComputer::on_buttonCancelAddComputer_clicked()
 {
     this->done(0);
 }

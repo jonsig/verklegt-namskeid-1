@@ -5,16 +5,16 @@
 #include <QDialog>
 
 namespace Ui {
-class addComputer;
+class AddComputer;
 }
 
-class addComputer : public QDialog
+class AddComputer : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit addComputer(QWidget *parent = 0);
-    ~addComputer();
+    explicit AddComputer(QWidget *parent = 0);
+    ~AddComputer();
 
 private slots:
     void on_buttonAddComputer_clicked();
@@ -22,7 +22,7 @@ private slots:
     void on_buttonCancelAddComputer_clicked();
 
 private:
-    Ui::addComputer *ui;
+    Ui::AddComputer *ui;
     ComputerService computerService;
 };
 

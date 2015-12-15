@@ -226,7 +226,7 @@ void MainWindow::on_buttonRelationDelete_clicked()
 
 void MainWindow::on_buttonAddNewComputer_clicked()
 {
-    addComputer addComputer;
+    AddComputer addComputer;
     addComputer.exec();
 
     ui->inputComputerSearchTerm->setText("");
@@ -283,6 +283,7 @@ void MainWindow::on_buttonComputerDelete_clicked()
 
 void MainWindow::on_computerTable_itemClicked()
 {
+    ui->buttonComputerEdit->setEnabled(true);
     ui->buttonComputerDelete->setEnabled(true);
 }
 
@@ -293,4 +294,13 @@ void MainWindow::on_buttonRelationAdd_clicked()
 
     ui->inputRelationSearchTerm->setText("");
     displayRelations();
+}
+
+void MainWindow::on_buttonComputerEdit_clicked()
+{
+    EditComputer editComputer;
+    editComputer.exec();
+
+    ui->inputComputerSearchTerm->setText("");
+    displayComputers();
 }
