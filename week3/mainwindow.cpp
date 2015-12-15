@@ -284,3 +284,12 @@ void MainWindow::on_computerTable_itemClicked()
 {
     ui->buttonComputerDelete->setEnabled(true);
 }
+
+void MainWindow::on_buttonRelationAdd_clicked()
+{
+    AddRelation addRelation;
+    addRelation.exec();
+
+    ui->inputRelationSearchTerm->setText("");
+    displayRelations();
+}

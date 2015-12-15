@@ -21,7 +21,7 @@
     <item>
      <widget class="QTabWidget" name="tabs">
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <widget class="QWidget" name="tabScientists">
        <attribute name="title">
@@ -264,6 +264,13 @@
         </item>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QPushButton" name="buttonRelationAdd">
+            <property name="text">
+             <string>Add relation</string>
+            </property>
+           </widget>
+          </item>
           <item>
            <widget class="QPushButton" name="buttonRelationDelete">
             <property name="enabled">
