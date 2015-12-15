@@ -112,28 +112,14 @@
      </item>
     </layout>
    </item>
+   <item>
+    <widget class="QLabel" name="EditScientistFeedbackLabel">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
   </layout>
-  <zorder>label_2</zorder>
-  <zorder>layoutWidget</zorder>
-  <zorder>layoutWidget_2</zorder>
-  <zorder>scientistYearDied</zorder>
-  <zorder>layoutWidget_3</zorder>
-  <zorder>scientistName</zorder>
-  <zorder>scientistSex</zorder>
-  <zorder>label_10</zorder>
-  <zorder>layoutWidget_4</zorder>
-  <zorder>scientistYearBorn</zorder>
-  <zorder>label</zorder>
-  <zorder>label</zorder>
-  <zorder>editScientistName</zorder>
-  <zorder>label_9</zorder>
-  <zorder>editScientistSex</zorder>
-  <zorder>editScientistYearOfBirth</zorder>
-  <zorder>editScientistYearOfDeath</zorder>
-  <zorder>horizontalLayoutWidget</zorder>
-  <zorder>horizontalLayoutWidget_2</zorder>
-  <zorder>horizontalLayoutWidget_3</zorder>
-  <zorder>horizontalLayoutWidget_4</zorder>
  </widget>
  <resources/>
  <connections/>

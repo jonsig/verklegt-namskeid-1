@@ -3,7 +3,7 @@
 #include "utilities/utils.h"
 #include "utilities/constants.h"
 
-//#include <QMessageBox>
+#include <QMessageBox>
 
 EditScientist::EditScientist(Scientist currentScientist, QWidget *parent) :
     QDialog(parent),
@@ -33,7 +33,7 @@ EditScientist::EditScientist(Scientist currentScientist, QWidget *parent) :
         ui->editScientistYearOfDeath->setText(currentYearOfDeath);
     else
     {
-        ui->editScientistYearOfDeath->setText("N/A");
+        ui->editScientistYearOfDeath->setText("");
     }
 }
 
@@ -46,6 +46,7 @@ void EditScientist::on_buttonEditScientist_clicked()
 {
     if(!scientistService.removeScientist(Scientist(name, sex, yearBorn, yearDied)))
     {
+        ui->EditScientistFeedbackLabel->setText("<span style='color: #DF0101'>An unknown error occurred, further changes not attempted.</span>");
         return;
     }
 
@@ -78,23 +79,34 @@ void EditScientist::on_buttonEditScientist_clicked()
     {
         return;
     }
-    /*int isSure = QMessageBox::question(this,"Confirm","Are you sure?");
+
+    QString prompt = "About to edit\n" + ui->editScientistName->text() + "\nAre you sure?";
+    int isSure = QMessageBox::question(this,"Confirm",prompt);
 
     if(isSure == QMessageBox::No)
     {
         return;
-    }*/
+    }
+
     int newYearBorn = utils::stringToInt(yearOfBirth);
     string yearOfDeath = ui->editScientistYearOfDeath->text().toStdString();
 
+    bool success = false;
     if(yearOfDeath == "")
-        scientistService.addScientist(Scientist(name, sex, newYearBorn));
+        success = scientistService.addScientist(Scientist(name, sex, newYearBorn));
     else
     {
         int newYearDied = utils::stringToInt(yearOfDeath);
-        scientistService.addScientist(Scientist(name, sex, newYearBorn, newYearDied));
+        success =scientistService.addScientist(Scientist(name, sex, newYearBorn, newYearDied));
     }
-    //CHANGE ADD TO UPDATE ONCE UPDATE IS IMPLEMENTED
+    if(success)
+    {
+        ui->EditScientistFeedbackLabel->setText("<span style='color: #49E20E'>Scientist successfully changed</span>");
+    }
+    else
+    {
+        ui->EditScientistFeedbackLabel->setText("<span style='color: #DF0101'>An unknown error occurred, further changes not attempted</span>");
+    }
 }
 
 
