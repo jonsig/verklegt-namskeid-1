@@ -120,7 +120,6 @@ bool ComputerRepository::addComputer(Computer computer)
     return true;
 }
 
-#include <iostream>
 bool ComputerRepository::removeComputer(Computer computer)
 {
     db.open();
@@ -139,7 +138,6 @@ bool ComputerRepository::removeComputer(Computer computer)
     }
 
     bool success = query.exec(QString::fromStdString(sqlQuery.str()));
-    cout << endl << success << endl;
     db.close();
 
     return success;
