@@ -39,6 +39,10 @@ private slots:
 
     void on_buttonAddNewComputer_clicked();
 
+    void on_scientistTable_itemClicked();
+
+    void on_deleteScientist_clicked();
+
 private:
     /**
      * @brief displayScientists searches for scientists and writes the scientist table.
@@ -63,6 +67,7 @@ private:
     ScientistService scientistService;
     ComputerService computerService;
     RelationService relationService;
+    vector<Scientist> displayedScientist;
 };
 
 #endif // MAINWINDOW_H

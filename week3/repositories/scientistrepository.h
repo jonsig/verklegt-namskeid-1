@@ -33,6 +33,8 @@ public:
     vector<Scientist> findScientists(string searchTerm);
 
     bool addScientist(Scientist scientist);
+    bool removeScientist(Scientist scientist);
+
 
 private:
     /**

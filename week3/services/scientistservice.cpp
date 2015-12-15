@@ -21,3 +21,9 @@ bool ScientistService::addScientist(Scientist scientist)
 {
     return scientistRepo.addScientist(scientist);
 }
+
+bool ScientistService::removeScientist(Scientist scientist)
+{
+     return scientistRepo.removeScientist(scientist);
+}
+

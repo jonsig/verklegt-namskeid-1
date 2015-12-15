@@ -101,3 +101,20 @@ bool ScientistRepository::addScientist(Scientist scientist)
         return false;
     return true;
 }
+
+bool ScientistRepository::removeScientist(Scientist scientist)
+{
+    db.open();
+
+    QSqlQuery query(db);
+
+    stringstream sqlQuery;
+
+    sqlQuery << "DELETE FROM scientists WHERE name = " << scientist.getName();
+
+    bool success = query.exec(QString::fromStdString(sqlQuery.str()));
+
+    db.close();
+
+    return success;
+}

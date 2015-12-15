@@ -86,6 +86,7 @@ void MainWindow::displayScientists()
         ui->scientistTable->setItem(row, 3, new QTableWidgetItem(yearDied));
     }
     ui->scientistTable->setSortingEnabled(true);
+    displayedScientist =scientists;
 }
 
 void MainWindow::displayComputers()
@@ -230,4 +231,32 @@ void MainWindow::on_buttonAddNewComputer_clicked()
 
     ui->inputComputerSearchTerm->setText("");
     displayComputers();
+}
+
+
+
+void MainWindow::on_deleteScientist_clicked()
+{
+    int selectedScientistIndex = ui->scientistTable->currentIndex().row();
+    Scientist selectedScientist  = displayedScientist.at(selectedScientistIndex);
+
+    bool success = scientistService.removeScientist(selectedScientist);
+
+    if (success)
+    {
+        ui->inputScientistSearchTerm->setText("");
+        displayScientists();
+
+        ui->deleteScientist->setEnabled(false);
+    }
+    else
+    {
+        // display some error
+    }
+}
+
+void MainWindow::on_scientistTable_itemClicked()
+{
+    ui->deleteScientist->setEnabled(true);
+
 }
