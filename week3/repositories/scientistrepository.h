@@ -12,6 +12,7 @@ using namespace std;
 /**
  * @brief The ScientistRepository class handles reading and writing scientists to and from a file
  */
+
 class ScientistRepository
 {
 public:
@@ -32,17 +33,28 @@ public:
      */
     vector<Scientist> findScientists(string searchTerm);
 
+    /**
+     * @brief addScientist adds a scientist to the scientist database
+     * @param scientist is the variable to be added
+     * @return true or false indicating success
+     */
     bool addScientist(Scientist scientist);
+
+    /**
+     * @brief addScientist removes a scientist to the scientist database
+     * @param scientist is the variable to be removed
+     * @return true or false indicating success
+     */
     bool removeScientist(Scientist scientist);
 
-
 private:
+
     /**
      * @brief getScientist reads scientists from the database using the filter
      * @param filter is an SQL SELECT command
      * @return vector of scientists
      */
-    vector<Scientist> getScientists(string filter);
+     vector<Scientist> getScientists(string filter);
 
     QSqlDatabase db;
 };
