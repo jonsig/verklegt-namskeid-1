@@ -11,14 +11,6 @@ public:
     ComputerService();
 
     /**
-     * @brief getAllComputers calls a get all function in the repository and tells it how to sort the result
-     * @param orderBy commands how the result will be sorted
-     * @param orderAscending decides if the list is ascending or descending
-     * @return sorted vector of all computers
-     */
-    vector<Computer> getAllComputers(string orderBy, bool orderAscending);
-
-    /**
      * @brief searchComputers calls a search function in the repository
      * @param searchTerm is searched for in the database
      * @return vector of entries containing the serach term

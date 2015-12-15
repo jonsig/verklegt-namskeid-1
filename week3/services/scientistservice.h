@@ -14,14 +14,6 @@ public:
     ScientistService();
 
     /**
-     * @brief getAllScientists fetches scientists from the ScientistRepository and sorts them
-     * @param orderBy Which column the scientists should be sorted on
-     * @param orderAscending Should the list be sorted in ascending order?
-     * @return a vector containing all scientists in the repository
-     */
-    vector<Scientist> getAllScientists(string orderBy, bool orderAscending);
-
-    /**
      * @brief searchForScientists fetches all scientists from file and filters them on searchTerm
      * @param searchTerm Contains the input that the user wishes to filter on
      * @return a vector of scientists filtered by searchTerm

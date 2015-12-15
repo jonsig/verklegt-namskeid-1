@@ -7,11 +7,6 @@ ComputerService::ComputerService()
 
 }
 
-vector<Computer> ComputerService::getAllComputers(string orderBy, bool orderAscending)
-{
-    return computerRepo.getAllComputers(orderBy, orderAscending);
-}
-
 vector<Computer> ComputerService::searchComputers(string searchTerm)
 {
     return computerRepo.findComputers(searchTerm);
