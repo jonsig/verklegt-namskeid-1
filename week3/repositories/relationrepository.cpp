@@ -108,3 +108,24 @@ bool RelationRepository::addRelation(string compName, string sciName)
     db.close();
     return false;
 }
+
+bool RelationRepository::removeRelation(string compName, string sciName)
+{
+    if(db.open())
+    {
+        QSqlQuery query(db);
+
+        string queryInsert = "DELETE FROM compSciRelation"
+                             " WHERE sci_id ="
+                             " (SELECT sci_id FROM scientists WHERE name LIKE '" + sciName + "')"
+                             " AND com_id ="
+                             " (SELECT com_id FROM computers WHERE name LIKE '" + compName + "')";      //LIKE is used for case insensitive search
+        if(!query.exec(QString(queryInsert.c_str())))
+        {   //removal failed, connection probably didn't exist
+            db.close();
+            return false;
+        }
+        db.close();
+    }
+    return true;
+}

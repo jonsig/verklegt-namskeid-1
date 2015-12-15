@@ -37,11 +37,16 @@ void MainWindow::on_inputComputerSearchTerm_textChanged()
     displayComputers();
 }
 
-
-void MainWindow::on_choiceRelateTo_currentIndexChanged()
+void MainWindow::on_inputRelationSearchTerm_textChanged()
 {
     displayRelations();
 }
+
+void MainWindow::on_choiceRelateTo_currentTextChanged()
+{
+    displayRelations();
+}
+
 
 void MainWindow::displayScientists()
 {
@@ -160,6 +165,22 @@ void MainWindow::displayRelations()
     ui->relationTable->setSortingEnabled(true);
 }
 
+void MainWindow::removeRelation()
+{
+    int row = ui->relationTable->currentRow();
+    string compName = ui->relationTable->item(row, 0)->text().toStdString();
+    string sciName = ui->relationTable->item(row, 1)->text().toStdString();
+
+    //ABOUT TO DELETE *COMPNAME*, *SCINAME* RELATION, ARE YOU SURE PROMPT
+
+    if(relationService.removeRelation(compName, sciName))
+    {
+        printf("\nSuccess\n");      //Replace me with a GUI message
+    }
+    else
+        printf("\nFailure\n");
+}
+
 
 void MainWindow::on_tabsCurrentChanged(int index)
 {
@@ -189,7 +210,13 @@ void MainWindow::on_buttonAddNewScientist_clicked()
 
 }
 
-void MainWindow::on_inputRelationSearchTerm_textChanged()
+void MainWindow::on_relationTable_itemClicked()
 {
+    ui->buttonDelete->setEnabled(true);
+}
+
+void MainWindow::on_buttonDelete_clicked()
+{
+    removeRelation();
     displayRelations();
 }

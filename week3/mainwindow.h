@@ -29,9 +29,13 @@ private slots:
 
     void on_buttonAddNewScientist_clicked();
 
-    void on_choiceRelateTo_currentIndexChanged();
-
     void on_inputRelationSearchTerm_textChanged();
+
+    void on_choiceRelateTo_currentTextChanged();
+
+    void on_relationTable_itemClicked();
+
+    void on_buttonDelete_clicked();
 
 private:
     /**
@@ -50,6 +54,8 @@ private:
      * @brief displayRelations searches for relations between scientists and computers and writes the relation table.
      */
     void displayRelations();
+
+    void removeRelation();
 
     Ui::MainWindow *ui;
     ScientistService scientistService;

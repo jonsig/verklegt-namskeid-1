@@ -37,6 +37,14 @@ public:
      */
     bool addRelation(string compName, string sciName);
 
+    /**
+     * @brief removeRelation deletes relation database entries where both given names match the IDs
+     * @param compName is a full name of a computer
+     * @param sciName is a full name of a scientist
+     * @return true/false indicating success
+     */
+    bool removeRelation(string compName, string sciName);
+
 private:
     QSqlDatabase db;
 };

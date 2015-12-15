@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>446</width>
-    <height>456</height>
+    <width>458</width>
+    <height>495</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -223,6 +223,16 @@
             <string>Scientist</string>
            </property>
           </column>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="buttonDelete">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>Delete relation</string>
+          </property>
          </widget>
         </item>
        </layout>
