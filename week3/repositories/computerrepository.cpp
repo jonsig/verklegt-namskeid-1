@@ -120,6 +120,7 @@ bool ComputerRepository::addComputer(Computer computer)
     return true;
 }
 
+#include <iostream>
 bool ComputerRepository::removeComputer(Computer computer)
 {
     db.open();
@@ -127,9 +128,18 @@ bool ComputerRepository::removeComputer(Computer computer)
     QSqlQuery query(db);
 
     stringstream sqlQuery;
-    sqlQuery << "DELETE FROM computers WHERE name LIKE '" << computer.getName() << "' AND yearMade LIKE '" << computer.getYearMade() << "'";
+    sqlQuery << "DELETE FROM computers WHERE name = '" << computer.getName() << "' AND compType = '" << computer.getType() << "' AND wasMade = '" << computer.getWasMade() << "'";
+    if (computer.getYearMade() == constants::YEAR_NOT_ENTERED_DEFAULT_VALUE)
+    {
+        sqlQuery << " AND yearMade IS NULL";
+    }
+    else
+    {
+        sqlQuery << " AND yearMade = " << computer.getYearMade();
+    }
 
     bool success = query.exec(QString::fromStdString(sqlQuery.str()));
+    cout << endl << success << endl;
     db.close();
 
     return success;
