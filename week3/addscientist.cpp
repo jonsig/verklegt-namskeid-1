@@ -9,8 +9,8 @@ AddScientist::AddScientist(QWidget *parent) :
     ui(new Ui::AddScientist)
 {
     ui->setupUi(this);
-    ui->scientistSex->addItem("Male");
-    ui->scientistSex->addItem("Female");
+    ui->addScientistSex->addItem("Male");
+    ui->addScientistSex->addItem("Female");
 }
 
 AddScientist::~AddScientist()

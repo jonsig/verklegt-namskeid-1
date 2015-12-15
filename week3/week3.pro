@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     utilities/utils.cpp \
     addscientist.cpp \
     addcomputer.cpp \
-    addrelation.cpp
+    addrelation.cpp \
+    editcomputer.cpp
 
 
 HEADERS  += mainwindow.h \
@@ -41,11 +42,13 @@ HEADERS  += mainwindow.h \
     utilities/utils.h \
     addscientist.h \
     addcomputer.h \
-    addrelation.h
+    addrelation.h \
+    editcomputer.h
 
 
 FORMS    += mainwindow.ui \
     addscientist.ui \
     addcomputer.ui \
-    addrelation.ui
+    addrelation.ui \
+    editcomputer.ui
 

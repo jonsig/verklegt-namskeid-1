@@ -6,9 +6,6 @@
 #include "addcomputer.h"
 #include "addrelation.h"
 #include "editcomputer.h"
-#include "editscientist.h"
-
-#include <iostream>
 
 using namespace std;
 
@@ -300,18 +297,19 @@ void MainWindow::on_buttonRelationAdd_clicked()
 
 void MainWindow::on_buttonComputerEdit_clicked()
 {
-    EditComputer editComputer;
+    int row = ui->computerTable->currentIndex().row();
+    EditComputer editComputer(displayedComputer.at(row));
     editComputer.exec();
 
     ui->inputComputerSearchTerm->setText("");
     displayComputers();
 }
 
-void MainWindow::on_buttonScientistEdit_clicked()
-{
-    EditScientist editScientist;
-    editComputer.exec();
+//void MainWindow::on_buttonScientistEdit_clicked()
+//{
+//    EditScientist editScientist;
+//    editComputer.exec();
 
-    ui->inputScientistSearchTerm->setText("");
-    displayScientists();
-}
+//    ui->inputScientistSearchTerm->setText("");
+//    displayScientists();
+//}
