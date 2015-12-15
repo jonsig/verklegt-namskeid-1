@@ -20,8 +20,8 @@ AddScientist::~AddScientist()
 
 void AddScientist::on_buttonAddScientist_clicked()
 {
-    string name = ui->scientistName->text().toStdString();
-    string sType = ui->scientistSex->currentText().toStdString();
+    string name = ui->addScientistName->text().toStdString();
+    string sType = ui->addScientistSex->currentText().toStdString();
     enum sexType sex;
     if (sType == "Male")
     {
@@ -31,18 +31,18 @@ void AddScientist::on_buttonAddScientist_clicked()
     {
         sex = female;
     }
-    string yearOfBirth = ui->scientistYearBorn->text().toStdString();
+    string yearOfBirth = ui->addScientistYearBorn->text().toStdString();
 
     bool inputError = false;
 
     if(name == "")
     {
-        ui->scientistNameError->setText("<span style='color: #DF0101'>Scientist must have name</span>");
+        ui->addScientistNameError->setText("<span style='color: #DF0101'>Scientist must have name</span>");
         inputError = true;
     }
     if(yearOfBirth == "")
     {
-        ui->scientistYearBornError->setText("<span style='color: #DF0101'>Scientist have existed</span>");
+        ui->addScientistYearBornError->setText("<span style='color: #DF0101'>Scientist have existed</span>");
         inputError = true;
     }
 
@@ -57,7 +57,7 @@ void AddScientist::on_buttonAddScientist_clicked()
     }
 
     int yearBorn =utils::stringToInt(yearOfBirth);
-    string yearOfDeath = ui->scientistYearDied->text().toStdString();
+    string yearOfDeath = ui->addScientistYearDied->text().toStdString();
 
     if(yearOfDeath == "")
         scientistService.addScientist(Scientist(name, sex, yearBorn));
@@ -66,10 +66,10 @@ void AddScientist::on_buttonAddScientist_clicked()
         int yearDied = utils::stringToInt(yearOfDeath);
         scientistService.addScientist(Scientist(name, sex, yearBorn, yearDied));
     }
-    ui->scientistName->setText("");
-    ui->scientistSex->setCurrentText("Male");
-    ui->scientistYearBorn->setText("");
-    ui->scientistYearDied->setText("");
+    ui->addScientistName->setText("");
+    ui->addScientistSex->setCurrentText("Male");
+    ui->addScientistYearBorn->setText("");
+    ui->addScientistYearDied->setText("");
 }
 
 void AddScientist::on_buttonCancelAddScientist_clicked()

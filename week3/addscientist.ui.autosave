@@ -48,15 +48,11 @@
     <widget class="QLineEdit" name="addScientistName"/>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
-     <item>
-      <widget class="QLabel" name="addSciSexLabel">
-       <property name="text">
-        <string>Sex:</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <widget class="QLabel" name="addSciSexLabel">
+     <property name="text">
+      <string>Sex:</string>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QComboBox" name="addScientistSex"/>

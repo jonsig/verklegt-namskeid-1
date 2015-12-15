@@ -5,8 +5,9 @@
 #include "addscientist.h"
 #include "addcomputer.h"
 #include "addrelation.h"
+#include "editcomputer.h"
+#include "editscientist.h"
 
-#include <iomanip>
 #include <iostream>
 
 using namespace std;
@@ -257,6 +258,7 @@ void MainWindow::on_buttonScientistDelete_clicked()
 
 void MainWindow::on_scientistTable_itemClicked()
 {
+    ui->buttonScientistEdit->setEnabled(true);
     ui->buttonScientistDelete->setEnabled(true);
 
 }
@@ -303,4 +305,13 @@ void MainWindow::on_buttonComputerEdit_clicked()
 
     ui->inputComputerSearchTerm->setText("");
     displayComputers();
+}
+
+void MainWindow::on_buttonScientistEdit_clicked()
+{
+    EditScientist editScientist;
+    editComputer.exec();
+
+    ui->inputScientistSearchTerm->setText("");
+    displayScientists();
 }

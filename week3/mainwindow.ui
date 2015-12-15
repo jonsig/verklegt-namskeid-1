@@ -21,7 +21,7 @@
     <item>
      <widget class="QTabWidget" name="tabs">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="tabScientists">
        <attribute name="title">
@@ -87,11 +87,21 @@
          </widget>
         </item>
         <item>
+         <widget class="QPushButton" name="buttonAddNewScientist">
+          <property name="text">
+           <string>Add a new scientist</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <layout class="QHBoxLayout" name="horizontalLayout">
           <item>
-           <widget class="QPushButton" name="buttonAddNewScientist">
+           <widget class="QPushButton" name="buttonScientistEdit">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
-             <string>Add a new scientist</string>
+             <string>Edit scientist</string>
             </property>
            </widget>
           </item>
@@ -101,7 +111,7 @@
              <bool>false</bool>
             </property>
             <property name="text">
-             <string>Delete Scientist</string>
+             <string>Delete scientist</string>
             </property>
            </widget>
           </item>
