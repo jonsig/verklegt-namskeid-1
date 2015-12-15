@@ -14,6 +14,7 @@ RelationRepository::RelationRepository()
 
 vector<namePair> RelationRepository::findRelations(string name, string relateTo)
 {
+    cleanRelations();
     vector<namePair> results;
 
     if(db.open())
@@ -127,5 +128,24 @@ bool RelationRepository::removeRelation(string compName, string sciName)
         }
         db.close();
     }
+    else
+    {   //database couldn't open
+        return false;
+    }
     return true;
+}
+
+void RelationRepository::cleanRelations()
+{
+    if(db.open())
+    {
+        QSqlQuery query(db);
+
+        string queryInsert = "DELETE FROM compSciRelation"
+                             " WHERE sci_id NOT IN"
+                             " (SELECT sci_id FROM scientists)"
+                             " OR com_id NOT IN"
+                             " (SELECT com_id FROM computers)";
+        query.exec(QString(queryInsert.c_str()));
+    }
 }

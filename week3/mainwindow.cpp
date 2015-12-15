@@ -219,4 +219,5 @@ void MainWindow::on_buttonDelete_clicked()
 {
     removeRelation();
     displayRelations();
+    ui->buttonDelete->setEnabled(false);
 }

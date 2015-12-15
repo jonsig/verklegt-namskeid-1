@@ -10,7 +10,7 @@
 using namespace std;
 
 /**
- * @brief The ComputerRepository class handles all read/write in the database
+ * @brief The ComputerRepository class handles reading and writing computers from a file
  */
 class ComputerRepository
 {

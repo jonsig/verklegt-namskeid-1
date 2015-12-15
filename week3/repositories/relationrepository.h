@@ -16,6 +16,9 @@ struct namePair
     string sciName;
 };
 
+/**
+ * @brief The RelationRepository class handles reading and writing relations between computers and scientists from a file
+ */
 class RelationRepository
 {
 public:
@@ -46,6 +49,11 @@ public:
     bool removeRelation(string compName, string sciName);
 
 private:
+    /**
+     * @brief cleanRelations finds relations where either ID refers to a computer/scientist entry that does not exist anymore and removes them
+     */
+    void cleanRelations();
+
     QSqlDatabase db;
 };
 
