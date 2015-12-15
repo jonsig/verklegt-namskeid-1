@@ -117,4 +117,5 @@ bool ScientistRepository::removeScientist(Scientist scientist)
     db.close();
 
     return success;
+
 }
