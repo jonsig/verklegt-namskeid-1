@@ -13,17 +13,6 @@ ComputerRepository::ComputerRepository()
     db = utils::getDatabaseConnection();
 }
 
-vector<Computer> ComputerRepository::getAllComputers(string orderBy, bool orderAscending)
-{
-    string command = "SELECT name,compType,wasMade,yearMade FROM computers";
-    command += " ORDER BY " + orderBy;
-    if(!orderAscending)
-    {
-        command += " desc";
-    }
-    return getComputers(command);
-}
-
 vector<Computer> ComputerRepository::findComputers(string searchTerm)
 {
     searchTerm = utils::stringToLower(searchTerm);

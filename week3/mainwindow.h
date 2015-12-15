@@ -65,14 +65,17 @@ private:
      */
     void displayRelations();
 
+    /**
+     * @brief removeRelation deletes the currently selected relation in the relation table.
+     */
     void removeRelation();
 
     Ui::MainWindow *ui;
     ScientistService scientistService;
     ComputerService computerService;
     RelationService relationService;
-    vector<Scientist> displayedScientist;
-    vector<Computer> displayedComputers;
+    vector<Scientist> displayedScientist;   //Last list of scientists that the scientist table used
+    vector<Computer> displayedComputer;     //Last list of computers that the computer table used
 };
 
 #endif // MAINWINDOW_H

@@ -19,14 +19,6 @@ public:
     ComputerRepository();
 
     /**
-     * @brief getAllComputers makes a query to read all entries and how to sort them and then sends the query to getComputers
-     * @param orderBy orders the result
-     * @param orderAscending is true for ascending order, false for descending
-     * @return vector of all entries in sorted order
-     */
-    vector<Computer> getAllComputers(string orderBy, bool orderAscending);
-
-    /**
      * @brief findComputers makes a search query and sends it to getComputers
      * @param searchTerm is a string that will be used to create the search query
      * @return vector containing search results

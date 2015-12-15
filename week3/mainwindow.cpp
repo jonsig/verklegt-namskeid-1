@@ -52,14 +52,14 @@ void MainWindow::on_choiceRelateTo_currentTextChanged()
 void MainWindow::displayScientists()
 {
     string searchTerm = ui->inputScientistSearchTerm->text().toStdString();
-    vector<Scientist> scientists = scientistService.searchForScientists(searchTerm);
+    displayedScientist = scientistService.searchForScientists(searchTerm);
 
     ui->scientistTable->setSortingEnabled(false);
     ui->scientistTable->clearContents();
-    ui->scientistTable->setRowCount(scientists.size());
-    for (unsigned row = 0; row < scientists.size(); row++)
+    ui->scientistTable->setRowCount(displayedScientist.size());
+    for (unsigned row = 0; row < displayedScientist.size(); row++)
     {
-        Scientist currentSci = scientists.at(row);
+        Scientist currentSci = displayedScientist.at(row);
         QString name = QString(currentSci.getName().c_str());
         QString sex = "";
 
@@ -86,20 +86,19 @@ void MainWindow::displayScientists()
         ui->scientistTable->setItem(row, 3, new QTableWidgetItem(yearDied));
     }
     ui->scientistTable->setSortingEnabled(true);
-    displayedScientist =scientists;
 }
 
 void MainWindow::displayComputers()
 {
     string searchTerm = ui->inputComputerSearchTerm->text().toStdString();
-    vector<Computer> computers = computerService.searchComputers(searchTerm);
+    displayedComputer = computerService.searchComputers(searchTerm);
 
     ui->computerTable->setSortingEnabled(false);
     ui->computerTable->clearContents();
-    ui->computerTable->setRowCount(computers.size());
-    for (unsigned row = 0; row < computers.size(); row++)
+    ui->computerTable->setRowCount(displayedComputer.size());
+    for (unsigned row = 0; row < displayedComputer.size(); row++)
     {
-        Computer currentComp = computers.at(row);
+        Computer currentComp = displayedComputer.at(row);
         QString name = QString(currentComp.getName().c_str());
         QString type = "";
 
@@ -142,7 +141,6 @@ void MainWindow::displayComputers()
         ui->computerTable->setItem(row, 3, new QTableWidgetItem(yearMade));
     }
     ui->computerTable->setSortingEnabled(true);
-    displayedComputers = computers;
 }
 
 void MainWindow::displayRelations()
@@ -265,7 +263,7 @@ void MainWindow::on_scientistTable_itemClicked()
 void MainWindow::on_buttonComputerDelete_clicked()
 {
     int selectedComputerIndex = ui->computerTable->currentIndex().row();
-    Computer selectedComputer  = displayedComputers.at(selectedComputerIndex);
+    Computer selectedComputer  = displayedComputer.at(selectedComputerIndex);
 
     bool success = computerService.removeComputer(selectedComputer);
 

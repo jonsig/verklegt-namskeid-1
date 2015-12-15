@@ -14,17 +14,6 @@ ScientistRepository::ScientistRepository()
     db = utils::getDatabaseConnection();
 }
 
-vector<Scientist> ScientistRepository::getAllScientists(string orderBy, bool orderAscending)
-{
-    string command = "SELECT name,sex,yearBorn,yearDied FROM scientists ORDER BY ";
-    command += orderBy;
-    if(!orderAscending)
-    {
-        command += " desc";
-    }
-    return getScientists(command);
-}
-
 vector<Scientist> ScientistRepository::findScientists(string searchTerm)
 {
     searchTerm = utils::stringToLower(searchTerm);
