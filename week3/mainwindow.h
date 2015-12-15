@@ -37,6 +37,8 @@ private slots:
 
     void on_buttonDelete_clicked();
 
+    void on_buttonAddNewComputer_clicked();
+
 private:
     /**
      * @brief displayScientists searches for scientists and writes the scientist table.

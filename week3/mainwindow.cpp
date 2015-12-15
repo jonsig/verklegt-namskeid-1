@@ -3,6 +3,7 @@
 #include "utilities/constants.h"
 #include "utilities/utils.h"
 #include "addscientist.h"
+#include "addcomputer.h"
 
 #include <iomanip>
 #include <iostream>
@@ -220,4 +221,13 @@ void MainWindow::on_buttonDelete_clicked()
     removeRelation();
     displayRelations();
     ui->buttonDelete->setEnabled(false);
+}
+
+void MainWindow::on_buttonAddNewComputer_clicked()
+{
+    addComputer addComputer;
+    addComputer.exec();
+
+    ui->inputComputerSearchTerm->setText("");
+    displayComputers();
 }
