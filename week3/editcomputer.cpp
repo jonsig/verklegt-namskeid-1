@@ -116,12 +116,12 @@ void EditComputer::on_buttonEditComputer_clicked()
     }
 
     if (success)
-    {
+    {   //Computer was successfully changed
         ui->editComputerFeedbackLabel->setText("<span style='color: #49E20E'>Computer successfully changed</span>");
         this->close();
     }
     else
-    {
+    {   //computer was not changed, keep window open
         ui->editComputerFeedbackLabel->setText("<span style='color: #DF0101'>An unknown error occurred, further changes not attempted</span>");
     }
 
