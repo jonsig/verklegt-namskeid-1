@@ -21,37 +21,37 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_inputScientistSearchTerm_textChanged();
+    void on_inputScientistSearchTerm_textChanged(); //scientist search term changed, update scientist table
 
-    void on_inputComputerSearchTerm_textChanged();
+    void on_inputComputerSearchTerm_textChanged();  //computer search term changed, update computer table
 
-    void on_buttonAddNewScientist_clicked();
+    void on_buttonAddNewScientist_clicked();        //add scientist button clicked, open add window
 
-    void on_inputRelationSearchTerm_textChanged();
+    void on_inputRelationSearchTerm_textChanged();  //relation search term changed, update relation table
 
-    void on_choiceRelateTo_currentTextChanged();
+    void on_choiceRelateTo_currentTextChanged();    //relateTo choice changed, update relation table
 
-    void on_relationTable_itemClicked();
+    void on_relationTable_itemClicked();    //relation table clicked, activate delete button
 
-    void on_buttonRelationDelete_clicked();
+    void on_buttonRelationDelete_clicked(); //delete relation button clicked, delete selected relation
 
-    void on_buttonAddNewComputer_clicked();
+    void on_buttonAddNewComputer_clicked(); //add computer button clicked, open add window
 
-    void on_scientistTable_itemClicked();
+    void on_scientistTable_itemClicked();   //scientist table clicked, activate edit and delete buttons
 
-    void on_buttonScientistDelete_clicked();
+    void on_buttonScientistDelete_clicked();//delete scientist button clicked, delete selected scientist
 
-    void on_computerTable_itemClicked();
+    void on_computerTable_itemClicked();    //computer table clicked, activate edit and delete buttons
 
-    void on_buttonComputerDelete_clicked();
+    void on_buttonComputerDelete_clicked(); //delete computer button clicked, delete selected computer
 
-    void on_buttonRelationAdd_clicked();
+    void on_buttonRelationAdd_clicked();    //add relation button clicked, open add relation window
 
-    void on_buttonComputerEdit_clicked();
+    void on_buttonComputerEdit_clicked();   //edit computer button clicked, open edit window
 
-    void on_buttonScientistEdit_clicked();
+    void on_buttonScientistEdit_clicked();  //edit scientist button clicked, open edit window
 
-    void on_tabs_currentChanged(int index);
+    void on_tabs_currentChanged(int index); //tabs changed, update tables
 
 private:
     /**
@@ -77,9 +77,11 @@ private:
     void removeRelation();
 
     Ui::MainWindow *ui;
-    ScientistService scientistService;
+
+    ScientistService scientistService;      //service classes provide repository connections
     ComputerService computerService;
     RelationService relationService;
+
     vector<Scientist> displayedScientist;   //Last list of scientists that the scientist table used
     vector<Computer> displayedComputer;     //Last list of computers that the computer table used
 };
