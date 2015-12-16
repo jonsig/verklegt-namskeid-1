@@ -23,6 +23,9 @@ struct namePair
 class RelationRepository
 {
 public:
+    /**
+     * @brief RelationRepository constructor initializes the database connection
+     */
     RelationRepository();
 
     /**
@@ -51,10 +54,13 @@ public:
 
 private:
     /**
-     * @brief cleanRelations finds relations where either ID refers to a computer/scientist entry that does not exist anymore and removes them
+     * @brief cleanRelations finds relations where either of the two ID's refers to a computer/scientist entry that does not exist anymore and removes them
      */
     void cleanRelations();
 
+    /**
+     * @brief db is the database connection to be used
+     */
     QSqlDatabase db;
 };
 

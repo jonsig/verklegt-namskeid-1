@@ -16,6 +16,10 @@ using namespace std;
 class ComputerRepository
 {
 public:
+
+    /**
+     * @brief ComputerRepository constructor initializes the database connection
+     */
     ComputerRepository();
 
     /**
@@ -47,6 +51,9 @@ public:
     bool removeComputer(Computer computer);
 
 private:
+    /**
+     * @brief db is the databaase connection to be used
+     */
     QSqlDatabase db;
 };
 

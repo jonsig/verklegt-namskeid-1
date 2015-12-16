@@ -45,7 +45,7 @@ vector<Computer> ComputerRepository::findComputers(string searchTerm)
     }
     command += " OR yearMade LIKE '%" + searchTerm + "%'";
 
-    command += " ORDER BY name";
+    command += " ORDER BY name";    //List is ordered alphabetically for lists that can't order themselves.
 
     return getComputers(command);
 }

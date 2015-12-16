@@ -4,7 +4,7 @@ using namespace std;
 
 ComputerService::ComputerService()
 {
-
+    //intentionally blank
 }
 
 vector<Computer> ComputerService::searchComputers(string searchTerm)
