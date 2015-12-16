@@ -29,6 +29,7 @@ vector<Scientist> ScientistRepository::findScientists(string searchTerm)
         command += " OR yearDied IS NULL";
     else
         command+= "OR yearDied LIKE '%" + searchTerm +"%'";
+    command += " ORDER BY name";
     return getScientists(command);
 }
 
