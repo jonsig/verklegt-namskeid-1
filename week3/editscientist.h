@@ -17,17 +17,20 @@ public:
     ~EditScientist();
 
 private slots:
-    void on_buttonEditScientist_clicked();
+    void on_buttonEditScientist_clicked();          //edit button, update currently selected scientist
 
-    void on_buttonCancelEditScientist_clicked();
+    void on_buttonCancelEditScientist_clicked();    //cancel button, close window
 
 private:
+    //scientist variables for deleting the old scientist entry
     std::string name;
     enum sexType sex;
     int yearBorn;
     int yearDied;
+
     Ui::EditScientist *ui;
-    ScientistService scientistService;
+
+    ScientistService scientistService; //provides the repository connection
 };
 
 #endif // EDITSCIENTIST_H

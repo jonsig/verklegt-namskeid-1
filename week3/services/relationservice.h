@@ -6,6 +6,9 @@
 class RelationService
 {
 public:
+    /**
+     * @brief RelationService initializes nothing
+     */
     RelationService();
 
     /**
@@ -33,6 +36,9 @@ public:
     bool removeRelation(string compName, string sciName);
 
 private:
+    /**
+     * @brief relationRepository is the repository connection to be used
+     */
     RelationRepository relationRepository;
 };
 

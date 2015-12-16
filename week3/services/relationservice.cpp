@@ -2,7 +2,7 @@
 
 RelationService::RelationService()
 {
-
+    //intentionally blank
 }
 
 vector<namePair> RelationService::findRelations(string name, string relateTo)

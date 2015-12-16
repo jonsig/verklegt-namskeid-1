@@ -16,6 +16,9 @@ using namespace std;
 class ScientistRepository
 {
 public:
+    /**
+     * @brief ScientistRepository constructor initializes the database connection
+     */
     ScientistRepository();
 
     /**
@@ -48,6 +51,9 @@ private:
      */
      vector<Scientist> getScientists(string filter);
 
+     /**
+     * @brief db is the database connection to be used
+     */
     QSqlDatabase db;
 };
 

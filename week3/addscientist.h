@@ -17,13 +17,13 @@ public:
     ~AddScientist();
 
 private slots:
-    void on_buttonAddScientist_clicked();
+    void on_buttonAddScientist_clicked();       //add button, add scientist
 
-    void on_buttonCancelAddScientist_clicked();
+    void on_buttonCancelAddScientist_clicked(); //cancel button, close window
 
 private:
     Ui::AddScientist *ui;
-    ScientistService scientistService;
+    ScientistService scientistService; //provides repository connection
 };
 
 #endif // ADDSCIENTIST_H

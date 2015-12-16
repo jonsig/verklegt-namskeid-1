@@ -16,7 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    displayScientists();
+    displayScientists();    //load all tables in case startup tab is changed
     displayComputers();
     displayRelations();
 

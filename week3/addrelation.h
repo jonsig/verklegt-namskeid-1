@@ -19,12 +19,14 @@ public:
     ~AddRelation();
 
 private slots:
-    void on_buttonAddRelation_clicked();
+    void on_buttonAddRelation_clicked();        //add button, add relation
 
-    void on_buttonCancel_AddRelation_clicked();
+    void on_buttonCancel_AddRelation_clicked(); //cancel button, close window
 
 private:
     Ui::AddRelation *ui;
+
+    //Service classes provide connections to repositories
     RelationService relationsService;
     ScientistService scientistService;
     ComputerService computerService;

@@ -4,7 +4,7 @@ using namespace std;
 
 ScientistService::ScientistService()
 {
-
+    //intentionally blank
 }
 
 vector<Scientist> ScientistService::searchForScientists(string searchTerm)

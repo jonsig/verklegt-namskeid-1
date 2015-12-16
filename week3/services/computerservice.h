@@ -8,6 +8,9 @@ using namespace std;
 class ComputerService
 {
 public:
+    /**
+     * @brief ComputerService initializes nothing
+     */
     ComputerService();
 
     /**
@@ -32,6 +35,9 @@ public:
     bool removeComputer(Computer computer);
 
 private:
+    /**
+     * @brief computerRepo is the repository connection to be used
+     */
     ComputerRepository computerRepo;
 };
 

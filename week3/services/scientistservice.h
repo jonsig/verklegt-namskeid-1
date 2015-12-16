@@ -11,6 +11,9 @@ using namespace std;
 class ScientistService
 {
 public:
+    /**
+     * @brief ScientistService initializes nothing
+     */
     ScientistService();
 
     /**
@@ -35,6 +38,9 @@ public:
     bool removeScientist(Scientist scientist);
 
 private:
+    /**
+     * @brief scientistRepo is the repository connection to be used
+     */
     ScientistRepository scientistRepo;
 };
 

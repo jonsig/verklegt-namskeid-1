@@ -10,31 +10,10 @@ using namespace std;
  */
 
 namespace constants {
-    const string DATABASE_NAME = "repository.sqlite";
+    const string DATABASE_NAME = "repository.sqlite";   //database file name
     const string DATABASE_TYPE = "QSQLITE";
-    const char FILE_DELIMETER = '\t';
-    const int YEAR_NOT_ENTERED_DEFAULT_VALUE = 13337;
 
-    const unsigned int MENU_COMMAND_WIDTH = 17;
-
-    const string SORT_SCIENTIST_NAME_ASCENDING = "name-asc";
-    const string SORT_SCIENTIST_NAME_DESCENDING = "name-desc";
-    const string SORT_SCIENTIST_SEX_ASCENDING = "sex-asc";
-    const string SORT_SCIENTIST_SEX_DESCENDING = "sex-desc";
-    const string SORT_SCIENTIST_YEAR_BORN_ASCENDING = "born-asc";
-    const string SORT_SCIENTIST_YEAR_BORN_DESCENDING = "born-desc";
-    const string SORT_SCIENTIST_YEAR_DIED_ASCENDING = "died-asc";
-    const string SORT_SCIENTIST_YEAR_DIED_DESCENDING = "died-desc";
-
-    const string SORT_COMPUTER_NAME_ASCENDING = "name-asc";
-    const string SORT_COMPUTER_NAME_DESCENDING = "name-desc";
-    const string SORT_COMPUTER_TYPE_ASCENDING = "type-asc";
-    const string SORT_COMPUTER_TYPE_DESCENDING = "type-desc";
-    const string SORT_COMPUTER_WAS_MADE_ASCENDING = "wasMade-asc";
-    const string SORT_COMPUTER_WAS_MADE_DESCENDING = "wasMade-desc";
-    const string SORT_COMPUTER_YEAR_MADE_ASCENDING = "yearMade-asc";
-    const string SORT_COMPUTER_YEAR_MADE_DESCENDING = "yearMade-desc";
-
+    const int YEAR_NOT_ENTERED_DEFAULT_VALUE = 13337;   //default year value
 }
 
 #endif // CONSTANTS_H
