@@ -182,23 +182,6 @@ void MainWindow::removeRelation()
         printf("\nFailure\n");
 }
 
-
-void MainWindow::on_tabsCurrentChanged(int index)
-{
-    if (index == 0)
-    {
-        displayScientists();
-    }
-    else if (index == 1)
-    {
-        displayComputers();
-    }
-    else if (index == 2)
-    {
-        displayRelations();
-    }
-}
-
 void MainWindow::on_buttonAddNewScientist_clicked()
 {
     AddScientist addScientist;
@@ -316,4 +299,20 @@ void MainWindow::on_buttonScientistEdit_clicked()
     ui->buttonScientistEdit->setEnabled(false);
     ui->inputScientistSearchTerm->setText("");
     displayScientists();
+}
+
+void MainWindow::on_tabs_currentChanged(int index)
+{
+    if (index == 0)
+    {
+        displayScientists();
+    }
+    else if (index == 1)
+    {
+        displayComputers();
+    }
+    else if (index == 2)
+    {
+        displayRelations();
+    }
 }

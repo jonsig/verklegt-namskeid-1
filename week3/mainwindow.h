@@ -25,8 +25,6 @@ private slots:
 
     void on_inputComputerSearchTerm_textChanged();
 
-    void on_tabsCurrentChanged(int index);
-
     void on_buttonAddNewScientist_clicked();
 
     void on_inputRelationSearchTerm_textChanged();
@@ -52,6 +50,8 @@ private slots:
     void on_buttonComputerEdit_clicked();
 
     void on_buttonScientistEdit_clicked();
+
+    void on_tabs_currentChanged(int index);
 
 private:
     /**
