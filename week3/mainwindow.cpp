@@ -215,8 +215,6 @@ void MainWindow::on_buttonAddNewComputer_clicked()
     displayComputers();
 }
 
-
-
 void MainWindow::on_buttonScientistDelete_clicked()
 {
     int selectedScientistIndex = ui->scientistTable->currentIndex().row();
@@ -230,10 +228,6 @@ void MainWindow::on_buttonScientistDelete_clicked()
         displayScientists();
 
         ui->buttonScientistDelete->setEnabled(false);
-    }
-    else
-    {
-        // display some error
     }
 }
 
@@ -257,10 +251,6 @@ void MainWindow::on_buttonComputerDelete_clicked()
         displayComputers();
 
         ui->buttonComputerDelete->setEnabled(false);
-    }
-    else
-    {
-        // display some error
     }
 }
 

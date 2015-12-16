@@ -101,7 +101,6 @@ void EditScientist::on_buttonEditScientist_clicked()
     }
     if(success)
     {
-        ui->EditScientistFeedbackLabel->setText("<span style='color: #49E20E'>Scientist successfully changed</span>");
         this->close();
     }
     else
