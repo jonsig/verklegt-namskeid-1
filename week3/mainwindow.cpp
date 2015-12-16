@@ -172,14 +172,16 @@ void MainWindow::removeRelation()
     string compName = ui->relationTable->item(row, 0)->text().toStdString();
     string sciName = ui->relationTable->item(row, 1)->text().toStdString();
 
-    //ABOUT TO DELETE *COMPNAME*, *SCINAME* RELATION, ARE YOU SURE PROMPT
+    QString prompt = "About to delete\n" + QString::fromStdString(compName) + " - " + QString::fromStdString(sciName) + "\nAre you sure?";
 
-    if(relationService.removeRelation(compName, sciName))
+    int isSure = QMessageBox::question(this,"Confirm",prompt);
+
+    if(isSure == QMessageBox::No)
     {
-        printf("\nSuccess\n");      //Replace me with a GUI message
+        return;
     }
-    else
-        printf("\nFailure\n");
+
+    relationService.removeRelation(compName, sciName);
 }
 
 void MainWindow::on_buttonAddNewScientist_clicked()

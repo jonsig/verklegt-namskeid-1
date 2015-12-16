@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMessageBox>
 #include "services/scientistservice.h"
 #include "services/computerservice.h"
 #include "services/relationservice.h"
