@@ -107,7 +107,6 @@ void EditScientist::on_buttonEditScientist_clicked()
     else
     {
         ui->EditScientistFeedbackLabel->setText("<span style='color: #DF0101'>An unknown error occurred, further changes not attempted</span>");
-        this->close();
     }
 
 }
